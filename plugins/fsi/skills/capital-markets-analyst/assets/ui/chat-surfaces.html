@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat surfaces preview — Capital Markets Analyst</title>
+  <meta name="description" content="Preview of the MCP App ripple graph and the A2UI cards built from the same deterministic analysis." />
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .chat-page { max-width: 1180px; margin: 0 auto; padding: 18px 24px 44px; display: grid; gap: 16px; }
+    .preview-note { margin: 0; padding: 9px 14px; font-size: 13px; color: #5c4a12; background: #fdf6e3; border: 1px solid #eadfb8; border-radius: var(--radius-sm); }
+    .page-error { margin: 0; padding: 10px 14px; border: 1px solid var(--signal-neg); background: var(--signal-neg-bg); border-radius: var(--radius-sm); }
+
+    /* The chat window: an example request, then the surface a chat client would show for it. */
+    .chat-window { background: var(--bg-surface); border: 1px solid var(--border-hairline); border-radius: 14px; box-shadow: var(--shadow-card); overflow: hidden; }
+    .chat-titlebar { display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-bottom: 1px solid var(--border-hairline); background: var(--bg-subtle); font-size: 13px; font-weight: 600; color: var(--text-secondary); }
+    .chat-titlebar .tag { font: 600 10.5px var(--font-mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 8px; border-radius: 999px; background: var(--signal-warn-bg); color: var(--signal-warn); border: 1px solid #f3dfae; }
+    .chat-body { padding: 18px 20px 22px; display: grid; gap: 20px; }
+    .msg { display: grid; gap: 6px; min-width: 0; }
+    .msg .who { font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); }
+    .msg.user { justify-items: end; }
+    .msg.user .bubble { max-width: 80ch; padding: 10px 15px; border-radius: 16px 16px 4px 16px; background: var(--accent-blue); color: #fff; font-size: 15px; line-height: 1.45; overflow-wrap: anywhere; }
+    .tool-line { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font-size: 12.5px; color: var(--text-secondary); }
+    .tool-line .tool-name { font: 600 12.5px var(--font-mono); color: var(--text-primary); }
+    .tool-line .tool-args { font: 12px var(--font-mono); color: var(--text-muted); overflow-wrap: anywhere; }
+    .surface-tag { margin-left: auto; font: 600 10.5px var(--font-mono); letter-spacing: .04em; padding: 2px 8px; border-radius: 999px; background: var(--accent-blue-soft); color: var(--accent-blue); border: 1px solid #c7dbfb; white-space: nowrap; }
+    /* The border belongs to the host, so the frame inside is exactly as tall as the view asks. */
+    #host-frame-box { border: 1px solid var(--border-strong); border-radius: 12px; overflow: hidden; background: #fff; }
+    #app-frame { display: block; width: 100%; height: 150px; border: 0; }
+    .view-calls { font: 12px var(--font-mono); color: var(--text-secondary); overflow-wrap: anywhere; }
+    .msg-note { font-size: 12px; color: var(--text-muted); max-width: 110ch; }
+    .card-picker { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+    .card-picker .picker-label { font-size: 12px; color: var(--text-muted); margin-right: 2px; }
+    .card-picker button { font: 600 12px var(--font-mono); padding: 5px 11px; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--bg-surface); color: var(--text-primary); cursor: pointer; }
+    .card-picker button.book { font-family: var(--font-sans); }
+    .card-picker button:hover { border-color: var(--accent-blue); }
+    .card-picker button[aria-pressed="true"] { background: var(--accent-blue); border-color: var(--accent-blue); color: #fff; }
+    .card-picker button:focus-visible, .dev-panel > summary:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
+
+    /* Preview renderer for the A2UI components the cards use. */
+    .a2ui-mount { min-height: 60px; }
+    .a2ui-agent { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
+    .a2ui-card { background: #fff; border: 1px solid var(--border-strong); border-radius: 12px; padding: 16px 18px; box-shadow: var(--shadow-card); max-width: 760px; }
+    .a2ui-column { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+    .a2ui-row { display: flex; flex-direction: row; gap: 14px; align-items: flex-start; min-width: 0; }
+    .a2ui-text { margin: 0; overflow-wrap: anywhere; min-width: 0; }
+    .a2ui-text.h1 { font-size: 2em; } .a2ui-text.h2 { font-size: 1.7em; } .a2ui-text.h3 { font-size: 1.35em; }
+    .a2ui-text.h4 { font-size: 1.12em; font-family: var(--font-mono); } .a2ui-text.h5 { font-size: 1em; }
+    .a2ui-text.h1, .a2ui-text.h2, .a2ui-text.h3, .a2ui-text.h4, .a2ui-text.h5 { font-weight: 650; line-height: 1.25; }
+    .a2ui-text.caption { font-size: .82em; color: var(--text-muted); }
+    .a2ui-divider { border: 0; border-top: 1px solid var(--border-hairline); margin: 4px 0; width: 100%; }
+    .a2ui-unsupported { color: var(--signal-neg); font-family: var(--font-mono); font-size: 12px; }
+
+    /* Dark host theme: the whole chat window follows it, as the view does. */
+    .chat-window.dark { background: #0f1115; border-color: #2a2d33; color: #eceef2; }
+    .chat-window.dark .chat-titlebar { background: #17181b; border-color: #2a2d33; color: #b7bcc6; }
+    .chat-window.dark .msg .who, .chat-window.dark .msg-note, .chat-window.dark .tool-line .tool-args,
+    .chat-window.dark .card-picker .picker-label, .chat-window.dark .a2ui-agent, .chat-window.dark .a2ui-text.caption { color: #8f96a3; }
+    .chat-window.dark .tool-line, .chat-window.dark .view-calls { color: #b7bcc6; }
+    .chat-window.dark .tool-line .tool-name { color: #eceef2; }
+    .chat-window.dark .surface-tag { background: #1c2a45; color: #8ab4ff; border-color: #2c4470; }
+    .chat-window.dark #host-frame-box { border-color: #454a54; background: #17181b; }
+    .chat-window.dark .card-picker button { background: #17181b; border-color: #454a54; color: #eceef2; }
+    .chat-window.dark .card-picker button[aria-pressed="true"] { background: #8ab4ff; border-color: #8ab4ff; color: #0f1115; }
+    .chat-window.dark .a2ui-card { background: #17181b; border-color: #454a54; color: #eceef2; box-shadow: none; }
+    .chat-window.dark .a2ui-divider { border-top-color: #33373f; }
+
+    /* Developer view: closed unless someone asks what goes over the wire. */
+    .dev-panel { background: var(--bg-surface); border: 1px solid var(--border-hairline); border-radius: var(--radius-md); }
+    .dev-panel > summary { cursor: pointer; padding: 11px 16px; font-size: 13px; font-weight: 600; color: var(--text-secondary); }
+    .dev-panel[open] > summary { border-bottom: 1px solid var(--border-hairline); }
+    .dev-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .dev-block { padding: 12px 16px 14px; border-bottom: 1px solid var(--border-hairline); min-width: 0; }
+    .dev-block:nth-child(odd) { border-right: 1px solid var(--border-hairline); }
+    .dev-block.wide { grid-column: 1 / -1; border-right: 0; border-bottom: 0; }
+    .dev-block h3 { margin: 0 0 8px; font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: .04em; }
+    .dev-caption { margin: 8px 0 0; font-size: 12px; color: var(--text-muted); }
+    .surface-form { display: flex; flex-wrap: wrap; gap: 10px 12px; align-items: end; }
+    .surface-form label { display: grid; gap: 3px; font-size: 12px; color: var(--text-muted); }
+    .surface-form select, .surface-form input { width: auto; font: 13px var(--font-sans); padding: 5px 7px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: #fff; min-width: 0; }
+    .surface-form input[type="number"] { width: 92px; }
+    .mono-box { margin: 0; font: 11.5px/1.5 var(--font-mono); white-space: pre-wrap; overflow-wrap: anywhere; max-height: 300px; overflow: auto; background: var(--bg-subtle); border: 1px solid var(--border-hairline); border-radius: var(--radius-sm); padding: 8px 10px; }
+    .mono-box.tall { max-height: 520px; }
+    .rpc-log { list-style: none; margin: 0; padding: 0; font: 11.5px/1.5 var(--font-mono); max-height: 300px; overflow: auto; }
+    .rpc-log li { padding: 2px 0; border-bottom: 1px dotted var(--border-hairline); overflow-wrap: anywhere; }
+    .rpc-log .dir { display: inline-block; width: 96px; white-space: nowrap; color: var(--text-muted); }
+    .rpc-log .to .dir { color: var(--accent-blue); }
+    .facts { display: grid; grid-template-columns: max-content 1fr; gap: 3px 12px; font-size: 12.5px; margin: 10px 0 0; }
+    .facts dt { color: var(--text-muted); } .facts dd { margin: 0; font-family: var(--font-mono); overflow-wrap: anywhere; }
+    @media (max-width: 900px) {
+      .dev-grid { grid-template-columns: 1fr; }
+      .dev-block:nth-child(odd) { border-right: 0; }
+      .surface-tag { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-brand">
+      <h1>Chat surfaces preview</h1>
+      <div class="masthead-sub">
+        <span>Skill: <strong class="tabular">fsi-capital-markets-analyst</strong></span>
+        <span>·</span>
+        <span>MCP App view and A2UI cards, built from the same deterministic analysis</span>
+      </div>
+    </div>
+    <div class="masthead-meta">
+      <a class="status-chip" href="index.html" style="text-decoration:none;">← Workstation</a>
+    </div>
+  </header>
+
+  <main class="chat-page">
+    <p class="preview-note" id="preview-note">
+      <strong>Preview.</strong> This page plays the chat client, so the two surfaces can be shown without one.
+      It is not an MCP Apps host and not the official A2UI renderer, and no agent runs here: the requests are examples.
+      The numbers and passages on both surfaces come from the same deterministic tool the agent calls.
+    </p>
+    <p id="page-error" class="page-error" hidden></p>
+
+    <section class="chat-window" id="chat-window" aria-label="Chat client preview">
+      <div class="chat-titlebar">Chat client <span class="tag">preview</span></div>
+      <div class="chat-body">
+
+        <div class="msg user">
+          <div class="who">Analyst · example request</div>
+          <div class="bubble" id="mcp-prompt">Show the 10-K ripple graph for the sample book.</div>
+        </div>
+        <div class="msg agent">
+          <div class="who">Assistant · simulated</div>
+          <div class="tool-line">
+            <span>called</span>
+            <span class="tool-name">show_ripple_graph</span>
+            <span class="tool-args" id="mcp-args"></span>
+            <span class="surface-tag">MCP App</span>
+          </div>
+          <div id="host-frame-box">
+            <iframe id="app-frame" title="MCP App view: ripple graph" sandbox="allow-scripts"></iframe>
+          </div>
+          <div class="view-calls" id="view-calls" aria-live="polite">Calls from the view to the tool: none yet.</div>
+          <div class="msg-note">The view is the plugin's own page, shown in a sandboxed frame at most 800 px tall, as for an inline chat message. Its buttons call the plugin's tool again; no model is involved, and the request above stays as it was.</div>
+        </div>
+
+        <div class="msg user">
+          <div class="who">Analyst · example request</div>
+          <div class="bubble" id="a2ui-prompt">Show one holding as a card.</div>
+        </div>
+        <div class="msg agent">
+          <div class="who">Assistant · simulated</div>
+          <div class="tool-line">
+            <span>sent</span>
+            <span class="tool-name">an A2UI card</span>
+            <span class="tool-args" id="a2ui-args"></span>
+            <span class="surface-tag">A2UI v0.9</span>
+          </div>
+          <div class="card-picker" id="card-picker" role="group" aria-label="Choose a card"></div>
+          <div id="a2ui-mount" class="a2ui-mount"></div>
+          <div class="msg-note">Python describes the card as data, and a chat client draws it with its own components. Here a small renderer of this page draws it. The card follows the scenario of the graph above.</div>
+        </div>
+
+      </div>
+    </section>
+
+    <details class="dev-panel" id="dev-panel">
+      <summary>Developer view: what goes over the wire</summary>
+      <div class="dev-grid">
+        <section class="dev-block" aria-labelledby="dev-call-title">
+          <h3 id="dev-call-title">Call the tool with other arguments</h3>
+          <div class="surface-form">
+            <label>Book <select id="mcp-book"></select></label>
+            <label>Rates (bp) <input id="mcp-rate" type="number" step="25" value="50" /></label>
+            <label>Oil (%) <input id="mcp-oil" type="number" step="5" value="25" /></label>
+            <button id="mcp-call" class="btn btn-primary" type="button">Call show_ripple_graph as the model would</button>
+            <button id="mcp-theme" class="btn" type="button">Switch host theme to dark</button>
+          </div>
+          <p class="dev-caption">Simulated host: a sandboxed frame with the MCP Apps default content security policy (no network), JSON-RPC over <code class="tabular">postMessage</code>, inline height limit 800 px. The workstation answers in place of <code class="tabular">scripts/mcp_server.py</code>, with the same result. The controls inside the frame call the view-only tool.</p>
+        </section>
+        <section class="dev-block" aria-labelledby="dev-card-title">
+          <h3 id="dev-card-title">Build a card with other values</h3>
+          <div class="surface-form">
+            <label>Card <select id="a2ui-card"><option value="holding">Holding</option><option value="book">Book summary</option></select></label>
+            <label>Book <select id="a2ui-book"></select></label>
+            <label>Holding <select id="a2ui-ticker"></select></label>
+            <label>Rates (bp) <input id="a2ui-rate" type="number" step="25" value="50" /></label>
+            <label>Oil (%) <input id="a2ui-oil" type="number" step="5" value="25" /></label>
+            <button id="a2ui-build" class="btn btn-primary" type="button">Build card</button>
+          </div>
+          <dl id="a2ui-facts" class="facts"></dl>
+          <p class="dev-caption">Preview renderer for the five basic-catalog components these cards use (Card, Column, Row, Text, Divider). The card is built by <code class="tabular">scripts/a2ui_cards.py</code> and is not sent anywhere from here.</p>
+        </section>
+        <section class="dev-block" aria-labelledby="dev-text-title">
+          <h3 id="dev-text-title">Text the model receives</h3>
+          <pre id="mcp-text" class="mono-box">Not called yet.</pre>
+        </section>
+        <section class="dev-block" aria-labelledby="dev-log-title">
+          <h3 id="dev-log-title">Messages between host and view</h3>
+          <ol id="rpc-log" class="rpc-log" aria-live="off"></ol>
+        </section>
+        <section class="dev-block wide" aria-labelledby="dev-json-title">
+          <h3 id="dev-json-title">A2UI messages</h3>
+          <pre id="a2ui-json" class="mono-box tall">Not built yet.</pre>
+        </section>
+      </div>
+    </details>
+  </main>
+
+  <script src="chat-surfaces.js"></script>
+</body>
+</html>

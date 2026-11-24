@@ -1,0 +1,2237 @@
+{
+ "metadata": {
+  "dataset_id": "form10k_fine_print_edgar_20261120",
+  "as_of_utc": "2026-11-23T05:01:16Z",
+  "source_posture": "authoritative_filing",
+  "data_notice": "Passages and XBRL facts come from each issuer's Form 10-K as retrieved from SEC EDGAR; the accession number, URL and SHA-256 of every source document are in the dataset. Scenario presets, book groupings, labels, statuses and notes are annotations, and values marked as derived are computed from the quoted figures. Not investment advice.",
+  "description": "20 issuers, 4 books, 4 scenario presets and 12 disclosed links, built by scripts/build_sample_book.py. excerpt_sha256 is the SHA-256 of an issuer's bundled passages (fsi_engine.compute_excerpt_sha256); filing.document_sha256 is the SHA-256 of the primary document as retrieved.",
+  "retrieval": {
+   "source": "SEC EDGAR: sec.gov Archives, data.sec.gov submissions and XBRL companyfacts",
+   "retrieved_from_utc": "2026-11-20T19:19:48Z",
+   "retrieved_to_utc": "2026-11-23T05:01:16Z",
+   "builder": "scripts/build_sample_book.py",
+   "normalisation": "Filing HTML is reduced to text by removing tags, scripts, styles and the inline-XBRL header, decoding character references, and collapsing each run of whitespace to one space. A sentence passage is an exact substring of that text. A table-row passage is the row's non-empty cell texts joined with ' | '; a currency symbol, closing parenthesis or percent sign that the filing puts in its own cell is attached to the adjacent number.",
+   "fuel_screen": "Oil status 'none_found' means no sentence of the filing text matched all of: a fuel term (fuel, crude, oil, petroleum, gasoline, diesel); a dollar amount; would, could or hypothetical; price, cost, per gallon or per barrel; and increase, decrease or change. It does not mean the filing never mentions fuel.",
+   "annotations": "Book groupings, scenario presets, sector labels, relationship labels, disclosure statuses and the notes attached to them are annotations by the skill authors, not filing content."
+  }
+ },
+ "books": {
+  "next27_flagship": {
+   "label": "Next '27 Sample Book (12 Holdings)",
+   "tickers": [
+    "DAL",
+    "UAL",
+    "BA",
+    "GE",
+    "HXL",
+    "FDX",
+    "WMT",
+    "CLX",
+    "PG",
+    "AAPL",
+    "MSFT",
+    "JPM"
+   ]
+  },
+  "aero_transport": {
+   "label": "Travel, Aerospace & Industrials",
+   "tickers": [
+    "DAL",
+    "UAL",
+    "BA",
+    "GE",
+    "HXL",
+    "FDX",
+    "RTX",
+    "CAT"
+   ]
+  },
+  "megacap_tech": {
+   "label": "Mega-Cap Tech & AI Supply Chain",
+   "tickers": [
+    "AAPL",
+    "MSFT",
+    "NVDA",
+    "AMZN",
+    "INTC"
+   ]
+  },
+  "defensive_consumer": {
+   "label": "Defensive Consumer & Staples",
+   "tickers": [
+    "WMT",
+    "PG",
+    "CLX"
+   ]
+  }
+ },
+ "scenarios": [
+  {
+   "id": "fed_up_25_oil_flat",
+   "label": "Rates +25 bp · Oil unchanged",
+   "rate_bps": "25",
+   "oil_pct": "0"
+  },
+  {
+   "id": "fed_up_50_oil_spike",
+   "label": "Rates +50 bp · Oil +25%",
+   "rate_bps": "50",
+   "oil_pct": "25"
+  },
+  {
+   "id": "fed_cut_50_oil_drop",
+   "label": "Rates -50 bp · Oil -20%",
+   "rate_bps": "-50",
+   "oil_pct": "-20"
+  },
+  {
+   "id": "extreme_rates_250_stress",
+   "label": "Stress: Rates +250 bp · Oil +30% (beyond 2x the disclosed basis)",
+   "rate_bps": "250",
+   "oil_pct": "30"
+  }
+ ],
+ "companies": {
+  "DAL": {
+   "ticker": "DAL",
+   "name": "Delta Air Lines, Inc.",
+   "cik": "0000027904",
+   "sector": "Airlines",
+   "filing_doc_id": "DAL-10K-FY2025",
+   "filing": {
+    "form": "10-K",
+    "accession_number": "0000027904-26-000013",
+    "filing_date": "2026-02-11",
+    "report_date": "2025-12-31",
+    "primary_document": "dal-20251231.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/27904/000002790426000013/dal-20251231.htm",
+    "document_sha256": "31a9d472fab5f0c952fe8bb06a077254a1065bfa62bd8bfd99c3c189b9f78fdc",
+    "retrieved_at_utc": "2026-11-20T19:20:36Z"
+   },
+   "excerpt_sha256": "3ad79071067235359f89d39c17c648676ca739efe58353243cff087f2b913c41",
+   "xbrl": {
+    "revenue_m": "63364",
+    "effective_tax_rate": "0.191",
+    "diluted_shares_m": "654",
+    "diluted_eps": "7.66",
+    "long_term_debt_m": "11936"
+   },
+   "xbrl_sources": {
+    "source": "SEC companyfacts API",
+    "accession_number": "0000027904-26-000013",
+    "fiscal_year": 2025,
+    "revenue_m": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "unit": "USD",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "unit": "pure",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "diluted_shares_m": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "unit": "shares",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "unit": "USD/shares",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "long_term_debt_m": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "unit": "USD",
+     "period_start": null,
+     "period_end": "2025-12-31"
+    }
+   },
+   "sensitivities": {
+    "rate": {
+     "status": "income_statement",
+     "disclosed_basis_bps": "100",
+     "pre_tax_impact_m": "-11",
+     "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "An increase of 100 basis points in average annual interest rates would have decreased the estimated fair value of our fixed-rate debt by $470 million at December 31, 2025 and would have increased the annual interest expense on our variable-rate debt and variable-rate leases by $11 million."
+      }
+     ],
+     "basis_note": "The same sentence states a $470 million decrease in the fair value of fixed-rate debt. That is a fair-value effect and is not converted."
+    },
+    "oil": {
+     "status": "income_statement",
+     "disclosed_basis_unit": "usd_per_gallon",
+     "disclosed_basis_value": "0.01",
+     "reference_price_usd_per_gallon": "2.30",
+     "pre_tax_impact_m": "-40",
+     "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "A one cent increase in the cost of jet fuel per gallon would result in approximately $40 million of additional annual fuel expense based on annual consumption of approximately four billion gallons of jet fuel."
+      },
+      {
+       "kind": "sentence",
+       "section": "Item 1. Business",
+       "text": "The following table shows our aircraft fuel consumption and costs:"
+      },
+      {
+       "kind": "table_row",
+       "section": "Item 1. Business",
+       "text": "Year | Gallons Consumed(1) (in millions) | Cost(1)(2) (in millions) | Average Price Per Gallon(1)(2) | Percentage of Total Operating Expense(1)(2)"
+      },
+      {
+       "kind": "table_row",
+       "section": "Item 1. Business",
+       "text": "2025 | 4,269 | $9,819 | $2.30 | 17%"
+      },
+      {
+       "kind": "sentence",
+       "section": "Item 1. Business",
+       "text": "(2)Includes the impact of fuel hedge activity and refinery segment results."
+      }
+     ],
+     "derivation": "Derived basis. The filing states the sensitivity per one cent per gallon. A percent price move is converted with the 2025 average price per gallon in the same filing ($2.30, which includes fuel hedge activity and refinery segment results), so a 1% move is 2.30 cents per gallon."
+    }
+   },
+   "yoy_delta": {
+    "metric": "Long-term debt (noncurrent) (us-gaap:LongTermDebtNoncurrent)",
+    "basis": "xbrl",
+    "prior_period_end": "2024-12-31",
+    "current_period_end": "2025-12-31",
+    "prior_value": "$13,546 million",
+    "current_value": "$11,936 million",
+    "change_summary": "Down $1,610 million (-11.9%).",
+    "value_source": "XBRL us-gaap:LongTermDebtNoncurrent; both balance-sheet dates as reported in accession 0000027904-26-000013."
+   }
+  },
+  "UAL": {
+   "ticker": "UAL",
+   "name": "United Airlines Holdings, Inc.",
+   "cik": "0000100517",
+   "sector": "Airlines",
+   "filing_doc_id": "UAL-10K-FY2025",
+   "filing": {
+    "form": "10-K",
+    "accession_number": "0000100517-26-000023",
+    "filing_date": "2026-02-12",
+    "report_date": "2025-12-31",
+    "primary_document": "ual-20251231.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/100517/000010051726000023/ual-20251231.htm",
+    "document_sha256": "fd5267d8207d0158639703fe9fa71729324ae8cf8a15c39914cb79fe18e48dbe",
+    "retrieved_at_utc": "2026-11-20T19:20:47Z"
+   },
+   "excerpt_sha256": "86a5ae2ac5cc180db0b1dbd1b7c12fed771ffb41aaf50e074a154e6d8987fde4",
+   "xbrl": {
+    "revenue_m": "59070",
+    "effective_tax_rate": "0.221",
+    "diluted_shares_m": "328.5",
+    "diluted_eps": "10.2",
+    "long_term_debt_m": "17170"
+   },
+   "xbrl_sources": {
+    "source": "SEC companyfacts API",
+    "accession_number": "0000100517-26-000023",
+    "fiscal_year": 2025,
+    "revenue_m": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "unit": "USD",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "unit": "pure",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "diluted_shares_m": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "unit": "shares",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "unit": "USD/shares",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "long_term_debt_m": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "unit": "USD",
+     "period_start": null,
+     "period_end": "2025-12-31"
+    }
+   },
+   "sensitivities": {
+    "rate": {
+     "status": "income_statement",
+     "disclosed_basis_bps": "100",
+     "pre_tax_impact_m": "77",
+     "components": [
+      {
+       "label": "Interest income on cash, cash equivalents and short-term investments",
+       "amount_m": "140"
+      },
+      {
+       "label": "Projected interest expense on variable rate debt",
+       "amount_m": "-63"
+      }
+     ],
+     "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "Assuming our cash, cash equivalents and short-term investments remain at their average 2025 levels, a 100 basis point increase in interest rates would result in a corresponding increase in the Company's interest income of approximately $140 million during 2026."
+      },
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "The following table summarizes information related to the Company's interest rate market risk at December 31, 2025 (in millions):"
+      },
+      {
+       "kind": "table_row",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "Impact of 100 basis point increase on projected interest expense for the following year | 63"
+      }
+     ],
+     "derivation": "Derived net figure. The filing gives two separate effects of a 100 basis point increase: about $140 million more interest income and $63 million more interest expense on variable rate debt. The net of the two, $77 million, is not stated in the filing."
+    },
+    "oil": {
+     "status": "income_statement",
+     "disclosed_basis_unit": "usd_per_barrel",
+     "disclosed_basis_value": "1",
+     "reference_price_usd_per_gallon": "2.44",
+     "pre_tax_impact_m": "-116",
+     "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "A one-dollar change in the price of a barrel of aircraft fuel would change the Company's 2026 projected fuel expense by approximately $116 million."
+      },
+      {
+       "kind": "sentence",
+       "section": "Item 1. Business (Aircraft Fuel)",
+       "text": "The table below summarizes the fuel consumption and expense of UAL's aircraft (including the operations of our regional carriers operating under CPAs) during the last three years."
+      },
+      {
+       "kind": "table_row",
+       "section": "Item 1. Business (Aircraft Fuel)",
+       "text": "Year | Gallons Consumed (in millions) | Fuel Expense (in millions) | Average Price Per Gallon | Percentage of Total Operating Expense"
+      },
+      {
+       "kind": "table_row",
+       "section": "Item 1. Business (Aircraft Fuel)",
+       "text": "2025 | 4,663 | $11,396 | $2.44 | 21%"
+      }
+     ],
+     "derivation": "Derived basis. The filing states the sensitivity per one dollar per barrel and a symmetric change; a price increase is taken as an expense increase. A percent price move is converted with the 2025 average price per gallon in the same filing ($2.44) and 42 gallons per barrel, so a 1% move is about $1.02 per barrel."
+    }
+   },
+   "yoy_delta": {
+    "metric": "Long-term debt (noncurrent) (us-gaap:LongTermDebtNoncurrent)",
+    "basis": "xbrl",
+    "prior_period_end": "2024-12-31",
+    "current_period_end": "2025-12-31",
+    "prior_value": "$21,680 million",
+    "current_value": "$17,170 million",
+    "change_summary": "Down $4,510 million (-20.8%).",
+    "value_source": "XBRL us-gaap:LongTermDebtNoncurrent; both balance-sheet dates as reported in accession 0000100517-26-000023."
+   }
+  },
+  "BA": {
+   "ticker": "BA",
+   "name": "The Boeing Company",
+   "cik": "0000012927",
+   "sector": "Aerospace & Defense",
+   "filing_doc_id": "BA-10K-FY2025",
+   "filing": {
+    "form": "10-K",
+    "accession_number": "0001628280-26-004357",
+    "filing_date": "2026-01-30",
+    "report_date": "2025-12-31",
+    "primary_document": "ba-20251231.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/12927/000162828026004357/ba-20251231.htm",
+    "document_sha256": "534a058c497e2f6bd1f9963cc180c9a3d9977dfb7601f01d98c15df75239690d",
+    "retrieved_at_utc": "2026-11-20T19:20:33Z"
+   },
+   "excerpt_sha256": "d61bae997322fd6ba26029f81e05df77f96a2dbfb3b3dfc10d98667185c9ab58",
+   "xbrl": {
+    "revenue_m": "89463",
+    "effective_tax_rate": "0.151",
+    "diluted_shares_m": "762.3",
+    "diluted_eps": "2.48",
+    "long_term_debt_m": "45637"
+   },
+   "xbrl_sources": {
+    "source": "SEC companyfacts API",
+    "accession_number": "0001628280-26-004357",
+    "fiscal_year": 2025,
+    "revenue_m": {
+     "tag": "us-gaap:Revenues",
+     "unit": "USD",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "unit": "pure",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "diluted_shares_m": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "unit": "shares",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "unit": "USD/shares",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "long_term_debt_m": {
+     "tag": "us-gaap:LongTermDebtAndCapitalLeaseObligations",
+     "unit": "USD",
+     "period_start": null,
+     "period_end": "2025-12-31"
+    }
+   },
+   "sensitivities": {
+    "rate": {
+     "status": "not_quantified",
+     "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "We have financial instruments that are subject to interest rate risk, principally fixed-rate debt obligations. The investors in our fixed-rate debt obligations do not generally have the right to demand we pay off these obligations prior to maturity. Therefore, exposure to interest rate risk is not believed to be material for our fixed-rate debt."
+      }
+     ],
+     "non_comparable_flag": "The filing gives no dollar sensitivity; it states that exposure to interest rate risk is not believed to be material for its fixed-rate debt."
+    },
+    "oil": {
+     "status": "none_found",
+     "section": "No passage located",
+     "coverage_note": "The build-time screen found no sentence in this filing that states a dollar sensitivity to oil or fuel prices."
+    }
+   },
+   "yoy_delta": {
+    "metric": "Long-term debt and lease obligations (noncurrent) (us-gaap:LongTermDebtAndCapitalLeaseObligations)",
+    "basis": "xbrl",
+    "prior_period_end": "2024-12-31",
+    "current_period_end": "2025-12-31",
+    "prior_value": "$52,586 million",
+    "current_value": "$45,637 million",
+    "change_summary": "Down $6,949 million (-13.2%).",
+    "value_source": "XBRL us-gaap:LongTermDebtAndCapitalLeaseObligations; both balance-sheet dates as reported in accession 0001628280-26-004357."
+   }
+  },
+  "GE": {
+   "ticker": "GE",
+   "name": "GE Aerospace",
+   "cik": "0000040545",
+   "sector": "Aerospace & Defense",
+   "filing_doc_id": "GE-10K-FY2025",
+   "filing": {
+    "form": "10-K",
+    "accession_number": "0000040545-26-000008",
+    "filing_date": "2026-01-29",
+    "report_date": "2025-12-31",
+    "primary_document": "ge-20251231.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/40545/000004054526000008/ge-20251231.htm",
+    "document_sha256": "e45b174f34c1245e3ef5da502e0dfb083b7698875d97c919746f5525620d51cd",
+    "retrieved_at_utc": "2026-11-20T19:20:38Z"
+   },
+   "excerpt_sha256": "b81a54c84959b756cb77a2e441158306b865932fa27a2444e9681e7164f7f63e",
+   "xbrl": {
+    "revenue_m": "45855",
+    "effective_tax_rate": "0.141",
+    "diluted_shares_m": "1068",
+    "diluted_eps": "8.14",
+    "long_term_debt_m": "18808"
+   },
+   "xbrl_sources": {
+    "source": "SEC companyfacts API",
+    "accession_number": "0000040545-26-000008",
+    "fiscal_year": 2025,
+    "revenue_m": {
+     "tag": "us-gaap:Revenues",
+     "unit": "USD",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "unit": "pure",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "diluted_shares_m": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "unit": "shares",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "unit": "USD/shares",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "long_term_debt_m": {
+     "tag": "us-gaap:LongTermDebtAndCapitalLeaseObligations",
+     "unit": "USD",
+     "period_start": null,
+     "period_end": "2025-12-31"
+    }
+   },
+   "sensitivities": {
+    "rate": {
+     "status": "not_convertible",
+     "section": "Capital Resources and Liquidity (Foreign Exchange and Interest Rate Risks)",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Capital Resources and Liquidity (Foreign Exchange and Interest Rate Risks)",
+       "text": "The analyses indicated that our 2025 consolidated net income would be impacted by $0.1 billion for interest rate risk and insignificantly for foreign exchange risk."
+      },
+      {
+       "kind": "sentence",
+       "section": "Capital Resources and Liquidity (Foreign Exchange and Interest Rate Risks)",
+       "text": "To assess exposure to interest rate risk, we apply a +/- 100 basis points change in interest rates and keep that in place for the next 12 months."
+      }
+     ],
+     "non_comparable_flag": "The filing states an unsigned $0.1 billion effect on consolidated net income for a +/- 100 basis point change. It gives no direction and no pre-tax amount, so it is not converted."
+    },
+    "oil": {
+     "status": "none_found",
+     "section": "No passage located",
+     "coverage_note": "The build-time screen found no sentence in this filing that states a dollar sensitivity to oil or fuel prices."
+    }
+   },
+   "yoy_delta": {
+    "metric": "Long-term debt and lease obligations (noncurrent) (us-gaap:LongTermDebtAndCapitalLeaseObligations)",
+    "basis": "xbrl",
+    "prior_period_end": "2024-12-31",
+    "current_period_end": "2025-12-31",
+    "prior_value": "$17,234 million",
+    "current_value": "$18,808 million",
+    "change_summary": "Up $1,574 million (+9.1%).",
+    "value_source": "XBRL us-gaap:LongTermDebtAndCapitalLeaseObligations; both balance-sheet dates as reported in accession 0000040545-26-000008."
+   }
+  },
+  "HXL": {
+   "ticker": "HXL",
+   "name": "Hexcel Corporation",
+   "cik": "0000717605",
+   "sector": "Aerospace Materials",
+   "filing_doc_id": "HXL-10K-FY2025",
+   "filing": {
+    "form": "10-K",
+    "accession_number": "0001193125-26-046377",
+    "filing_date": "2026-02-11",
+    "report_date": "2025-12-31",
+    "primary_document": "hxl-20251231.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/717605/000119312526046377/hxl-20251231.htm",
+    "document_sha256": "260e883ed9dc6bddc1a6f7a07f9f71bacc9f85f5201c092a6e694d302be7dee9",
+    "retrieved_at_utc": "2026-11-20T19:20:39Z"
+   },
+   "excerpt_sha256": "575c9a37af8e842b18712a9c69a0283b8bd488fcc69fca52004983ba8d47299d",
+   "xbrl": {
+    "revenue_m": "1893.9",
+    "effective_tax_rate": "0.19",
+    "diluted_shares_m": "80",
+    "diluted_eps": "1.37",
+    "long_term_debt_m": "993"
+   },
+   "xbrl_sources": {
+    "source": "SEC companyfacts API",
+    "accession_number": "0001193125-26-046377",
+    "fiscal_year": 2025,
+    "revenue_m": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "unit": "USD",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "unit": "pure",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "diluted_shares_m": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "unit": "shares",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsPerDilutedShare",
+     "unit": "USD/shares",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "long_term_debt_m": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "unit": "USD",
+     "period_start": null,
+     "period_end": "2025-12-31"
+    }
+   },
+   "sensitivities": {
+    "rate": {
+     "status": "not_quantified",
+     "section": "Management's Discussion and Analysis (Market Risks)",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Management's Discussion and Analysis (Market Risks)",
+       "text": "Assuming a 10% favorable and a 10% unfavorable change in the underlying weighted average interest rates of our variable rate debt and swap agreements, interest expense for 2025 of $37.7 million would not be materially impacted."
+      }
+     ],
+     "non_comparable_flag": "The filing gives no dollar sensitivity; it states that a 10% change in its variable interest rates would not materially affect interest expense."
+    },
+    "oil": {
+     "status": "not_quantified",
+     "section": "Management's Discussion and Analysis (Market Risks)",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Management's Discussion and Analysis (Market Risks)",
+       "text": "In addition, we have several contracts with both suppliers and customers that contain pricing adjustments based on the price of oil outside of a specified band."
+      }
+     ],
+     "non_comparable_flag": "The filing mentions contract pricing adjustments tied to the price of oil and gives no dollar sensitivity."
+    }
+   },
+   "yoy_delta": {
+    "metric": "Share of net sales to Boeing and its subcontractors",
+    "basis": "filing_passage",
+    "prior_period_end": "2024",
+    "current_period_end": "2025",
+    "prior_value": "15%",
+    "current_value": "13%",
+    "change_summary": "Down 2 percentage points.",
+    "value_source": "Both periods are stated in the quoted passage of the current filing.",
+    "evidence_section": "Item 1. Business",
+    "evidence_quote": "Approximately 13%, 15% and 15% of our 2025, 2024 and 2023 net sales, respectively, were to Boeing and its subcontractors."
+   }
+  },
+  "FDX": {
+   "ticker": "FDX",
+   "name": "FedEx Corporation",
+   "cik": "0001048911",
+   "sector": "Air Freight & Logistics",
+   "filing_doc_id": "FDX-10K-FY2026",
+   "filing": {
+    "form": "10-K",
+    "accession_number": "0001048911-26-000105",
+    "filing_date": "2026-07-20",
+    "report_date": "2026-05-31",
+    "primary_document": "fdx-20260531.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/1048911/000104891126000105/fdx-20260531.htm",
+    "document_sha256": "7507a492a565a53e68ca556db1d7f3b521f9ac5dd32405d47e74d452a695bc5d",
+    "retrieved_at_utc": "2026-11-20T19:20:37Z"
+   },
+   "excerpt_sha256": "f3acd47694f88c006cd71ee4b0dcdf61373805894d56a5213492e217abd067cb",
+   "xbrl": {
+    "revenue_m": "94720",
+    "effective_tax_rate": "0.235",
+    "diluted_shares_m": "239",
+    "diluted_eps": "18.55",
+    "long_term_debt_m": "23293"
+   },
+   "xbrl_sources": {
+    "source": "SEC companyfacts API",
+    "accession_number": "0001048911-26-000105",
+    "fiscal_year": 2026,
+    "revenue_m": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "unit": "USD",
+     "period_start": "2025-06-01",
+     "period_end": "2026-05-31"
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "unit": "pure",
+     "period_start": "2025-06-01",
+     "period_end": "2026-05-31"
+    },
+    "diluted_shares_m": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "unit": "shares",
+     "period_start": "2025-06-01",
+     "period_end": "2026-05-31"
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "unit": "USD/shares",
+     "period_start": "2025-06-01",
+     "period_end": "2026-05-31"
+    },
+    "long_term_debt_m": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "unit": "USD",
+     "period_start": null,
+     "period_end": "2026-05-31"
+    }
+   },
+   "sensitivities": {
+    "rate": {
+     "status": "fair_value_only",
+     "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "Market risk for long-term debt is estimated as the potential decrease in fair value resulting from a hypothetical 10% increase in interest rates and amounts to approximately $694 million as of May 31, 2026 and approximately $600 million as of May 31, 2025."
+      },
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "While we currently have market risk sensitive instruments related to interest rates, we do not have significant exposure to changing interest rates on our long-term debt."
+      }
+     ],
+     "non_comparable_flag": "The filing states a fair-value sensitivity of long-term debt (about $694 million for a hypothetical 10% increase in interest rates), not an annual income effect."
+    },
+    "oil": {
+     "status": "not_quantified",
+     "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "While we have market risk for changes in the price of jet and vehicle fuel, this risk is largely mitigated by our indexed fuel surcharges."
+      }
+     ],
+     "non_comparable_flag": "The filing gives no dollar sensitivity; it states that fuel price risk is largely mitigated by indexed fuel surcharges."
+    }
+   },
+   "yoy_delta": {
+    "metric": "Fair-value decrease of long-term debt for a hypothetical 10% increase in interest rates",
+    "basis": "filing_passage",
+    "prior_period_end": "May 31, 2025",
+    "current_period_end": "May 31, 2026",
+    "prior_value": "$600 million",
+    "current_value": "$694 million",
+    "change_summary": "Up $94 million (+15.7%).",
+    "value_source": "Both periods are stated in the quoted passage of the current filing.",
+    "evidence_section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+    "evidence_quote": "Market risk for long-term debt is estimated as the potential decrease in fair value resulting from a hypothetical 10% increase in interest rates and amounts to approximately $694 million as of May 31, 2026 and approximately $600 million as of May 31, 2025."
+   }
+  },
+  "WMT": {
+   "ticker": "WMT",
+   "name": "Walmart Inc.",
+   "cik": "0000104169",
+   "sector": "Consumer Staples Retail",
+   "filing_doc_id": "WMT-10K-FY2026",
+   "filing": {
+    "form": "10-K",
+    "accession_number": "0000104169-26-000055",
+    "filing_date": "2026-03-13",
+    "report_date": "2026-01-31",
+    "primary_document": "wmt-20260131.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/104169/000010416926000055/wmt-20260131.htm",
+    "document_sha256": "189f4b03ddd837a9b1c4518003b373d179bd899c2c3565e66896b9002b2497b4",
+    "retrieved_at_utc": "2026-11-20T19:20:47Z"
+   },
+   "excerpt_sha256": "9c880544892293616effa008c6ecb8db6e27c8c6ea72570e7990e9cc47eab33c",
+   "xbrl": {
+    "revenue_m": "713163",
+    "effective_tax_rate": "0.244",
+    "diluted_shares_m": "8022",
+    "diluted_eps": "2.73",
+    "long_term_debt_m": "34624"
+   },
+   "xbrl_sources": {
+    "source": "SEC companyfacts API",
+    "accession_number": "0000104169-26-000055",
+    "fiscal_year": 2026,
+    "revenue_m": {
+     "tag": "us-gaap:Revenues",
+     "unit": "USD",
+     "period_start": "2025-02-01",
+     "period_end": "2026-01-31"
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "unit": "pure",
+     "period_start": "2025-02-01",
+     "period_end": "2026-01-31"
+    },
+    "diluted_shares_m": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "unit": "shares",
+     "period_start": "2025-02-01",
+     "period_end": "2026-01-31"
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "unit": "USD/shares",
+     "period_start": "2025-02-01",
+     "period_end": "2026-01-31"
+    },
+    "long_term_debt_m": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "unit": "USD",
+     "period_start": null,
+     "period_end": "2026-01-31"
+    }
+   },
+   "sensitivities": {
+    "rate": {
+     "status": "income_statement",
+     "disclosed_basis_bps": "100",
+     "pre_tax_impact_m": "-100",
+     "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "Based on January 31, 2026 debt levels, a 100 basis point change in prevailing market rates would cause our annual interest costs to change by approximately $0.1 billion."
+      }
+     ],
+     "basis_note": "The filing states a symmetric change rounded to $0.1 billion; higher rates are taken as higher interest costs."
+    },
+    "oil": {
+     "status": "none_found",
+     "section": "No passage located",
+     "coverage_note": "The build-time screen found no sentence in this filing that states a dollar sensitivity to oil or fuel prices."
+    }
+   },
+   "yoy_delta": {
+    "metric": "Long-term debt (noncurrent) (us-gaap:LongTermDebtNoncurrent)",
+    "basis": "xbrl",
+    "prior_period_end": "2025-01-31",
+    "current_period_end": "2026-01-31",
+    "prior_value": "$33,401 million",
+    "current_value": "$34,624 million",
+    "change_summary": "Up $1,223 million (+3.7%).",
+    "value_source": "XBRL us-gaap:LongTermDebtNoncurrent; both balance-sheet dates as reported in accession 0000104169-26-000055."
+   }
+  },
+  "CLX": {
+   "ticker": "CLX",
+   "name": "The Clorox Company",
+   "cik": "0000021076",
+   "sector": "Household Products",
+   "filing_doc_id": "CLX-10K-FY2026",
+   "filing": {
+    "form": "10-K",
+    "accession_number": "0000021076-26-000034",
+    "filing_date": "2026-08-07",
+    "report_date": "2026-06-30",
+    "primary_document": "clx-20260630.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/21076/000002107626000034/clx-20260630.htm",
+    "document_sha256": "f6642f45b60197601535eb4e0d364b621dd8518b607256f0c64556b7446a9245",
+    "retrieved_at_utc": "2026-11-20T19:20:35Z"
+   },
+   "excerpt_sha256": "b1cd305147e7d6d079f10a4379deaff5ec9ebaff5ddd05f04d9654c376157577",
+   "xbrl": {
+    "revenue_m": "6720",
+    "effective_tax_rate": "0.24",
+    "diluted_shares_m": "122.132",
+    "diluted_eps": "4.81",
+    "long_term_debt_m": "3981"
+   },
+   "xbrl_sources": {
+    "source": "XBRL instance of the filing (https://www.sec.gov/Archives/edgar/data/21076/000002107626000034/clx-20260630_htm.xml); the companyfacts API had no facts for this accession",
+    "accession_number": "0000021076-26-000034",
+    "fiscal_year": 2026,
+    "revenue_m": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "unit": "USD",
+     "period_start": "2025-07-01",
+     "period_end": "2026-06-30"
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "unit": "pure",
+     "period_start": "2025-07-01",
+     "period_end": "2026-06-30"
+    },
+    "diluted_shares_m": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "unit": "shares",
+     "period_start": "2025-07-01",
+     "period_end": "2026-06-30"
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "unit": "USD/shares",
+     "period_start": "2025-07-01",
+     "period_end": "2026-06-30"
+    },
+    "long_term_debt_m": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "unit": "USD",
+     "period_start": null,
+     "period_end": "2026-06-30"
+    }
+   },
+   "sensitivities": {
+    "rate": {
+     "status": "incorporated_by_reference",
+     "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "This information appears under “Quantitative and Qualitative Disclosures about Market Risk” in “Management’s Discussion and Analysis of Financial Condition and Results of Operations,” in Exhibit 99.1, which is incorporated herein by reference."
+      }
+     ],
+     "non_comparable_flag": "Item 7A is incorporated by reference to Exhibit 99.1, which is not part of the bundled primary document, so no sensitivity is read from it."
+    },
+    "oil": {
+     "status": "incorporated_by_reference",
+     "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "This information appears under “Quantitative and Qualitative Disclosures about Market Risk” in “Management’s Discussion and Analysis of Financial Condition and Results of Operations,” in Exhibit 99.1, which is incorporated herein by reference."
+      }
+     ],
+     "non_comparable_flag": "Item 7A is incorporated by reference to Exhibit 99.1, which is not part of the bundled primary document, so no sensitivity is read from it."
+    }
+   },
+   "yoy_delta": {
+    "metric": "Share of consolidated net sales to Walmart and its affiliates",
+    "basis": "filing_passage",
+    "prior_period_end": "fiscal year ended June 30, 2025",
+    "current_period_end": "fiscal year ended June 30, 2026",
+    "prior_value": "27%",
+    "current_value": "26%",
+    "change_summary": "Down 1 percentage point.",
+    "value_source": "Both periods are stated in the quoted passage of the current filing.",
+    "evidence_section": "Item 1. Business (Customers)",
+    "evidence_quote": "Net sales to the Company’s largest customer, Walmart Stores, Inc. and its affiliates, were 26%, 27% and 25% of consolidated net sales for each of the fiscal years ended June 30, 2026, 2025 and 2024, respectively, and occurred across all of the Company’s reportable segments."
+   }
+  },
+  "PG": {
+   "ticker": "PG",
+   "name": "The Procter & Gamble Company",
+   "cik": "0000080424",
+   "sector": "Household & Personal Products",
+   "filing_doc_id": "PG-10K-FY2026",
+   "filing": {
+    "form": "10-K",
+    "accession_number": "0000080424-26-000103",
+    "filing_date": "2026-08-04",
+    "report_date": "2026-06-30",
+    "primary_document": "pg-20260630.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/80424/000008042426000103/pg-20260630.htm",
+    "document_sha256": "eebe9e841cc0b235b7cb210c24620a788f2075bf7890a5c2595a74d68464d5f4",
+    "retrieved_at_utc": "2026-11-20T19:20:45Z"
+   },
+   "excerpt_sha256": "f27676496dfa4983f26ee58b54cb6934f5682acd530b472de8cc76747dc4909b",
+   "xbrl": {
+    "revenue_m": "87032",
+    "effective_tax_rate": "0.208",
+    "diluted_shares_m": "2422.5",
+    "diluted_eps": "6.62",
+    "long_term_debt_m": "22842"
+   },
+   "xbrl_sources": {
+    "source": "SEC companyfacts API",
+    "accession_number": "0000080424-26-000103",
+    "fiscal_year": 2026,
+    "revenue_m": {
+     "tag": "us-gaap:Revenues",
+     "unit": "USD",
+     "period_start": "2025-07-01",
+     "period_end": "2026-06-30"
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "unit": "pure",
+     "period_start": "2025-07-01",
+     "period_end": "2026-06-30"
+    },
+    "diluted_shares_m": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "unit": "shares",
+     "period_start": "2025-07-01",
+     "period_end": "2026-06-30"
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "unit": "USD/shares",
+     "period_start": "2025-07-01",
+     "period_end": "2026-06-30"
+    },
+    "long_term_debt_m": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "unit": "USD",
+     "period_start": null,
+     "period_end": "2026-06-30"
+    }
+   },
+   "sensitivities": {
+    "rate": {
+     "status": "not_quantified",
+     "section": "Other Information (Hedging and Derivative Financial Instruments)",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Other Information (Hedging and Derivative Financial Instruments)",
+       "text": "Based on our interest rate exposure as of and during the fiscal year ended June 30, 2026, including derivative and other instruments sensitive to interest rates, we believe a near-term change in interest rates, at a 95% confidence level based on historical interest rate movements, would not materially affect our financial statements."
+      }
+     ],
+     "non_comparable_flag": "The filing gives no dollar sensitivity; it states that a near-term change in interest rates would not materially affect its financial statements."
+    },
+    "oil": {
+     "status": "none_found",
+     "section": "No passage located",
+     "coverage_note": "The build-time screen found no sentence in this filing that states a dollar sensitivity to oil or fuel prices."
+    }
+   },
+   "yoy_delta": {
+    "metric": "Approximate share of total sales to Walmart and its affiliates",
+    "basis": "filing_passage",
+    "prior_period_end": "2025",
+    "current_period_end": "2026",
+    "prior_value": "16%",
+    "current_value": "16%",
+    "change_summary": "Unchanged.",
+    "value_source": "Both periods are stated in the quoted passage of the current filing.",
+    "evidence_section": "Item 1. Business",
+    "evidence_quote": "Sales to Walmart Inc. and its affiliates represent approximately 16% of our total sales in 2026, 2025 and 2024."
+   }
+  },
+  "AAPL": {
+   "ticker": "AAPL",
+   "name": "Apple Inc.",
+   "cik": "0000320193",
+   "sector": "Technology Hardware",
+   "filing_doc_id": "AAPL-10K-FY2026",
+   "filing": {
+    "form": "10-K",
+    "accession_number": "0000320193-26-000026",
+    "filing_date": "2026-11-03",
+    "report_date": "2026-09-26",
+    "primary_document": "aapl-20260926.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+    "document_sha256": "43a5f86fedcda3044c8fbc4c50162bdc164ce56c397fca10582a27871e9e4cb8",
+    "retrieved_at_utc": "2026-11-20T19:20:32Z"
+   },
+   "excerpt_sha256": "533d200e6dc86e44488efcc817e70b6604ac784cc0e3e35205dc05482d702852",
+   "xbrl": {
+    "revenue_m": "478834",
+    "effective_tax_rate": "0.17",
+    "diluted_shares_m": "14720.306",
+    "diluted_eps": "8.98",
+    "long_term_debt_m": "68208"
+   },
+   "xbrl_sources": {
+    "source": "SEC companyfacts API",
+    "accession_number": "0000320193-26-000026",
+    "fiscal_year": 2026,
+    "revenue_m": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "unit": "USD",
+     "period_start": "2025-09-28",
+     "period_end": "2026-09-26"
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "unit": "pure",
+     "period_start": "2025-09-28",
+     "period_end": "2026-09-26"
+    },
+    "diluted_shares_m": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "unit": "shares",
+     "period_start": "2025-09-28",
+     "period_end": "2026-09-26"
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "unit": "USD/shares",
+     "period_start": "2025-09-28",
+     "period_end": "2026-09-26"
+    },
+    "long_term_debt_m": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "unit": "USD",
+     "period_start": null,
+     "period_end": "2026-09-26"
+    }
+   },
+   "sensitivities": {
+    "rate": {
+     "status": "income_statement",
+     "disclosed_basis_bps": "100",
+     "pre_tax_impact_m": "-95",
+     "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+     "passages": [
+      {
+       "kind": "table_row",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "Term debt | 100 basis points, all tenors | Increase in annual interest expense | $95 | $129"
+      },
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "The following table sets forth potential impacts on the Company’s investment portfolio and term debt, including the effects of any associated derivatives, that would result from a hypothetical increase in relevant interest rates as of September 26, 2026 and September 27, 2025 (dollars in millions):"
+      },
+      {
+       "kind": "table_row",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "Interest Rate Sensitive Instrument | Hypothetical Interest Rate Increase | Potential Impact | 2026 | 2025"
+      },
+      {
+       "kind": "table_row",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "Investment portfolio | 100 basis points, all tenors | Decline in fair value | $2,608 | $2,416"
+      }
+     ],
+     "basis_note": "Term debt only. The same table states a $2,608 million decline in the fair value of the investment portfolio, which is a fair-value effect and is not converted; the filing does not quantify the change in interest income on that portfolio."
+    },
+    "oil": {
+     "status": "none_found",
+     "section": "No passage located",
+     "coverage_note": "The build-time screen found no sentence in this filing that states a dollar sensitivity to oil or fuel prices."
+    }
+   },
+   "yoy_delta": {
+    "metric": "Increase in annual interest expense on term debt per 100 basis points",
+    "basis": "filing_passage",
+    "prior_period_end": "September 27, 2025",
+    "current_period_end": "September 26, 2026",
+    "prior_value": "$129 million",
+    "current_value": "$95 million",
+    "change_summary": "Down $34 million (-26.4%).",
+    "value_source": "Both periods are stated in the quoted passage of the current filing.",
+    "evidence_section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+    "evidence_quote": "Term debt | 100 basis points, all tenors | Increase in annual interest expense | $95 | $129"
+   }
+  },
+  "MSFT": {
+   "ticker": "MSFT",
+   "name": "Microsoft Corporation",
+   "cik": "0000789019",
+   "sector": "Systems & Cloud Software",
+   "filing_doc_id": "MSFT-10K-FY2026",
+   "filing": {
+    "form": "10-K",
+    "accession_number": "0001193125-26-323660",
+    "filing_date": "2026-07-29",
+    "report_date": "2026-06-30",
+    "primary_document": "msft-20260630.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+    "document_sha256": "97c55cf25c5e956ea53556e489556859ff94ec0e0074d251ddb8713d7aaae93c",
+    "retrieved_at_utc": "2026-11-20T19:20:43Z"
+   },
+   "excerpt_sha256": "66dc354cede5ae1de1c9ebfc20b0660967fa5b2872f027b72ef3c16cca4e58c4",
+   "xbrl": {
+    "revenue_m": "331839",
+    "effective_tax_rate": "0.194",
+    "diluted_shares_m": "7453",
+    "diluted_eps": "17.95",
+    "long_term_debt_m": "31067"
+   },
+   "xbrl_sources": {
+    "source": "SEC companyfacts API",
+    "accession_number": "0001193125-26-323660",
+    "fiscal_year": 2026,
+    "revenue_m": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "unit": "USD",
+     "period_start": "2025-07-01",
+     "period_end": "2026-06-30"
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "unit": "pure",
+     "period_start": "2025-07-01",
+     "period_end": "2026-06-30"
+    },
+    "diluted_shares_m": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "unit": "shares",
+     "period_start": "2025-07-01",
+     "period_end": "2026-06-30"
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "unit": "USD/shares",
+     "period_start": "2025-07-01",
+     "period_end": "2026-06-30"
+    },
+    "long_term_debt_m": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "unit": "USD",
+     "period_start": null,
+     "period_end": "2026-06-30"
+    }
+   },
+   "sensitivities": {
+    "rate": {
+     "status": "fair_value_only",
+     "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+     "passages": [
+      {
+       "kind": "table_row",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "Interest rate | 100 basis point increase in U.S. treasury interest rates | (1,201) | Fair Value"
+      },
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "The following table sets forth the potential loss in future earnings or fair values, including associated derivatives, resulting from hypothetical changes in relevant market rates or prices:"
+      },
+      {
+       "kind": "table_row",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "Risk Categories | Hypothetical Change | June 30, 2026 | Impact"
+      }
+     ],
+     "non_comparable_flag": "The filing's table marks the interest-rate row as a fair-value impact ($1,201 million for a 100 basis point increase in U.S. treasury interest rates), not an earnings impact."
+    },
+    "oil": {
+     "status": "none_found",
+     "section": "No passage located",
+     "coverage_note": "The build-time screen found no sentence in this filing that states a dollar sensitivity to oil or fuel prices."
+    }
+   },
+   "yoy_delta": {
+    "metric": "Long-term debt (noncurrent) (us-gaap:LongTermDebtNoncurrent)",
+    "basis": "xbrl",
+    "prior_period_end": "2025-06-30",
+    "current_period_end": "2026-06-30",
+    "prior_value": "$40,152 million",
+    "current_value": "$31,067 million",
+    "change_summary": "Down $9,085 million (-22.6%).",
+    "value_source": "XBRL us-gaap:LongTermDebtNoncurrent; both balance-sheet dates as reported in accession 0001193125-26-323660."
+   }
+  },
+  "JPM": {
+   "ticker": "JPM",
+   "name": "JPMorgan Chase & Co.",
+   "cik": "0000019617",
+   "sector": "Diversified Banks",
+   "filing_doc_id": "JPM-10K-FY2025",
+   "filing": {
+    "form": "10-K",
+    "accession_number": "0001628280-26-008131",
+    "filing_date": "2026-02-13",
+    "report_date": "2025-12-31",
+    "primary_document": "jpm-20251231.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm",
+    "document_sha256": "b7b0948d9f29962526cbc2c247462ce5082f477f78f1905cb502cc3e25f5766a",
+    "retrieved_at_utc": "2026-11-20T19:20:41Z"
+   },
+   "excerpt_sha256": "9c8298657e20fa8afffd3f57b3d9db44bac28e4647adf3786b003e4ad498b2ff",
+   "xbrl": {
+    "revenue_m": "182447",
+    "effective_tax_rate": "0.214",
+    "diluted_shares_m": "2781.5",
+    "diluted_eps": "20.02",
+    "long_term_debt_m": "435206"
+   },
+   "xbrl_sources": {
+    "source": "SEC companyfacts API",
+    "accession_number": "0001628280-26-008131",
+    "fiscal_year": 2025,
+    "revenue_m": {
+     "tag": "us-gaap:Revenues",
+     "unit": "USD",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "unit": "pure",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "diluted_shares_m": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "unit": "shares",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "unit": "USD/shares",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "long_term_debt_m": {
+     "tag": "us-gaap:LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities",
+     "unit": "USD",
+     "period_start": null,
+     "period_end": "2025-12-31"
+    }
+   },
+   "sensitivities": {
+    "rate": {
+     "status": "income_statement",
+     "disclosed_basis_bps": "100",
+     "pre_tax_impact_m": "2100",
+     "section": "Structural interest rate risk management (Earnings-at-risk)",
+     "passages": [
+      {
+       "kind": "table_row",
+       "section": "Structural interest rate risk management (Earnings-at-risk)",
+       "text": "+100 bps shift in rates | $2.1 | $2.3"
+      },
+      {
+       "kind": "sentence",
+       "section": "Structural interest rate risk management (Earnings-at-risk)",
+       "text": "Earnings-at-risk estimates the Firm’s interest rate exposure for a given interest rate scenario. It is presented as a sensitivity to a baseline, which includes net interest income and certain interest rate sensitive fees."
+      },
+      {
+       "kind": "sentence",
+       "section": "Structural interest rate risk management (Earnings-at-risk)",
+       "text": "Earnings-at-risk scenarios estimate the potential change to a baseline over the following 12 months utilizing multiple assumptions."
+      },
+      {
+       "kind": "sentence",
+       "section": "Structural interest rate risk management (Earnings-at-risk)",
+       "text": "The Firm’s sensitivities are presented in the table below."
+      },
+      {
+       "kind": "table_row",
+       "section": "Structural interest rate risk management (Earnings-at-risk)",
+       "text": "December 31, (in billions) | 2025(a) | 2024(a)"
+      },
+      {
+       "kind": "table_row",
+       "section": "Structural interest rate risk management (Earnings-at-risk)",
+       "text": "-100 bps shift in rates | (2.4) | (2.5)"
+      },
+      {
+       "kind": "table_row",
+       "section": "Structural interest rate risk management (Earnings-at-risk)",
+       "text": "+200 bps shift in rates | 3.7 | 4.6"
+      },
+      {
+       "kind": "table_row",
+       "section": "Structural interest rate risk management (Earnings-at-risk)",
+       "text": "-200 bps shift in rates | (6.0) | (4.9)"
+      }
+     ],
+     "basis_note": "Earnings-at-risk over the following 12 months for a +100 bps parallel shift ($2.1 billion). The same table states different amounts for other shifts (-100 bps: $(2.4) billion; +200 bps: $3.7 billion; -200 bps: $(6.0) billion), so linear scaling from the +100 bps row does not reproduce them."
+    },
+    "oil": {
+     "status": "none_found",
+     "section": "No passage located",
+     "coverage_note": "The build-time screen found no sentence in this filing that states a dollar sensitivity to oil or fuel prices."
+    }
+   },
+   "yoy_delta": {
+    "metric": "Earnings-at-risk for a +100 bps parallel shift",
+    "basis": "filing_passage",
+    "prior_period_end": "December 31, 2024",
+    "current_period_end": "December 31, 2025",
+    "prior_value": "$2.3 billion",
+    "current_value": "$2.1 billion",
+    "change_summary": "Down $200 million (-8.7%).",
+    "value_source": "Both periods are stated in the quoted passage of the current filing.",
+    "evidence_section": "Structural interest rate risk management (Earnings-at-risk)",
+    "evidence_quote": "+100 bps shift in rates | $2.1 | $2.3"
+   }
+  },
+  "NVDA": {
+   "ticker": "NVDA",
+   "name": "NVIDIA Corporation",
+   "cik": "0001045810",
+   "sector": "Semiconductors",
+   "filing_doc_id": "NVDA-10K-FY2026",
+   "filing": {
+    "form": "10-K",
+    "accession_number": "0001045810-26-000021",
+    "filing_date": "2026-02-25",
+    "report_date": "2026-01-25",
+    "primary_document": "nvda-20260125.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+    "document_sha256": "be43a76d54d9f618751e931818f86d4ea039bf289793b904e4cc7c47e62b021b",
+    "retrieved_at_utc": "2026-11-20T19:20:44Z"
+   },
+   "excerpt_sha256": "cb7782bf843018647ee15be169b3909eb0530b169be1f731383475f7bf216598",
+   "xbrl": {
+    "revenue_m": "215938",
+    "effective_tax_rate": "0.151",
+    "diluted_shares_m": "24514",
+    "diluted_eps": "4.9",
+    "long_term_debt_m": "7469"
+   },
+   "xbrl_sources": {
+    "source": "SEC companyfacts API",
+    "accession_number": "0001045810-26-000021",
+    "fiscal_year": 2026,
+    "revenue_m": {
+     "tag": "us-gaap:Revenues",
+     "unit": "USD",
+     "period_start": "2025-01-27",
+     "period_end": "2026-01-25"
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "unit": "pure",
+     "period_start": "2025-01-27",
+     "period_end": "2026-01-25"
+    },
+    "diluted_shares_m": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "unit": "shares",
+     "period_start": "2025-01-27",
+     "period_end": "2026-01-25"
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "unit": "USD/shares",
+     "period_start": "2025-01-27",
+     "period_end": "2026-01-25"
+    },
+    "long_term_debt_m": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "unit": "USD",
+     "period_start": null,
+     "period_end": "2026-01-25"
+    }
+   },
+   "sensitivities": {
+    "rate": {
+     "status": "fair_value_only",
+     "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "According to our sensitivity analysis on our investment portfolio, a decrease in the yield curve of 0.5% as of the end of fiscal year 2026 and 2025 would decrease the fair value for these investments by approximately $0.2 billion."
+      },
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "As the Notes bear interest at a fixed rate, we have no financial statement risk associated with changes in interest rates."
+      }
+     ],
+     "non_comparable_flag": "The filing states a fair-value sensitivity of its investment portfolio (about $0.2 billion for a 0.5% yield-curve move), not an annual income effect."
+    },
+    "oil": {
+     "status": "none_found",
+     "section": "No passage located",
+     "coverage_note": "The build-time screen found no sentence in this filing that states a dollar sensitivity to oil or fuel prices."
+    }
+   },
+   "yoy_delta": {
+    "metric": "Fair-value decrease of investments for a 0.5% yield-curve move",
+    "basis": "filing_passage",
+    "prior_period_end": "end of fiscal year 2025",
+    "current_period_end": "end of fiscal year 2026",
+    "prior_value": "about $0.2 billion",
+    "current_value": "about $0.2 billion",
+    "change_summary": "Unchanged.",
+    "value_source": "Both periods are stated in the quoted passage of the current filing.",
+    "evidence_section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+    "evidence_quote": "According to our sensitivity analysis on our investment portfolio, a decrease in the yield curve of 0.5% as of the end of fiscal year 2026 and 2025 would decrease the fair value for these investments by approximately $0.2 billion."
+   }
+  },
+  "AMZN": {
+   "ticker": "AMZN",
+   "name": "Amazon.com, Inc.",
+   "cik": "0001018724",
+   "sector": "Cloud & E-Commerce",
+   "filing_doc_id": "AMZN-10K-FY2025",
+   "filing": {
+    "form": "10-K",
+    "accession_number": "0001018724-26-000004",
+    "filing_date": "2026-02-06",
+    "report_date": "2025-12-31",
+    "primary_document": "amzn-20251231.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+    "document_sha256": "91991643961203eb90efa74c1cf84b67bada60845bd8bf52b84892dc54a19c12",
+    "retrieved_at_utc": "2026-11-20T19:20:32Z"
+   },
+   "excerpt_sha256": "f0b89880ffca706bbac8289e1680fb2ddf55699495ceacc35f2a91644f9dc4ba",
+   "xbrl": {
+    "revenue_m": "716924",
+    "effective_tax_rate": "0.196",
+    "diluted_shares_m": "10827",
+    "diluted_eps": "7.17",
+    "long_term_debt_m": "65648"
+   },
+   "xbrl_sources": {
+    "source": "SEC companyfacts API",
+    "accession_number": "0001018724-26-000004",
+    "fiscal_year": 2025,
+    "revenue_m": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "unit": "USD",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "unit": "pure",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "diluted_shares_m": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "unit": "shares",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "unit": "USD/shares",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "long_term_debt_m": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "unit": "USD",
+     "period_start": null,
+     "period_end": "2025-12-31"
+    }
+   },
+   "sensitivities": {
+    "rate": {
+     "status": "not_quantified",
+     "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "Our long-term debt is carried at amortized cost and fluctuations in interest rates do not impact our consolidated financial statements."
+      },
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "However, the fair value of our long-term debt, which pays interest at a fixed rate, will generally fluctuate with movements of interest rates, increasing in periods of declining rates of interest and declining in periods of increasing rates of interest."
+      }
+     ],
+     "non_comparable_flag": "The filing gives no dollar sensitivity; it states that interest-rate fluctuations do not impact its consolidated financial statements for long-term debt carried at amortized cost."
+    },
+    "oil": {
+     "status": "none_found",
+     "section": "No passage located",
+     "coverage_note": "The build-time screen found no sentence in this filing that states a dollar sensitivity to oil or fuel prices."
+    }
+   },
+   "yoy_delta": {
+    "metric": "Long-term debt (noncurrent) (us-gaap:LongTermDebtNoncurrent)",
+    "basis": "xbrl",
+    "prior_period_end": "2024-12-31",
+    "current_period_end": "2025-12-31",
+    "prior_value": "$52,623 million",
+    "current_value": "$65,648 million",
+    "change_summary": "Up $13,025 million (+24.8%).",
+    "value_source": "XBRL us-gaap:LongTermDebtNoncurrent; both balance-sheet dates as reported in accession 0001018724-26-000004."
+   }
+  },
+  "RTX": {
+   "ticker": "RTX",
+   "name": "RTX Corporation",
+   "cik": "0000101829",
+   "sector": "Aerospace & Defense",
+   "filing_doc_id": "RTX-10K-FY2025",
+   "filing": {
+    "form": "10-K",
+    "accession_number": "0000101829-26-000006",
+    "filing_date": "2026-02-06",
+    "report_date": "2025-12-31",
+    "primary_document": "rtx-20251231.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/101829/000010182926000006/rtx-20251231.htm",
+    "document_sha256": "8e03d85706e431955fd1f2f307f6fe6adf805bcdb614320d09dea62fc8f39651",
+    "retrieved_at_utc": "2026-11-20T19:20:46Z"
+   },
+   "excerpt_sha256": "1d87ca9e8e9208d09d3caadeb3cdebf841fa0916aa4dfc0af724adbd35493e06",
+   "xbrl": {
+    "revenue_m": "88603",
+    "effective_tax_rate": "0.191",
+    "diluted_shares_m": "1356.4",
+    "diluted_eps": "4.96",
+    "long_term_debt_m": "34288"
+   },
+   "xbrl_sources": {
+    "source": "SEC companyfacts API",
+    "accession_number": "0000101829-26-000006",
+    "fiscal_year": 2025,
+    "revenue_m": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "unit": "USD",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "unit": "pure",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "diluted_shares_m": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "unit": "shares",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "unit": "USD/shares",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "long_term_debt_m": {
+     "tag": "us-gaap:LongTermDebtAndCapitalLeaseObligations",
+     "unit": "USD",
+     "period_start": null,
+     "period_end": "2025-12-31"
+    }
+   },
+   "sensitivities": {
+    "rate": {
+     "status": "fair_value_only",
+     "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "A 100 basis point unfavorable interest rate movement would have had an approximate $3 billion impact on the fair value of our fixed-rate debt at both December 31, 2025 and 2024."
+      },
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "A 100 basis point unfavorable interest rate movement on variable debt would not be expected to have a material effect on our operations or cash flows."
+      }
+     ],
+     "non_comparable_flag": "The filing states a fair-value sensitivity of fixed-rate debt (about $3 billion per 100 basis points) and says the effect on variable debt would not be material; neither is an annual income amount."
+    },
+    "oil": {
+     "status": "none_found",
+     "section": "No passage located",
+     "coverage_note": "The build-time screen found no sentence in this filing that states a dollar sensitivity to oil or fuel prices."
+    }
+   },
+   "yoy_delta": {
+    "metric": "Boeing and Airbus combined share of Collins segment sales",
+    "basis": "filing_passage",
+    "prior_period_end": "2024",
+    "current_period_end": "2025",
+    "prior_value": "16%",
+    "current_value": "16%",
+    "change_summary": "Unchanged.",
+    "value_source": "Both periods are stated in the quoted passage of the current filing.",
+    "evidence_section": "Item 1. Business",
+    "evidence_quote": "Collins’ largest commercial customers are Boeing and Airbus with combined sales, prior to discounts and incentives, of 16%, 16%, and 19% of total Collins segment sales in 2025, 2024, and 2023, respectively."
+   }
+  },
+  "CAT": {
+   "ticker": "CAT",
+   "name": "Caterpillar Inc.",
+   "cik": "0000018230",
+   "sector": "Machinery",
+   "filing_doc_id": "CAT-10K-FY2025",
+   "filing": {
+    "form": "10-K",
+    "accession_number": "0000018230-26-000008",
+    "filing_date": "2026-02-13",
+    "report_date": "2025-12-31",
+    "primary_document": "cat-20251231.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/18230/000001823026000008/cat-20251231.htm",
+    "document_sha256": "228ba128baa83764d4f0dbc32e8c0d1d7d6eb456513f90cff5d22e3ef653940f",
+    "retrieved_at_utc": "2026-11-20T19:20:34Z"
+   },
+   "excerpt_sha256": "29813364fe68ce845eab40f0d04b27a9b1d6c6e50273bbebf2293e8483957bf5",
+   "xbrl": {
+    "revenue_m": "67589",
+    "effective_tax_rate": "0.24",
+    "diluted_shares_m": "472.3",
+    "diluted_eps": "18.81",
+    "long_term_debt_m": "30696"
+   },
+   "xbrl_sources": {
+    "source": "SEC companyfacts API",
+    "accession_number": "0000018230-26-000008",
+    "fiscal_year": 2025,
+    "revenue_m": {
+     "tag": "us-gaap:Revenues",
+     "unit": "USD",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "unit": "pure",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "diluted_shares_m": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "unit": "shares",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "unit": "USD/shares",
+     "period_start": "2025-01-01",
+     "period_end": "2025-12-31"
+    },
+    "long_term_debt_m": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "unit": "USD",
+     "period_start": null,
+     "period_end": "2025-12-31"
+    }
+   },
+   "sensitivities": {
+    "rate": {
+     "status": "not_quantified",
+     "section": "Other Matters (Interest Rate Sensitivity)",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Other Matters (Interest Rate Sensitivity)",
+       "text": "A hypothetical 100 basis point adverse move in interest rates along the entire interest rate yield curve would have a minimal impact to the 2026 pre-tax earnings of MP&E."
+      },
+      {
+       "kind": "sentence",
+       "section": "Other Matters (Interest Rate Sensitivity)",
+       "text": "An analysis of the December 31, 2025 balance sheet, using these assumptions, estimates the impact of a 100 basis point immediate and sustained adverse change in interest rates to have a minimal impact on 2026 pre-tax earnings."
+      }
+     ],
+     "non_comparable_flag": "The filing gives no dollar sensitivity; it states that a 100 basis point adverse move would have a minimal impact on 2026 pre-tax earnings."
+    },
+    "oil": {
+     "status": "none_found",
+     "section": "No passage located",
+     "coverage_note": "The build-time screen found no sentence in this filing that states a dollar sensitivity to oil or fuel prices."
+    }
+   },
+   "yoy_delta": {
+    "metric": "Long-term debt (noncurrent) (us-gaap:LongTermDebtNoncurrent)",
+    "basis": "xbrl",
+    "prior_period_end": "2024-12-31",
+    "current_period_end": "2025-12-31",
+    "prior_value": "$27,351 million",
+    "current_value": "$30,696 million",
+    "change_summary": "Up $3,345 million (+12.2%).",
+    "value_source": "XBRL us-gaap:LongTermDebtNoncurrent; both balance-sheet dates as reported in accession 0000018230-26-000008."
+   }
+  },
+  "QRVO": {
+   "ticker": "QRVO",
+   "name": "Qorvo, Inc.",
+   "cik": "0001604778",
+   "sector": "Semiconductors",
+   "filing_doc_id": "QRVO-10K-FY2026",
+   "filing": {
+    "form": "10-K",
+    "accession_number": "0001628280-26-032873",
+    "filing_date": "2026-05-08",
+    "report_date": "2026-03-28",
+    "primary_document": "rfmd-20260328.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/1604778/000162828026032873/rfmd-20260328.htm",
+    "document_sha256": "4d11067b800c05574ee0f0fe59d207f5ac81c88ebc90c7a0963bf224da7857d6",
+    "retrieved_at_utc": "2026-11-23T05:01:14Z"
+   },
+   "excerpt_sha256": "d1fb8006d9aec7d9f8c6b11ac37398a98ce08555c5499d81b3b95fbe352f330e",
+   "xbrl": {
+    "revenue_m": "3678.517",
+    "effective_tax_rate": "0.149",
+    "diluted_shares_m": "93.547",
+    "diluted_eps": "3.62",
+    "long_term_debt_m": "1549.154"
+   },
+   "xbrl_sources": {
+    "source": "SEC companyfacts API",
+    "accession_number": "0001628280-26-032873",
+    "fiscal_year": 2026,
+    "revenue_m": {
+     "tag": "us-gaap:Revenues",
+     "unit": "USD",
+     "period_start": "2025-03-30",
+     "period_end": "2026-03-28"
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "unit": "pure",
+     "period_start": "2025-03-30",
+     "period_end": "2026-03-28"
+    },
+    "diluted_shares_m": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "unit": "shares",
+     "period_start": "2025-03-30",
+     "period_end": "2026-03-28"
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "unit": "USD/shares",
+     "period_start": "2025-03-30",
+     "period_end": "2026-03-28"
+    },
+    "long_term_debt_m": {
+     "tag": "us-gaap:LongTermDebt",
+     "unit": "USD",
+     "period_start": null,
+     "period_end": "2026-03-28"
+    }
+   },
+   "sensitivities": {
+    "rate": {
+     "status": "not_quantified",
+     "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "As of March 28, 2026, we did not have any outstanding borrowings under the Revolving Facility."
+      }
+     ],
+     "non_comparable_flag": "The filing gives no dollar sensitivity; it states that it had no outstanding variable-rate borrowings under its Revolving Facility as of March 28, 2026."
+    },
+    "oil": {
+     "status": "none_found",
+     "section": "No passage located",
+     "coverage_note": "The build-time screen found no sentence in this filing that states a dollar sensitivity to oil or fuel prices."
+    }
+   },
+   "yoy_delta": {
+    "metric": "Approximate aggregate share of total revenue from end customer Apple Inc.",
+    "basis": "filing_passage",
+    "prior_period_end": "fiscal year 2025",
+    "current_period_end": "fiscal year 2026",
+    "prior_value": "47%",
+    "current_value": "50%",
+    "change_summary": "Up 3 percentage points.",
+    "value_source": "Both periods are stated in the quoted passage of the current filing.",
+    "evidence_section": "Note 3. Concentrations of Credit Risk",
+    "evidence_quote": "The Company provides products to its largest end customer, Apple Inc., through sales to multiple contract manufacturers, which in the aggregate accounted for approximately 50%, 47% and 46% of total revenue in fiscal years 2026, 2025 and 2024, respectively."
+   }
+  },
+  "SWKS": {
+   "ticker": "SWKS",
+   "name": "Skyworks Solutions, Inc.",
+   "cik": "0000004127",
+   "sector": "Semiconductors",
+   "filing_doc_id": "SWKS-10K-FY2026",
+   "filing": {
+    "form": "10-K",
+    "accession_number": "0000004127-26-000055",
+    "filing_date": "2026-11-10",
+    "report_date": "2026-10-02",
+    "primary_document": "swks-20261002.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/4127/000000412726000055/swks-20261002.htm",
+    "document_sha256": "7468100b7d2415ec766734abedfd7017f18954b3cd2c7bb7dc37bf69341b1e2d",
+    "retrieved_at_utc": "2026-11-23T04:45:41Z"
+   },
+   "excerpt_sha256": "469c3f9b49ee95005ca059b1d09edcc242ee185f4a392eb55e0c6bafb30abc47",
+   "xbrl": {
+    "revenue_m": "3959.6",
+    "effective_tax_rate": "0.195",
+    "diluted_shares_m": "151",
+    "diluted_eps": "1.14",
+    "long_term_debt_m": "2472.8"
+   },
+   "xbrl_sources": {
+    "source": "SEC companyfacts API",
+    "accession_number": "0000004127-26-000055",
+    "fiscal_year": 2026,
+    "revenue_m": {
+     "tag": "us-gaap:Revenues",
+     "unit": "USD",
+     "period_start": "2025-10-04",
+     "period_end": "2026-10-02"
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "unit": "pure",
+     "period_start": "2025-10-04",
+     "period_end": "2026-10-02"
+    },
+    "diluted_shares_m": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "unit": "shares",
+     "period_start": "2025-10-04",
+     "period_end": "2026-10-02"
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "unit": "USD/shares",
+     "period_start": "2025-10-04",
+     "period_end": "2026-10-02"
+    },
+    "long_term_debt_m": {
+     "tag": "us-gaap:LongTermDebt",
+     "unit": "USD",
+     "period_start": null,
+     "period_end": "2026-10-02"
+    }
+   },
+   "sensitivities": {
+    "rate": {
+     "status": "not_quantified",
+     "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "Based on our results of operations for the fiscal year ended October 2, 2026, a hypothetical reduction in the interest rates on our cash, cash equivalents, and other investments of 100 basis points would result in an immaterial reduction of interest income with a de minimis impact on income before taxes."
+      }
+     ],
+     "non_comparable_flag": "The filing gives no dollar sensitivity; it states that a 100 basis point reduction in interest rates on cash and investments would have a de minimis impact on income before taxes."
+    },
+    "oil": {
+     "status": "none_found",
+     "section": "No passage located",
+     "coverage_note": "The build-time screen found no sentence in this filing that states a dollar sensitivity to oil or fuel prices."
+    }
+   },
+   "yoy_delta": {
+    "metric": "Aggregate share of net revenue from Apple",
+    "basis": "filing_passage",
+    "prior_period_end": "fiscal 2025",
+    "current_period_end": "fiscal 2026",
+    "prior_value": "67%",
+    "current_value": "61%",
+    "change_summary": "Down 6 percentage points.",
+    "value_source": "Both periods are stated in the quoted passage of the current filing.",
+    "evidence_section": "Note 14. Segment Information and Concentrations",
+    "evidence_quote": "During fiscal 2026, fiscal 2025, and fiscal 2024, Apple, through sales to multiple distributors and contract manufacturers for multiple applications including smartphones, tablets, desktop and notebook computers, watches, and other devices, in the aggregate accounted for 61%, 67%, and 69% of the Company’s net revenue, respectively."
+   }
+  },
+  "INTC": {
+   "ticker": "INTC",
+   "name": "Intel Corporation",
+   "cik": "0000050863",
+   "sector": "Semiconductors",
+   "filing_doc_id": "INTC-10K-FY2025",
+   "filing": {
+    "form": "10-K",
+    "accession_number": "0000050863-26-000011",
+    "filing_date": "2026-01-23",
+    "report_date": "2025-12-27",
+    "primary_document": "intc-20251227.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000011/intc-20251227.htm",
+    "document_sha256": "82758556de1bf3f842bbc3b0830526b344bd3369447b3f1199cbc847d7565021",
+    "retrieved_at_utc": "2026-11-23T04:51:00Z"
+   },
+   "excerpt_sha256": "3339fbaccbab9b6c447a1a9d67a27fa8532299969e733d110f7fbd3ff1da59e5",
+   "xbrl": {
+    "revenue_m": "52853",
+    "effective_tax_rate": "0.983",
+    "diluted_shares_m": "4530",
+    "diluted_eps": "-0.06",
+    "long_term_debt_m": "44086"
+   },
+   "xbrl_sources": {
+    "source": "SEC companyfacts API",
+    "accession_number": "0000050863-26-000011",
+    "fiscal_year": 2025,
+    "revenue_m": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "unit": "USD",
+     "period_start": "2024-12-29",
+     "period_end": "2025-12-27"
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "unit": "pure",
+     "period_start": "2024-12-29",
+     "period_end": "2025-12-27"
+    },
+    "diluted_shares_m": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "unit": "shares",
+     "period_start": "2024-12-29",
+     "period_end": "2025-12-27"
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "unit": "USD/shares",
+     "period_start": "2024-12-29",
+     "period_end": "2025-12-27"
+    },
+    "long_term_debt_m": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "unit": "USD",
+     "period_start": null,
+     "period_end": "2025-12-27"
+    }
+   },
+   "sensitivities": {
+    "rate": {
+     "status": "income_statement",
+     "disclosed_basis_bps": "100",
+     "pre_tax_impact_m": "-97",
+     "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "Taking into account fixed-rate debt that is swapped to floating-rate debt, a hypothetical increase in interest rates of 1% would result in an increase in annual interest expense of approximately $97 million from debt outstanding as of December 27, 2025 ($120 million increase in annual interest expense from debt outstanding as of December 28, 2024)."
+      },
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "A hypothetical change in benchmark interest rates of 1%, after taking into account investment hedges, would have resulted in a change in the fair value of our investment portfolio of less than $100 million as of December 27, 2025 and as of December 28, 2024."
+      }
+     ],
+     "basis_note": "Debt swapped to floating-rate debt only ($97 million increase in annual interest expense for a 1% increase in rates). The same section notes a fair-value change of less than $100 million on the investment portfolio, which is not an income-statement impact."
+    },
+    "oil": {
+     "status": "none_found",
+     "section": "No passage located",
+     "coverage_note": "The build-time screen found no sentence in this filing that states a dollar sensitivity to oil or fuel prices."
+    }
+   },
+   "yoy_delta": {
+    "metric": "Increase in annual interest expense per 1% increase in interest rates",
+    "basis": "filing_passage",
+    "prior_period_end": "December 28, 2024",
+    "current_period_end": "December 27, 2025",
+    "prior_value": "$120 million",
+    "current_value": "$97 million",
+    "change_summary": "Down $23 million (-19.2%).",
+    "value_source": "Both periods are stated in the quoted passage of the current filing.",
+    "evidence_section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+    "evidence_quote": "Taking into account fixed-rate debt that is swapped to floating-rate debt, a hypothetical increase in interest rates of 1% would result in an increase in annual interest expense of approximately $97 million from debt outstanding as of December 27, 2025 ($120 million increase in annual interest expense from debt outstanding as of December 28, 2024)."
+   }
+  },
+  "SMCI": {
+   "ticker": "SMCI",
+   "name": "Super Micro Computer, Inc.",
+   "cik": "0001375365",
+   "sector": "AI Servers & Storage",
+   "filing_doc_id": "SMCI-10K-FY2026",
+   "filing": {
+    "form": "10-K",
+    "accession_number": "0001375365-26-000022",
+    "filing_date": "2026-08-31",
+    "report_date": "2026-06-30",
+    "primary_document": "smci-20260630.htm",
+    "url": "https://www.sec.gov/Archives/edgar/data/1375365/000137536526000022/smci-20260630.htm",
+    "document_sha256": "ba598c870ea3817e7795be06b17d398f38e7da42eafd64bb68a184aafc3fa5f5",
+    "retrieved_at_utc": "2026-11-23T04:45:44Z"
+   },
+   "excerpt_sha256": "a71c335c11780d5de0162b51f33ca2a51812ee8f2e0c6a7fd66a9165c35a48ac",
+   "xbrl": {
+    "revenue_m": "39063.072",
+    "effective_tax_rate": "0.199",
+    "diluted_shares_m": "697.348",
+    "diluted_eps": "3.26",
+    "long_term_debt_m": "4664.139"
+   },
+   "xbrl_sources": {
+    "source": "SEC companyfacts API",
+    "accession_number": "0001375365-26-000022",
+    "fiscal_year": 2026,
+    "revenue_m": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "unit": "USD",
+     "period_start": "2025-07-01",
+     "period_end": "2026-06-30"
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "unit": "pure",
+     "period_start": "2025-07-01",
+     "period_end": "2026-06-30"
+    },
+    "diluted_shares_m": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "unit": "shares",
+     "period_start": "2025-07-01",
+     "period_end": "2026-06-30"
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "unit": "USD/shares",
+     "period_start": "2025-07-01",
+     "period_end": "2026-06-30"
+    },
+    "long_term_debt_m": {
+     "tag": "us-gaap:ConvertibleLongTermNotesPayable",
+     "unit": "USD",
+     "period_start": null,
+     "period_end": "2026-06-30"
+    }
+   },
+   "sensitivities": {
+    "rate": {
+     "status": "not_quantified",
+     "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+     "passages": [
+      {
+       "kind": "sentence",
+       "section": "Item 7A. Quantitative and Qualitative Disclosures About Market Risk",
+       "text": "Based on the outstanding principal indebtedness of $4,056.1 million under our credit facilities as of June 30, 2026, we believe that a 10% change in interest rates would not have a significant impact on the results of operations."
+      }
+     ],
+     "non_comparable_flag": "The filing gives no dollar sensitivity; it states that a 10% change in interest rates on its $4,056.1 million credit-facility principal would not have a significant impact on results of operations."
+    },
+    "oil": {
+     "status": "none_found",
+     "section": "No passage located",
+     "coverage_note": "The build-time screen found no sentence in this filing that states a dollar sensitivity to oil or fuel prices."
+    }
+   },
+   "yoy_delta": {
+    "metric": "Convertible senior notes (noncurrent) (us-gaap:ConvertibleLongTermNotesPayable)",
+    "basis": "xbrl",
+    "prior_period_end": "2025-06-30",
+    "current_period_end": "2026-06-30",
+    "prior_value": "$4,645 million",
+    "current_value": "$4,664 million",
+    "change_summary": "Up $19 million (+0.4%).",
+    "value_source": "XBRL us-gaap:ConvertibleLongTermNotesPayable; both balance-sheet dates as reported in accession 0001375365-26-000022."
+   }
+  }
+ },
+ "supply_chain_edges": [
+  {
+   "edge_id": "E01",
+   "src": "HXL",
+   "dst": "BA",
+   "relationship": "SUPPLIES_COMPOSITE_MATERIALS_TO",
+   "revenue_share_pct": "13",
+   "share_note": "Share of Hexcel's 2025 net sales that went to Boeing and its subcontractors.",
+   "doc_id": "HXL-10K-FY2025",
+   "section": "Item 1. Business",
+   "verbatim_quote": "Approximately 13%, 15% and 15% of our 2025, 2024 and 2023 net sales, respectively, were to Boeing and its subcontractors."
+  },
+  {
+   "edge_id": "E02",
+   "src": "RTX",
+   "dst": "BA",
+   "relationship": "SUPPLIES_AEROSPACE_SYSTEMS_TO",
+   "revenue_share_pct": null,
+   "share_note": "No Boeing-only share is disclosed. Boeing and Airbus together were 16% of Collins segment sales in 2025, before discounts and incentives.",
+   "doc_id": "RTX-10K-FY2025",
+   "section": "Item 1. Business",
+   "verbatim_quote": "Collins’ largest commercial customers are Boeing and Airbus with combined sales, prior to discounts and incentives, of 16%, 16%, and 19% of total Collins segment sales in 2025, 2024, and 2023, respectively."
+  },
+  {
+   "edge_id": "E03",
+   "src": "GE",
+   "dst": "BA",
+   "relationship": "SUPPLIES_ENGINES_TO",
+   "revenue_share_pct": null,
+   "share_note": "The filing names Boeing as a customer and discloses no revenue share.",
+   "doc_id": "GE-10K-FY2025",
+   "section": "About GE Aerospace (Commercial Engines & Services)",
+   "verbatim_quote": "Our CES customers for equipment and services consist primarily of airframers and airlines, including both Boeing and Airbus, and third-party MRO shops, to whom we sell spare parts and license MRO technology."
+  },
+  {
+   "edge_id": "E04",
+   "src": "BA",
+   "dst": "DAL",
+   "relationship": "SELLS_AIRCRAFT_TO",
+   "revenue_share_pct": null,
+   "share_note": "The filing discloses an aircraft purchase agreement and no revenue share.",
+   "doc_id": "DAL-10K-FY2025",
+   "section": "Item 2. Properties (Aircraft Purchase Commitments)",
+   "verbatim_quote": "In addition to the aircraft purchase commitments above, on January 12, 2026, we entered into a definitive agreement with The Boeing Company to acquire 30 Boeing 787-10 aircraft, with an option to purchase up to an additional 30 of the same aircraft."
+  },
+  {
+   "edge_id": "E05",
+   "src": "BA",
+   "dst": "UAL",
+   "relationship": "SELLS_AIRCRAFT_TO",
+   "revenue_share_pct": null,
+   "share_note": "The filing names Boeing as an aircraft supplier and discloses no revenue share.",
+   "doc_id": "UAL-10K-FY2025",
+   "section": "Item 1A. Risk Factors",
+   "verbatim_quote": "The Company currently sources substantially all of its aircraft and many related aircraft parts from The Boeing Company (\"Boeing\") or Airbus S.A.S. (\"Airbus\")."
+  },
+  {
+   "edge_id": "E06",
+   "src": "GE",
+   "dst": "DAL",
+   "relationship": "SUPPLIES_ENGINES_TO",
+   "revenue_share_pct": null,
+   "share_note": "The filing names the engine manufacturer and discloses no revenue share.",
+   "doc_id": "DAL-10K-FY2025",
+   "section": "Item 2. Properties (Aircraft Purchase Commitments)",
+   "verbatim_quote": "The B-787-10 aircraft will include GEnx engines manufactured by General Electric."
+  },
+  {
+   "edge_id": "E07",
+   "src": "CLX",
+   "dst": "WMT",
+   "relationship": "SELLS_THROUGH_RETAILER",
+   "revenue_share_pct": "26",
+   "share_note": "Share of Clorox's fiscal 2026 consolidated net sales that went to Walmart and its affiliates.",
+   "doc_id": "CLX-10K-FY2026",
+   "section": "Item 1. Business (Customers)",
+   "verbatim_quote": "Net sales to the Company’s largest customer, Walmart Stores, Inc. and its affiliates, were 26%, 27% and 25% of consolidated net sales for each of the fiscal years ended June 30, 2026, 2025 and 2024, respectively, and occurred across all of the Company’s reportable segments."
+  },
+  {
+   "edge_id": "E08",
+   "src": "PG",
+   "dst": "WMT",
+   "relationship": "SELLS_THROUGH_RETAILER",
+   "revenue_share_pct": "16",
+   "share_note": "Approximate share of P&G's fiscal 2026 total sales that went to Walmart and its affiliates.",
+   "doc_id": "PG-10K-FY2026",
+   "section": "Item 1. Business",
+   "verbatim_quote": "Sales to Walmart Inc. and its affiliates represent approximately 16% of our total sales in 2026, 2025 and 2024."
+  },
+  {
+   "edge_id": "E09",
+   "src": "QRVO",
+   "dst": "AAPL",
+   "relationship": "SUPPLIES_RF_SOLUTIONS_TO",
+   "revenue_share_pct": "50",
+   "share_note": "Approximate aggregate share of Qorvo's fiscal 2026 total revenue from end customer Apple Inc. through contract manufacturers.",
+   "doc_id": "QRVO-10K-FY2026",
+   "section": "Note 3. Concentrations of Credit Risk",
+   "verbatim_quote": "The Company provides products to its largest end customer, Apple Inc., through sales to multiple contract manufacturers, which in the aggregate accounted for approximately 50%, 47% and 46% of total revenue in fiscal years 2026, 2025 and 2024, respectively."
+  },
+  {
+   "edge_id": "E10",
+   "src": "SWKS",
+   "dst": "AAPL",
+   "relationship": "SUPPLIES_RF_SEMICONDUCTORS_TO",
+   "revenue_share_pct": "61",
+   "share_note": "Aggregate share of Skyworks' fiscal 2026 net revenue from Apple through distributors and contract manufacturers.",
+   "doc_id": "SWKS-10K-FY2026",
+   "section": "Note 14. Segment Information and Concentrations",
+   "verbatim_quote": "During fiscal 2026, fiscal 2025, and fiscal 2024, Apple, through sales to multiple distributors and contract manufacturers for multiple applications including smartphones, tablets, desktop and notebook computers, watches, and other devices, in the aggregate accounted for 61%, 67%, and 69% of the Company’s net revenue, respectively."
+  },
+  {
+   "edge_id": "E11",
+   "src": "NVDA",
+   "dst": "INTC",
+   "relationship": "CO_DEVELOPS_AI_PRODUCTS_WITH",
+   "revenue_share_pct": null,
+   "share_note": "The filing discloses a strategic partnership to co-develop custom client and data center products and states no revenue share.",
+   "doc_id": "INTC-10K-FY2025",
+   "section": "Item 1. Business (Overview)",
+   "verbatim_quote": "We also announced a strategic partnership with NVIDIA to co-develop custom client and data center products combining our x86 CPU technologies with NVIDIA's AI and accelerated computing capabilities."
+  },
+  {
+   "edge_id": "E12",
+   "src": "SMCI",
+   "dst": "NVDA",
+   "relationship": "ALIGNS_AI_SERVER_PLATFORMS_WITH",
+   "revenue_share_pct": null,
+   "share_note": "The filing names NVIDIA among the processor vendors Supermicro collaborates with on product cycles and discloses no revenue share.",
+   "doc_id": "SMCI-10K-FY2026",
+   "section": "Item 1. Business (Research and Development)",
+   "verbatim_quote": "We work closely with NVIDIA, Intel and AMD, among others, to develop products that are compatible with the latest generation of industry-standard technologies under development."
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+[project]
+name = "fsi-capital-markets-analyst"
+version = "1.0.0"
+description = "Capital Markets Analyst skill of the fsi agent plugin: Decimal scaling of Form 10-K market-risk disclosures, BigQuery Property Graph ripple, formula-linked workbook export, and fail-closed sign-off."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+dependencies = [
+  "google-adk>=2.6.0,<3.0.0",
+  "google-genai>=1.16.0",
+  "google-cloud-bigquery>=3.25.0",
+  "google-cloud-storage>=2.18.0",
+  "fastapi>=0.115.0",
+  "uvicorn>=0.30.0",
+  "pydantic>=2.7.0",
+  "pyyaml>=6.0.1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.2.0",
+  "jsonschema>=4.18.0",
+  "mcp>=2.0.0,<3.0.0",
+]
+# Only scripts/mcp_server.py needs the MCP SDK; the agent and the workstation do not.
+mcp = [
+  "mcp>=2.0.0,<3.0.0",
+]
+
+[dependency-groups]
+dev = [
+  "pytest>=8.2.0",
+  "jsonschema>=4.18.0",
+  "mcp>=2.0.0,<3.0.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple"
+default = true

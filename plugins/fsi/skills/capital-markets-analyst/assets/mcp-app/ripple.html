@@ -1,0 +1,1024 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10-K ripple graph</title>
+<!--
+  MCP App view for the fsi-capital-markets-analyst skill (served by scripts/mcp_server.py
+  as a ui:// resource). One self-contained document: no network requests, no external
+  scripts, styles, fonts or images, so it runs under an MCP Apps host's default content
+  security policy. It talks to the host with JSON-RPC 2.0 over window.parent.postMessage.
+  Every number shown is the tool's; the view only formats and draws.
+-->
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: var(--color-background-primary, #ffffff);
+    --bg-2: var(--color-background-secondary, #f5f6f8);
+    --bg-3: var(--color-background-tertiary, #e9ecf1);
+    --fg: var(--color-text-primary, #1b1d21);
+    --fg-2: var(--color-text-secondary, #4d535c);
+    --fg-3: var(--color-text-tertiary, #6d7480);
+    --line: var(--color-border-primary, #c9ced8);
+    --line-2: var(--color-border-secondary, #e1e4ea);
+    --neg: var(--color-text-danger, #b3261e);
+    --pos: var(--color-text-success, #1a7f37);
+    --warn: var(--color-text-warning, #8a5300);
+    --info: var(--color-text-info, #1a56db);
+    --neg-bg: var(--color-background-danger, #fdecea);
+    --warn-bg: var(--color-background-warning, #fff4dd);
+    --info-bg: var(--color-background-info, #e8effd);
+    --ring: var(--color-ring-primary, #1a56db);
+    --font: var(--font-sans, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif);
+    --mono: var(--font-mono, ui-monospace, "SF Mono", Menlo, Consolas, monospace);
+    --radius: var(--border-radius-md, 8px);
+  }
+  :root[data-theme="dark"] {
+    --bg: var(--color-background-primary, #17181b);
+    --bg-2: var(--color-background-secondary, #1f2125);
+    --bg-3: var(--color-background-tertiary, #2a2d33);
+    --fg: var(--color-text-primary, #eceef2);
+    --fg-2: var(--color-text-secondary, #b7bcc6);
+    --fg-3: var(--color-text-tertiary, #8f96a3);
+    --line: var(--color-border-primary, #454a54);
+    --line-2: var(--color-border-secondary, #33373f);
+    --neg: var(--color-text-danger, #ff8a80);
+    --pos: var(--color-text-success, #6bd08a);
+    --warn: var(--color-text-warning, #f2c36b);
+    --info: var(--color-text-info, #8ab4ff);
+    --neg-bg: var(--color-background-danger, #3a1f1d);
+    --warn-bg: var(--color-background-warning, #3a2f17);
+    --info-bg: var(--color-background-info, #1c2a45);
+    --ring: var(--color-ring-primary, #8ab4ff);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { font: 13px/1.45 var(--font); color: var(--fg); background: var(--bg); }
+  .wrap { display: grid; gap: 8px; padding: 10px 12px 12px; }
+  .top { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: flex-start; justify-content: space-between; }
+  h1 { margin: 0; font-size: 15px; font-weight: 650; }
+  .sub { color: var(--fg-2); font-size: 12px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px; font-size: 11.5px; color: var(--fg-2); background: var(--bg-2); white-space: nowrap; }
+  .chip.busy { color: var(--info); border-color: var(--info); }
+  .banner { border: 1px solid var(--line); border-radius: var(--radius); padding: 7px 10px; background: var(--bg-2); color: var(--fg-2); }
+  .banner.error { border-color: var(--neg); background: var(--neg-bg); color: var(--fg); }
+  .controls { display: grid; grid-template-columns: minmax(150px, 1.4fr) minmax(90px, 1fr) minmax(90px, 1fr); gap: 8px 10px; padding: 8px 10px; border: 1px solid var(--line-2); border-radius: var(--radius); background: var(--bg-2); }
+  .controls label { display: grid; gap: 2px; font-size: 11px; color: var(--fg-3); }
+  .controls select, .controls input { font: 13px var(--font); color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 4px 6px; width: 100%; min-width: 0; }
+  .presets { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; }
+  button { font: inherit; color: inherit; }
+  .preset, .link { border: 1px solid var(--line); background: var(--bg); border-radius: 6px; padding: 3px 8px; font-size: 11.5px; cursor: pointer; text-align: left; }
+  .preset:hover, .link:hover { border-color: var(--info); }
+  .preset[aria-pressed="true"], .link[aria-pressed="true"] { border-color: var(--info); background: var(--info-bg); }
+  :focus-visible { outline: 2px solid var(--ring); outline-offset: 1px; }
+  .kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .kpi { border: 1px solid var(--line-2); border-radius: var(--radius); padding: 7px 9px; min-width: 0; }
+  .kpi .label { font-size: 11px; color: var(--fg-3); }
+  .kpi .value { font: 600 15px var(--mono); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+  .kpi .note { font-size: 11px; color: var(--fg-2); }
+  .neg { color: var(--neg); } .pos { color: var(--pos); }
+  .main { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 10px; align-items: start; }
+  .panel { border: 1px solid var(--line-2); border-radius: var(--radius); background: var(--bg); min-width: 0; }
+  .panel h2 { margin: 0; padding: 7px 10px; border-bottom: 1px solid var(--line-2); font-size: 12px; font-weight: 600; color: var(--fg-2); }
+  .graph svg { display: block; width: 100%; height: auto; }
+  .legend { padding: 0 10px 6px; font-size: 11px; color: var(--fg-3); }
+  .link-list { padding: 0 10px 8px; }
+  .links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; padding-top: 6px; }
+  .link .share { color: var(--fg-3); }
+  .detail { padding: 10px; display: grid; gap: 9px; max-height: 400px; overflow: auto; }
+  .detail h3 { margin: 0; font-size: 14px; }
+  .detail .meta { font-size: 11.5px; color: var(--fg-3); overflow-wrap: anywhere; }
+  .figs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  .fig { background: var(--bg-2); border: 1px solid var(--line-2); border-radius: 6px; padding: 5px 7px; min-width: 0; }
+  .fig .label { font-size: 10.5px; color: var(--fg-3); }
+  .fig .value { font: 600 12.5px var(--mono); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+  .fig .sub { font-size: 10.5px; color: var(--fg-3); }
+  .flag { border-left: 3px solid var(--warn); background: var(--warn-bg); padding: 5px 8px; border-radius: 4px; font-size: 12px; }
+  .factor { border-top: 1px solid var(--line-2); padding-top: 8px; display: grid; gap: 5px; }
+  .factor-head { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-weight: 600; }
+  .badge { font-weight: 500; font-size: 11px; border: 1px solid var(--line); border-radius: 999px; padding: 0 7px; color: var(--fg-2); }
+  .badge.ok { border-color: var(--pos); color: var(--pos); }
+  .scaled { font: 12px var(--mono); color: var(--fg-2); overflow-wrap: anywhere; }
+  .section { font-size: 11.5px; color: var(--fg-3); }
+  blockquote { margin: 0; padding: 6px 9px; border-left: 3px solid var(--info); background: var(--bg-2); border-radius: 4px; overflow-wrap: anywhere; }
+  blockquote.empty { border-left-color: var(--line); color: var(--fg-3); }
+  details { font-size: 12px; } summary { cursor: pointer; color: var(--fg-2); }
+  details ul { margin: 5px 0 0; padding-left: 16px; display: grid; gap: 5px; }
+  .note { font-size: 12px; color: var(--fg-2); }
+  .hash { font: 11px var(--mono); color: var(--fg-3); overflow-wrap: anywhere; }
+  .foot { font-size: 11px; color: var(--fg-3); }
+  /* Graph */
+  .col-head { font: 700 10.5px var(--font); fill: var(--fg-2); letter-spacing: .04em; }
+  .col-sub { font: 10.5px var(--font); fill: var(--fg-3); }
+  .edge path.line { fill: none; stroke: var(--line); stroke-width: 1.4; }
+  .edge path.hit { fill: none; stroke: transparent; stroke-width: 14; cursor: pointer; pointer-events: stroke; }
+  .edge.active path.line { stroke: var(--info); stroke-width: 2.2; }
+  /* A link's share label. Drawn above every link's click area, and it selects its own link. */
+  .edge-label { cursor: pointer; }
+  .edge-label .pill { fill: var(--bg); stroke: var(--line); }
+  .edge-label.active .pill { stroke: var(--info); }
+  .edge-label text { font: 10px var(--mono); fill: var(--fg-2); text-anchor: middle; pointer-events: none; }
+  .arrow { fill: var(--line); } .arrow-active { fill: var(--info); }
+  .node { cursor: pointer; }
+  .node .box { fill: var(--bg); stroke: var(--line); stroke-width: 1.2; }
+  .node.outside .box { stroke-dasharray: 4 3; }
+  .node.selected .box { fill: var(--bg-3); stroke: var(--info); stroke-width: 2.2; }
+  .node .bar { fill: var(--fg-3); }
+  .node.neg .bar { fill: var(--neg); } .node.pos .bar { fill: var(--pos); }
+  .node .tk { font: 700 12px var(--mono); fill: var(--fg); }
+  .node .amt { font-family: var(--mono); fill: var(--fg-3); }
+  .node.neg .amt { fill: var(--neg); } .node.pos .amt { fill: var(--pos); }
+  .node:focus-visible { outline: none; }
+  .node:focus-visible .box { stroke: var(--ring); stroke-width: 2.4; }
+  [hidden] { display: none !important; }
+  .desk-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; padding: 7px 10px; border: 1px solid var(--line-2); border-radius: var(--radius); background: var(--bg-2); }
+  .act-btn { border: 1px solid var(--info); background: var(--info-bg); color: var(--fg); border-radius: 6px; padding: 4px 10px; font-size: 11.5px; font-weight: 600; cursor: pointer; }
+  .act-btn.secondary { border-color: var(--line); background: var(--bg); font-weight: 500; }
+  .act-btn:hover { border-color: var(--info); filter: brightness(0.97); }
+  .act-status { font: 11.5px var(--mono); color: var(--fg-2); flex: 1 1 200px; min-width: 0; overflow-wrap: anywhere; }
+  .act-status.ok { color: var(--pos); }
+  .act-status.err { color: var(--neg); }
+  .brief-panel { border: 1px solid var(--info); border-radius: var(--radius); padding: 9px 11px; background: var(--bg-2); display: grid; gap: 7px; }
+  .brief-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .brief-table { width: 100%; border-collapse: collapse; font: 11.5px var(--mono); font-variant-numeric: tabular-nums; }
+  .brief-table th, .brief-table td { border-bottom: 1px solid var(--line-2); padding: 3px 6px; text-align: right; }
+  .brief-table th:first-child, .brief-table td:first-child { text-align: left; }
+  .brief-table th { color: var(--fg-3); font-weight: 600; }
+  @media (max-width: 720px) { .main { grid-template-columns: 1fr; } .detail { max-height: none; } }
+  @media (max-width: 560px) {
+    .controls { grid-template-columns: 1fr 1fr; } .controls label.book { grid-column: 1 / -1; }
+    .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .links { grid-template-columns: 1fr; } .figs { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>10-K ripple graph</h1>
+      <div class="sub" id="subtitle">Connecting to the host…</div>
+    </div>
+    <div class="chips" id="chips"></div>
+  </header>
+  <div class="banner" id="banner" role="status" hidden></div>
+  <div class="controls" id="controls" hidden>
+    <label class="book">Book <select id="book"></select></label>
+    <label>Rates (basis points) <input id="rate" type="number" step="25" inputmode="decimal"></label>
+    <label>Oil / jet fuel (%) <input id="oil" type="number" step="5" inputmode="decimal"></label>
+    <div class="presets" id="presets"></div>
+  </div>
+  <div class="desk-actions" id="desk-actions" hidden>
+    <button type="button" class="act-btn" id="btn-push-scenario">Push Scenario → Google Sheet</button>
+    <button type="button" class="act-btn secondary" id="btn-push-comps">Write 3-Yr Book Comps → Sheet</button>
+    <button type="button" class="act-btn secondary" id="btn-brief">3-Yr 10-K Brief</button>
+    <button type="button" class="act-btn secondary" id="btn-open-sheet" hidden>Open Sheet ↗</button>
+    <div class="act-status" id="act-status">Scenario &amp; Form 10-K comps actions (when --full-suite &amp; FSI_SHEET_ID are configured).</div>
+  </div>
+  <section class="brief-panel" id="brief-panel" hidden></section>
+  <section class="kpis" id="kpis" aria-label="Scenario totals" hidden></section>
+  <div class="main" id="main" hidden>
+    <section class="panel">
+      <h2>Disclosed links reached from the shocked holdings</h2>
+      <div class="graph" id="graph"></div>
+      <div class="legend" id="legend"></div>
+      <details class="link-list" id="link-list">
+        <summary id="link-summary">Links</summary>
+        <div class="links" id="links"></div>
+      </details>
+    </section>
+    <section class="panel" aria-live="polite">
+      <h2>Filing passage behind the selection</h2>
+      <div class="detail" id="detail"></div>
+    </section>
+  </div>
+  <footer class="foot" id="foot" hidden></footer>
+</div>
+<script>
+(() => {
+  "use strict";
+
+  const PROTOCOL_VERSION = "2026-01-26";
+  const APP_INFO = { name: "fsi-capital-markets-ripple-graph", version: "1.0.0" };
+  const RECOMPUTE_TOOL = "recompute_ripple_graph";
+  const SVG_NS = "http://www.w3.org/2000/svg";
+  const INCOME = "income_statement";
+  const STATUS_LABEL = {
+    income_statement: "Annual income sensitivity",
+    fair_value_only: "Fair-value sensitivity only",
+    not_convertible: "Quantified, not convertible",
+    not_quantified: "No amount disclosed",
+    incorporated_by_reference: "Incorporated by reference",
+    none_found: "No passage located",
+  };
+  const HOP_LABEL = { 2: "2nd-order link", 3: "3rd-order link" };
+
+  const state = {
+    view: null, // structuredContent of the last successful tool result
+    selected: null, // { kind: "node" | "edge", id }
+    hostCapabilities: {},
+    toolInput: null,
+    heardFromHost: false,
+    busy: false,
+    seq: 0,
+  };
+  const $ = (id) => document.getElementById(id);
+
+  // ---------------------------------------------------------------- DOM helpers
+  function el(tag, props, ...children) {
+    const node = document.createElement(tag);
+    for (const [key, value] of Object.entries(props || {})) {
+      if (value === null || value === undefined || value === false) continue;
+      if (key === "class") node.className = value;
+      else if (key === "text") node.textContent = value;
+      else node.setAttribute(key, value === true ? "" : String(value));
+    }
+    for (const child of children.flat(Infinity)) {
+      if (child === null || child === undefined || child === false) continue;
+      node.append(child);
+    }
+    return node;
+  }
+  // Replace a node's children. Arrays are flattened and null / false entries dropped
+  // (the native replaceChildren would print them as text).
+  function fill(node, ...children) {
+    node.replaceChildren(...children.flat(Infinity).filter((child) => child !== null && child !== undefined && child !== false));
+  }
+  function svg(name, attrs, text) {
+    const node = document.createElementNS(SVG_NS, name);
+    for (const [key, value] of Object.entries(attrs || {})) {
+      if (value !== null && value !== undefined && value !== false) node.setAttribute(key, String(value));
+    }
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+
+  // ---------------------------------------------------------------- formatting
+  // The tool returns decimal strings. They are formatted as text, never through a float.
+  const DECIMAL = /^([+-]?)(\d+)(?:\.(\d+))?$/;
+  function parts(value) {
+    const match = DECIMAL.exec(String(value ?? "").trim());
+    if (!match) return null;
+    const zero = /^0*$/.test(match[2]) && /^0*$/.test(match[3] || "");
+    return { negative: match[1] === "-" && !zero, zero, whole: match[2], fraction: match[3] || "" };
+  }
+  const grouped = (digits) => digits.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  function signOf(value) {
+    const p = parts(value);
+    return !p || p.zero ? "zero" : p.negative ? "neg" : "pos";
+  }
+  function money(value) {
+    const p = parts(value);
+    if (!p) return value === null || value === undefined || value === "" ? "—" : String(value);
+    const sign = p.zero ? "" : p.negative ? "-" : "+";
+    return `${sign}$${grouped(p.whole)}${p.fraction ? "." + p.fraction : ""}M`;
+  }
+  function perShare(value) {
+    const p = parts(value);
+    if (!p) return "—";
+    const sign = p.zero ? "" : p.negative ? "-" : "+";
+    return `${sign}$${grouped(p.whole)}${p.fraction ? "." + p.fraction : ""}/sh`;
+  }
+  function signed(value, unit) {
+    const p = parts(value);
+    if (!p) return `${value}${unit}`;
+    const sign = p.zero ? "" : p.negative ? "-" : "+";
+    return `${sign}${grouped(p.whole)}${p.fraction ? "." + p.fraction : ""}${unit}`;
+  }
+  const relationWords = (relationship) => String(relationship || "").toLowerCase().replace(/_/g, " ");
+  const shareText = (edge) =>
+    edge.revenue_share_pct !== null && edge.revenue_share_pct !== undefined
+      ? `${edge.revenue_share_pct}% disclosed share`
+      : "no share disclosed";
+
+  // ---------------------------------------------------------------- JSON-RPC bridge
+  const pending = new Map();
+  let nextId = 1;
+  const post = (message) => window.parent.postMessage(message, "*");
+  const notify = (method, params) => post({ jsonrpc: "2.0", method, params: params || {} });
+  function request(method, params) {
+    const id = nextId++;
+    return new Promise((resolve, reject) => {
+      pending.set(id, { resolve, reject });
+      post({ jsonrpc: "2.0", id, method, params: params || {} });
+    });
+  }
+  window.addEventListener("message", (event) => {
+    if (event.source !== window.parent) return;
+    const message = event.data;
+    if (!message || message.jsonrpc !== "2.0") return;
+    if (message.method === undefined) {
+      const waiter = pending.get(message.id);
+      if (!waiter) return;
+      pending.delete(message.id);
+      if (message.error) waiter.reject(new Error(message.error.message || "The host returned an error."));
+      else waiter.resolve(message.result);
+      return;
+    }
+    const isRequest = message.id !== undefined && message.id !== null;
+    const handler = HOST_METHODS[message.method];
+    if (!handler) {
+      if (isRequest) post({ jsonrpc: "2.0", id: message.id, error: { code: -32601, message: `Method not found: ${message.method}` } });
+      return;
+    }
+    const result = handler(message.params || {});
+    if (isRequest) post({ jsonrpc: "2.0", id: message.id, result: result || {} });
+  });
+
+  const HOST_METHODS = {
+    ping: () => ({}),
+    "ui/resource-teardown": () => ({}),
+    "ui/notifications/tool-input-partial": () => { state.heardFromHost = true; },
+    "ui/notifications/tool-input": (params) => {
+      state.heardFromHost = true;
+      state.toolInput = params.arguments || {};
+      if (!state.view) $("subtitle").textContent = "Waiting for the tool result…";
+    },
+    "ui/notifications/tool-result": (params) => applyResult(params),
+    "ui/notifications/tool-cancelled": (params) => {
+      state.heardFromHost = true;
+      showBanner("error", `The tool call was cancelled${params.reason ? `: ${params.reason}` : "."}`);
+    },
+    "ui/notifications/host-context-changed": (params) => applyHostContext(params),
+  };
+
+  // ---------------------------------------------------------------- host context
+  function applyHostContext(context) {
+    if (!context || typeof context !== "object") return;
+    const root = document.documentElement;
+    if (context.theme === "light" || context.theme === "dark") {
+      root.dataset.theme = context.theme;
+      root.style.colorScheme = context.theme;
+    }
+    const variables = context.styles && context.styles.variables;
+    if (variables && typeof variables === "object") {
+      for (const [name, value] of Object.entries(variables)) {
+        if (name.startsWith("--") && typeof value === "string" && value) root.style.setProperty(name, value);
+      }
+    }
+  }
+  const canRecompute = () => Boolean(state.hostCapabilities && state.hostCapabilities.serverTools);
+
+  // ---------------------------------------------------------------- data in
+  const isView = (view) =>
+    Boolean(view) && typeof view === "object" && Array.isArray(view.holdings) && view.contagion_graph &&
+    Array.isArray(view.contagion_graph.nodes) && Array.isArray(view.contagion_graph.edges) &&
+    view.scenario && view.portfolio_totals && view.governance;
+  const textOf = (result) =>
+    (Array.isArray(result.content) ? result.content : []).filter((block) => block && block.type === "text").map((block) => block.text).join("\n");
+
+  function applyResult(result) {
+    state.heardFromHost = true;
+    if (!result || typeof result !== "object") return;
+    if (result.isError) {
+      showBanner("error", textOf(result) || "The tool returned an error.");
+      return;
+    }
+    if (!isView(result.structuredContent)) {
+      // Some hosts drop a large structured result. Ask the server for it instead.
+      if (canRecompute()) recompute(state.toolInput || {});
+      else showBanner("error", "The host did not pass the tool's structured result, so there is nothing to draw.");
+      return;
+    }
+    state.view = result.structuredContent;
+    hideBanner();
+    keepOrPickSelection();
+    render();
+  }
+
+  async function recompute(args) {
+    if (!canRecompute()) return;
+    const seq = ++state.seq;
+    setBusy(true);
+    try {
+      const result = await request("tools/call", { name: RECOMPUTE_TOOL, arguments: args });
+      if (seq === state.seq) applyResult(result);
+    } catch (error) {
+      if (seq === state.seq) showBanner("error", `The host could not run ${RECOMPUTE_TOOL}: ${error.message}`);
+    } finally {
+      if (seq === state.seq) setBusy(false);
+    }
+  }
+
+  function setBusy(busy) {
+    // Controls stay enabled while a recompute runs: a late reply is dropped by `seq`,
+    // and disabling a focused input would throw the user out of it.
+    state.busy = busy;
+    renderChips();
+  }
+  function showBanner(kind, message) {
+    const banner = $("banner");
+    banner.className = `banner ${kind}`;
+    banner.textContent = message;
+    banner.hidden = false;
+    if (!state.view) $("subtitle").textContent = "No result to show.";
+    reportSize();
+  }
+  function hideBanner() { $("banner").hidden = true; }
+
+  // ---------------------------------------------------------------- selection
+  const holdingOf = (ticker) => state.view.holdings.find((holding) => holding.ticker === ticker);
+  const nodeOf = (ticker) => state.view.contagion_graph.nodes.find((node) => node.ticker === ticker);
+  const edgeOf = (edgeId) => state.view.contagion_graph.edges.find((edge) => edge.edge_id === edgeId);
+  const hasFigure = (holding) => holding.disclosed_basis.rate_status === INCOME || holding.disclosed_basis.oil_status === INCOME;
+
+  function keepOrPickSelection() {
+    const current = state.selected;
+    if (current && ((current.kind === "node" && nodeOf(current.id)) || (current.kind === "edge" && edgeOf(current.id)))) return;
+    // Start on the holding with the largest impact, so a filing passage is on screen at once.
+    let best = null;
+    for (const holding of state.view.holdings) {
+      const p = parts(holding.scaled_impact.total_pre_tax_m);
+      const size = p ? Number(`${p.whole}.${p.fraction || "0"}`) : 0; // ordering only, never displayed
+      if (!best || size > best.size) best = { size, ticker: holding.ticker };
+    }
+    state.selected = best ? { kind: "node", id: best.ticker } : null;
+  }
+  function selectionText() {
+    const selected = state.selected;
+    if (!selected) return "Nothing is selected.";
+    if (selected.kind === "edge") {
+      const edge = edgeOf(selected.id);
+      if (!edge) return "Nothing is selected.";
+      const share = edge.revenue_share_pct !== null && edge.revenue_share_pct !== undefined
+        ? `${edge.revenue_share_pct}% revenue share disclosed`
+        : "no revenue share disclosed";
+      return `Selected link: ${edge.src} -> ${edge.dst}, ${share}.`;
+    }
+    const holding = holdingOf(selected.id);
+    if (!holding) return `Selected issuer: ${selected.id}, which is outside this book, so no impact is computed for it.`;
+    if (!hasFigure(holding)) {
+      return `Selected holding: ${holding.ticker}. Its filing gives no figure that converts to earnings, so no impact is computed. That is not a statement that it has no exposure.`;
+    }
+    const impact = holding.scaled_impact;
+    const direction = { pos: "a gain", neg: "a loss", zero: "no change" }[signOf(impact.total_pre_tax_m)];
+    return `Selected holding: ${holding.ticker}, pre-tax ${impact.total_pre_tax_m} USD million (${direction}), ` +
+      `after-tax ${impact.after_tax_m} USD million, diluted EPS ${impact.eps_delta} USD per share.`;
+  }
+  function syncModelContext() {
+    const caps = state.hostCapabilities || {};
+    if (!state.view || !(caps.updateModelContext || caps.modelContext)) return;
+    const scenario = state.view.scenario || {};
+    const totals = state.view.portfolio_totals;
+    const withFigure = state.view.holdings.filter(hasFigure).length;
+    const scope = withFigure === totals.holdings_count
+      ? "Book total"
+      : `Book total, the sum of the ${withFigure} of ${totals.holdings_count} holdings whose filing states a figure`;
+    const summary =
+      `10-K ripple graph view: ${state.view.book_label} (book_id ${state.view.book_id}), ` +
+      `rates ${scenario.rate_bps} bp, oil ${scenario.oil_pct}%. ${scope}: pre-tax ` +
+      `${totals.aggregate_pre_tax_impact_m} USD million, after-tax ${totals.aggregate_after_tax_impact_m} USD million. ` +
+      `${selectionText()} These figures are the tool's: copy them exactly, state a gain as a gain and a loss as a ` +
+      "loss, and add no figure of your own.";
+    request("ui/update-model-context", { content: [{ type: "text", text: summary }] }).catch(() => {});
+  }
+
+  function setActStatus(tone, msg, sheetUrl) {
+    const box = $("act-status");
+    box.className = `act-status ${tone || ""}`.trim();
+    box.textContent = msg;
+    if (sheetUrl) {
+      state.sheetUrl = sheetUrl;
+      $("btn-open-sheet").hidden = false;
+    }
+    reportSize();
+  }
+
+  async function onPushScenario() {
+    if (!state.view || !canRecompute()) return;
+    const sc = state.view.scenario || {};
+    setActStatus("", "Writing Scenario_Control & Portfolio_Shock_Model to Google Sheet…");
+    try {
+      const res = await request("tools/call", {
+        name: "push_scenario_from_widget",
+        arguments: { book_id: state.view.book_id, rate_bps: String(sc.rate_bps), oil_pct: String(sc.oil_pct) },
+      });
+      const data = (res && res.structuredContent) || {};
+      if (res.isError || data.status === "error") {
+        setActStatus("err", `Sheet sync failed: ${data.message || textOf(res)}`);
+        return;
+      }
+      const mism = data.reconciliation ? (data.reconciliation.mismatch_count ?? (data.reconciliation.all_match ? 0 : 1)) : 0;
+      setActStatus(
+        "ok",
+        `Synced ${data.cells_written || 0} cells (${data.formula_cells || 0} formulas, ${mism} mismatches) → Scenario_Control & Portfolio_Shock_Model. Click "Open Sheet ↗" to view in Chrome.`,
+        data.sheet_url
+      );
+    } catch (err) {
+      setActStatus("err", `Google Sheet sync error: ${err.message}`);
+    }
+  }
+
+  async function onPushComps() {
+    if (!state.view || !canRecompute()) return;
+    const tickers = state.view.holdings.map((h) => h.ticker).slice(0, 6);
+    if (state.selected && state.selected.kind === "node" && !tickers.includes(state.selected.id) && tickers.length < 6) {
+      tickers.push(state.selected.id);
+    }
+    setActStatus("", `Writing 3-yr 10-K Reported_Figures & Comparison for ${tickers.join(", ")}…`);
+    try {
+      const res = await request("tools/call", {
+        name: "push_comps_from_widget",
+        arguments: { tickers_csv: tickers.join(",") },
+      });
+      const data = (res && res.structuredContent) || {};
+      if (res.isError || data.status === "error") {
+        setActStatus("err", `Comps sync failed: ${data.message || textOf(res)}`);
+        return;
+      }
+      const mism = data.reconciliation ? (data.reconciliation.mismatch_count ?? (data.reconciliation.all_match ? 0 : 1)) : 0;
+      setActStatus(
+        "ok",
+        `Wrote ${tickers.join(", ")} (${data.cells_written || 0} cells, ${data.formula_cells || 0} formulas, ${mism} mismatches) → Reported_Figures & Comparison. Click "Open Sheet ↗" to view in Chrome.`,
+        data.sheet_url
+      );
+    } catch (err) {
+      setActStatus("err", `Comps sync error: ${err.message}`);
+    }
+  }
+
+  function renderBriefPanel(focus, summaries) {
+    const host = $("brief-panel");
+    const closeBtn = el("button", { type: "button", class: "act-btn secondary", text: "Close ×" });
+    closeBtn.addEventListener("click", () => { host.hidden = true; reportSize(); });
+    const cards = (summaries || []).map((item) => {
+      const thead = el("thead", {}, el("tr", {},
+        el("th", { text: "FY (Period End)" }),
+        el("th", { text: "Revenue ($M)" }),
+        el("th", { text: "Op Income ($M)" }),
+        el("th", { text: "Net Income ($M)" }),
+        el("th", { text: "Rev YoY %" }),
+        el("th", { text: "Op Margin %" }),
+      ));
+      const tbody = el("tbody", {}, ...(item.years || []).map((yr) => el("tr", {},
+        el("td", { text: `FY${yr.fy} (${yr.period_end || "—"})` }),
+        el("td", { text: yr.revenue_m ?? "—" }),
+        el("td", { text: yr.op_inc_m ?? "—" }),
+        el("td", { text: yr.net_inc_m ?? "—" }),
+        el("td", { text: yr.rev_growth_pct != null ? `${yr.rev_growth_pct}%` : "—" }),
+        el("td", { text: yr.op_margin_pct != null ? `${yr.op_margin_pct}%` : "—" }),
+      )));
+      const deltaText = item.delta_metric
+        ? `YoY 10-K Delta (${item.delta_doc_id || item.ticker}): ${item.delta_metric} — ${item.delta_prior || "—"} → ${item.delta_current || "—"} (${item.delta_summary || ""})`
+        : "YoY 10-K Delta: outside active book delta table (see 3-yr XBRL figures above).";
+      return el("div", { class: "factor" },
+        el("div", { class: "factor-head" }, `${item.ticker} · ${item.name}`, el("span", { class: "badge ok", text: "SEC Form 10-K XBRL" })),
+        el("table", { class: "brief-table" }, thead, tbody),
+        el("div", { class: "note", text: deltaText }),
+      );
+    });
+    fill(host,
+      el("div", { class: "brief-head" },
+        el("h2", { text: `3-Year Form 10-K Financials & YoY Filing Delta: ${focus}` }),
+        closeBtn,
+      ),
+      ...cards,
+    );
+    host.hidden = false;
+    reportSize();
+  }
+
+  // The brief is drawn here from the tool's own figures. The view does not ask the host's model to write
+  // about them: that model is not the skill's evaluated agent, and nothing checks what it writes.
+  async function onBrief() {
+    if (!state.view) return;
+    let focus = state.view.book_label;
+    let tickers = state.view.holdings.map((h) => h.ticker).slice(0, 3).join(",");
+    if (state.selected && state.selected.kind === "node") {
+      focus = state.selected.id;
+      tickers = state.selected.id;
+    } else if (state.selected && state.selected.kind === "edge") {
+      const e = edgeOf(state.selected.id);
+      if (e) {
+        focus = `${e.src} -> ${e.dst}`;
+        tickers = `${e.src},${e.dst}`;
+      }
+    }
+    if (!canRecompute()) {
+      setActStatus("err", "This host does not let the view call its server, so the brief cannot be loaded here.");
+      return;
+    }
+    setActStatus("", `Loading the 3-year Form 10-K figures for ${focus}…`);
+    try {
+      const res = await request("tools/call", {
+        name: "brief_selection",
+        arguments: { book_id: state.view.book_id, tickers_csv: tickers },
+      });
+      const data = (res && res.structuredContent) || {};
+      if (res.isError || !Array.isArray(data.summaries) || data.summaries.length === 0) {
+        setActStatus("err", `The brief could not be loaded: ${data.message || textOf(res) || "no figures were returned"}`);
+        return;
+      }
+      renderBriefPanel(focus, data.summaries);
+      setActStatus("ok", `3-year Form 10-K figures for ${focus} are shown below, as reported in SEC XBRL.`);
+    } catch (err) {
+      setActStatus("err", `The brief could not be loaded: ${err.message}`);
+    }
+  }
+
+  async function onOpenSheet() {
+    if (!state.sheetUrl) return;
+    try {
+      await request("ui/open-link", { url: state.sheetUrl });
+    } catch (_) {
+      window.open(state.sheetUrl, "_blank", "noopener");
+    }
+  }
+
+  function select(kind, id) {
+    state.selected = { kind, id };
+    renderGraph();
+    renderLinks();
+    renderDetail();
+    syncModelContext();
+    reportSize();
+  }
+
+  // ---------------------------------------------------------------- rendering
+  function render() {
+    // Unhide first: the graph is laid out from the width its container really has.
+    for (const id of ["desk-actions", "kpis", "main", "foot"]) $(id).hidden = false;
+    renderHeader();
+    renderControls();
+    renderKpis();
+    renderGraph();
+    renderLinks();
+    renderDetail();
+    renderFoot();
+    syncModelContext();
+    reportSize();
+  }
+
+  function renderHeader() {
+    const view = state.view;
+    $("subtitle").textContent = `${view.book_label} · ${view.portfolio_totals.holdings_count} holdings`;
+    renderChips();
+  }
+  function renderChips() {
+    const chips = $("chips");
+    fill(chips);
+    if (state.busy) chips.append(el("span", { class: "chip busy", text: "Updating…" }));
+    const view = state.view;
+    if (!view) return;
+    chips.append(
+      el("span", { class: "chip", text: `Rates ${signed(view.scenario.rate_bps, " bp")}` }),
+      el("span", { class: "chip", text: `Oil ${signed(view.scenario.oil_pct, "%")}` }),
+      el("span", { class: "chip", title: "Source posture of the bundled data", text: `Source: ${view.governance.source_posture}` }),
+    );
+  }
+
+  let controlsKey = "";
+  function renderControls() {
+    const controls = $("controls");
+    controls.hidden = !canRecompute();
+    if (controls.hidden) return;
+    const view = state.view;
+    const book = $("book");
+    const presets = $("presets");
+    const books = view.books || [];
+    const scenarios = view.scenario_presets || [];
+    const key = JSON.stringify([books.map((item) => item.id), scenarios.map((item) => item.id)]);
+    if (key !== controlsKey) {
+      controlsKey = key;
+      fill(book, books.map((item) => el("option", { value: item.id, text: item.label })));
+      fill(presets,
+        scenarios.map((preset) => {
+          const button = el("button", { type: "button", class: "preset", text: preset.label });
+          button.dataset.rate = preset.rate_bps;
+          button.dataset.oil = preset.oil_pct;
+          button.addEventListener("click", () => recompute({ book_id: book.value, rate_bps: preset.rate_bps, oil_pct: preset.oil_pct }));
+          return button;
+        }),
+      );
+    }
+    // A field the user is typing in is left alone.
+    const setUnlessFocused = (input, value) => { if (document.activeElement !== input) input.value = value; };
+    setUnlessFocused(book, view.book_id);
+    setUnlessFocused($("rate"), view.scenario.rate_bps);
+    setUnlessFocused($("oil"), view.scenario.oil_pct);
+    for (const button of presets.children) {
+      const pressed = button.dataset.rate === view.scenario.rate_bps && button.dataset.oil === view.scenario.oil_pct;
+      button.setAttribute("aria-pressed", String(pressed));
+    }
+  }
+  let controlTimer = 0;
+  function onControlChange() {
+    window.clearTimeout(controlTimer);
+    controlTimer = window.setTimeout(() => {
+      const rate = $("rate").value.trim();
+      const oil = $("oil").value.trim();
+      if (rate === "" || oil === "") {
+        showBanner("error", "Enter a number for the rate move (basis points) and for the oil move (percent).");
+        return;
+      }
+      recompute({ book_id: $("book").value, rate_bps: rate, oil_pct: oil });
+    }, 250);
+  }
+
+  function renderKpis() {
+    const view = state.view;
+    const totals = view.portfolio_totals;
+    const graph = view.contagion_graph;
+    const withFigure = view.holdings.filter(hasFigure).length;
+    const withShare = graph.edges.filter((edge) => edge.revenue_share_pct !== null && edge.revenue_share_pct !== undefined).length;
+    const kpi = (label, value, note, tone) =>
+      el("div", { class: "kpi" }, el("div", { class: "label", text: label }), el("div", { class: `value ${tone || ""}`, text: value }), el("div", { class: "note", text: note }));
+    const beyond = totals.extrapolation_warning_count;
+    const statutory = view.holdings.filter((h) => h.scaled_impact.tax_rate_basis === "us_federal_statutory_rate" && (h.conversion_notes || []).length).map((h) => h.ticker);
+    fill($("kpis"),
+      kpi("Pre-tax impact, book total", money(totals.aggregate_pre_tax_impact_m),
+        withFigure === totals.holdings_count ? "USD millions" : `USD millions · sum of ${withFigure} of ${totals.holdings_count} holdings`,
+        signOf(totals.aggregate_pre_tax_impact_m)),
+      kpi("After-tax impact, book total", money(totals.aggregate_after_tax_impact_m),
+        statutory.length ? `USD millions · ${statutory.join(", ")} at the 21% US statutory rate, see its note` : "USD millions",
+        signOf(totals.aggregate_after_tax_impact_m)),
+      kpi("Holdings", String(totals.holdings_count), `${withFigure} with a figure · ${totals.holdings_count - withFigure} without · ${beyond} beyond 2x`),
+      kpi("Disclosed links", String(graph.edges.length), `${withShare} state a revenue share`),
+    );
+  }
+
+  function nodeAmount(node) {
+    if (!node.in_selected_book) return { text: "outside book", tone: "zero" };
+    const holding = holdingOf(node.ticker);
+    if (holding && !hasFigure(holding)) return { text: "no figure", tone: "zero" };
+    return { text: money(node.total_pre_tax_m), tone: signOf(node.total_pre_tax_m) };
+  }
+
+  function renderGraph() {
+    const host = $("graph");
+    const graph = state.view.contagion_graph;
+    const width = Math.max(280, Math.floor(host.clientWidth || 600));
+    const columns = [[], [], []];
+    for (const node of graph.nodes) columns[node.hop_order <= 1 ? 0 : Math.min(node.hop_order - 1, 2)].push(node);
+    columns[0].sort((a, b) => b.hop_order - a.hop_order || a.ticker.localeCompare(b.ticker));
+
+    const pad = 8, headH = 34, pitch = 41, nodeH = 34;
+    const colW = (width - 2 * pad) / 3;
+    // Nodes take about 70% of a column, which leaves the gap between columns for the links and their labels.
+    const nodeW = Math.max(78, Math.min(132, colW * 0.7));
+    const rows = Math.max(1, ...columns.map((column) => column.length));
+    const height = headH + rows * pitch + 4;
+    const position = {};
+    columns.forEach((column, c) => {
+      const step = (rows * pitch) / Math.max(column.length, 1);
+      column.forEach((node, index) => {
+        position[node.ticker] = { x: pad + colW * (c + 0.5), y: headH + index * step + step / 2, c };
+      });
+    });
+
+    const root = svg("svg", { viewBox: `0 0 ${width} ${height}`, role: "group", "aria-label": "Ripple graph" });
+    const defs = svg("defs");
+    for (const [id, cls] of [["arrow", "arrow"], ["arrow-active", "arrow-active"]]) {
+      const marker = svg("marker", { id, viewBox: "0 0 8 8", refX: 7, refY: 4, markerWidth: 7, markerHeight: 7, orient: "auto" });
+      marker.append(svg("path", { class: cls, d: "M0 0 L8 4 L0 8 z" }));
+      defs.append(marker);
+    }
+    root.append(defs);
+    const heads = [["TIER 1", "book holdings"], ["TIER 2", "customer / supplier"], ["TIER 3", "upstream"]];
+    heads.forEach(([title, sub], c) => {
+      const x = pad + colW * (c + 0.5);
+      root.append(svg("text", { class: "col-head", x, y: 13, "text-anchor": "middle" }, title));
+      root.append(svg("text", { class: "col-sub", x, y: 26, "text-anchor": "middle" }, sub));
+    });
+
+    const selected = state.selected;
+    // Share labels are added after every link, so no label sits under another link's click area.
+    const labels = [];
+    for (const edge of graph.edges) {
+      const a = position[edge.src], b = position[edge.dst];
+      if (!a || !b) continue;
+      const half = nodeW / 2;
+      let d, mid;
+      if (a.c === b.c) {
+        const x = a.x + half, bulge = 26;
+        d = `M ${x} ${a.y} C ${x + bulge} ${a.y}, ${x + bulge} ${b.y}, ${x + 3} ${b.y}`;
+        mid = { x: x + bulge * 0.75, y: (a.y + b.y) / 2 };
+      } else {
+        const dir = a.c > b.c ? -1 : 1;
+        const x1 = a.x + dir * half, x2 = b.x - dir * (half + 3), dx = (x2 - x1) / 2;
+        d = `M ${x1} ${a.y} C ${x1 + dx} ${a.y}, ${x2 - dx} ${b.y}, ${x2} ${b.y}`;
+        mid = { x: (x1 + x2) / 2, y: (a.y + b.y) / 2 };
+      }
+      const active = Boolean(selected) && ((selected.kind === "edge" && selected.id === edge.edge_id) || (selected.kind === "node" && (selected.id === edge.src || selected.id === edge.dst)));
+      const group = svg("g", { class: `edge${active ? " active" : ""}` });
+      group.append(svg("path", { class: "line", d, "marker-end": `url(#${active ? "arrow-active" : "arrow"})` }));
+      if (edge.revenue_share_pct !== null && edge.revenue_share_pct !== undefined) {
+        const label = `${edge.revenue_share_pct}%`;
+        const w = 10 + label.length * 6.2;
+        const tag = svg("g", { class: `edge-label${active ? " active" : ""}` });
+        tag.append(svg("rect", { class: "pill", x: mid.x - w / 2, y: mid.y - 8, width: w, height: 16, rx: 8 }));
+        tag.append(svg("text", { x: mid.x, y: mid.y + 3.5 }, label));
+        tag.addEventListener("click", () => select("edge", edge.edge_id));
+        labels.push(tag);
+      }
+      const hit = svg("path", { class: "hit", d });
+      hit.append(svg("title", {}, `${edge.src} ${relationWords(edge.relationship)} ${edge.dst} (${shareText(edge)})`));
+      hit.addEventListener("click", () => select("edge", edge.edge_id));
+      group.append(hit);
+      root.append(group);
+    }
+    root.append(...labels);
+
+    for (const node of graph.nodes) {
+      const p = position[node.ticker];
+      if (!p) continue;
+      const amount = nodeAmount(node);
+      const isSelected = Boolean(selected) && selected.kind === "node" && selected.id === node.ticker;
+      const classes = ["node", amount.tone, node.in_selected_book ? "" : "outside", isSelected ? "selected" : ""].filter(Boolean).join(" ");
+      const group = svg("g", {
+        class: classes, tabindex: 0, role: "button", "aria-pressed": String(isSelected),
+        "aria-label": `${node.ticker}, ${node.name}, ${amount.text}`,
+        transform: `translate(${p.x - nodeW / 2} ${p.y - nodeH / 2})`,
+      });
+      group.append(
+        svg("rect", { class: "box", width: nodeW, height: nodeH, rx: 7 }),
+        svg("rect", { class: "bar", x: 5, y: 5, width: 4, height: nodeH - 10, rx: 2 }),
+        svg("text", { class: "tk", x: 15, y: 14 }, node.ticker),
+        // The amount is never shortened; in a narrow node its type is scaled down to fit instead.
+        svg("text", { class: "amt", x: 15, y: 27, "font-size": Math.max(8, Math.min(10.5, (nodeW - 20) / (0.6 * amount.text.length))).toFixed(1) }, amount.text),
+      );
+      group.addEventListener("click", () => select("node", node.ticker));
+      group.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") { event.preventDefault(); select("node", node.ticker); }
+      });
+      root.append(group);
+    }
+    fill(host, root);
+    $("legend").textContent = graph.edges.length
+      ? "Arrow: supplier or seller → customer, as the filing discloses it. Dashed box: issuer outside this book. Amounts are pre-tax, USD millions."
+      : "No disclosed link in the bundled dataset reaches this book's shocked holdings.";
+  }
+
+  function linkButton(edge) {
+    const pressed = Boolean(state.selected) && state.selected.kind === "edge" && state.selected.id === edge.edge_id;
+    const button = el("button", { type: "button", class: "link", "aria-pressed": String(pressed) },
+      `${edge.src} ${relationWords(edge.relationship)} ${edge.dst} `, el("span", { class: "share", text: `· ${shareText(edge)}` }));
+    button.addEventListener("click", () => select("edge", edge.edge_id));
+    return button;
+  }
+  function renderLinks() {
+    const edges = state.view.contagion_graph.edges;
+    $("link-list").hidden = edges.length === 0;
+    $("link-summary").textContent = `List the ${edges.length} disclosed link${edges.length === 1 ? "" : "s"}`;
+    fill($("links"), edges.map(linkButton));
+  }
+
+  function quoteBlock(text) {
+    return text ? el("blockquote", { text: `“${text}”` }) : el("blockquote", { class: "empty", text: "No passage is bundled for this factor." });
+  }
+  function factorNotes(holding, prefix) {
+    return [...(holding.coverage_notes || []), ...(holding.basis_notes || [])]
+      .filter((note) => note.startsWith(`${prefix}:`)).map((note) => note.slice(prefix.length + 1).trim());
+  }
+  function factorBlock(title, prefix, citation, disclosed, multiplier, scaled, holding) {
+    const status = citation.disclosure_status;
+    const block = el("div", { class: "factor" },
+      el("div", { class: "factor-head" }, title, el("span", { class: `badge${status === INCOME ? " ok" : ""}`, text: STATUS_LABEL[status] || status })));
+    if (status === INCOME) {
+      block.append(el("div", { class: "scaled", text: `disclosed ${money(disclosed)} × ${multiplier} (rounded) → ${money(scaled)}` }));
+    }
+    block.append(el("div", { class: "section", text: citation.filing_section }), quoteBlock(citation.verbatim_quote));
+    const supporting = citation.supporting_passages || [];
+    if (supporting.length) {
+      block.append(el("details", {},
+        el("summary", { text: `${supporting.length} supporting passage${supporting.length === 1 ? "" : "s"}` }),
+        el("ul", {}, supporting.map((passage) => el("li", {}, el("div", { class: "section", text: passage.section }), `“${passage.text}”`)))));
+    }
+    // Notes are the tool's own words, so they are shown without quotation marks.
+    for (const note of factorNotes(holding, prefix)) block.append(el("div", { class: "note", text: `Tool note: ${note}` }));
+    return block;
+  }
+
+  function renderDetail() {
+    const detail = $("detail");
+    const selected = state.selected;
+    if (!selected) {
+      fill(detail, el("div", { class: "note", text: "Select an issuer or a link to see the filing passage behind it." }));
+      return;
+    }
+    if (selected.kind === "edge") {
+      const edge = edgeOf(selected.id);
+      const citation = edge.provenance;
+      fill(detail,
+        el("h3", { text: `${edge.src} → ${edge.dst}` }),
+        el("div", { class: "meta", text: `${edge.src_name} ${relationWords(edge.relationship)} ${edge.dst_name}` }),
+        el("div", { class: "factor-head" },
+          el("span", { class: "badge", text: HOP_LABEL[edge.hop_order] || `Hop ${edge.hop_order}` }),
+          el("span", { class: "badge", text: shareText(edge) })),
+        edge.share_note ? el("div", { class: "note", text: `Tool note: ${edge.share_note}` }) : null,
+        el("div", { class: "section", text: citation.filing_section }),
+        quoteBlock(citation.verbatim_quote),
+        el("div", { class: "hash", text: `${citation.doc_id} · ${citation.source_posture} · excerpt SHA-256 ${citation.sha256}` }),
+      );
+      return;
+    }
+    const node = nodeOf(selected.id);
+    const holding = holdingOf(selected.id);
+    if (!holding) {
+      const touching = state.view.contagion_graph.edges.filter((edge) => edge.src === node.ticker || edge.dst === node.ticker);
+      fill(detail,
+        el("h3", { text: `${node.ticker} · ${node.name}` }),
+        el("div", { class: "meta", text: node.sector }),
+        el("div", { class: "note", text: "Not a holding of this book. It appears because a disclosed link reaches it; select the link for its passage." }),
+        touching.map(linkButton),
+      );
+      return;
+    }
+    const impact = holding.scaled_impact;
+    const basis = holding.disclosed_basis;
+    const citationOf = (factor) => holding.provenance.find((entry) => entry.factor === factor);
+    const rate = citationOf("interest_rate"), oil = citationOf("commodity_oil");
+    const fig = (label, value, tone, sub) =>
+      el("div", { class: "fig" }, el("div", { class: "label", text: label }), el("div", { class: `value ${tone}`, text: value }), sub ? el("div", { class: "sub", text: sub }) : null);
+    fill(detail,
+      el("h3", { text: `${holding.ticker} · ${holding.name}` }),
+      el("div", { class: "meta", text: `${holding.sector} · ${rate.doc_id} · CIK ${holding.cik}` }),
+      hasFigure(holding)
+        ? el("div", { class: "figs" },
+            fig("Pre-tax impact", money(impact.total_pre_tax_m), signOf(impact.total_pre_tax_m), "USD millions"),
+            fig("After-tax impact", money(impact.after_tax_m), signOf(impact.after_tax_m), "USD millions"),
+            fig("Diluted EPS change", perShare(impact.eps_delta), signOf(impact.eps_delta), impact.eps_pct_of_fy === null || impact.eps_pct_of_fy === undefined ? "% of FY EPS not meaningful" : signed(impact.eps_pct_of_fy, "% of FY EPS")))
+        : el("div", { class: "note", text: "The filing gives no figure that converts to annual earnings, so no impact is computed for this holding. That is not a statement that it has no exposure." }),
+      [...(holding.extrapolation_flags || []), ...(holding.non_comparable_flags || []), ...(holding.conversion_notes || [])].map((flag) => el("div", { class: "flag", text: flag })),
+      factorBlock("Interest rates", "Rate", rate, basis.rate_pre_tax_m, impact.rate_multiplier, impact.rate_pre_tax_m, holding),
+      factorBlock("Oil / jet fuel", "Oil", oil, basis.oil_pre_tax_m, impact.oil_multiplier, impact.oil_pre_tax_m, holding),
+      el("div", { class: "hash", text: `${rate.source_posture} · excerpt SHA-256 ${rate.sha256}` }),
+    );
+  }
+
+  function renderFoot() {
+    const governance = state.view.governance;
+    $("foot").textContent =
+      `${governance.data_notice} Figures are linear scalings of each issuer's disclosed sensitivity, computed by the tool in decimal arithmetic. ` +
+      `Data as of ${governance.as_of_utc} · packet SHA-256 ${String(governance.packet_sha256).slice(0, 12)}…`;
+  }
+
+  // ---------------------------------------------------------------- size
+  let sizeFrame = 0;
+  let lastSize = "";
+  function reportSize() {
+    window.cancelAnimationFrame(sizeFrame);
+    sizeFrame = window.requestAnimationFrame(() => {
+      const rect = document.documentElement.getBoundingClientRect();
+      const width = Math.ceil(rect.width), height = Math.ceil(rect.height);
+      const key = `${width}x${height}`;
+      if (key === lastSize) return;
+      lastSize = key;
+      notify("ui/notifications/size-changed", { width, height });
+    });
+  }
+
+  // ---------------------------------------------------------------- start
+  async function start() {
+    if (window.parent === window) {
+      showBanner("info", "This document is an MCP App view. Open it from a host that supports MCP Apps; it shows nothing on its own.");
+      return;
+    }
+    if (!document.documentElement.dataset.theme && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      document.documentElement.dataset.theme = "dark";
+    }
+    for (const id of ["book", "rate", "oil"]) $(id).addEventListener("change", onControlChange);
+    $("btn-push-scenario").addEventListener("click", onPushScenario);
+    $("btn-push-comps").addEventListener("click", onPushComps);
+    $("btn-brief").addEventListener("click", onBrief);
+    $("btn-open-sheet").addEventListener("click", onOpenSheet);
+    let graphWidth = 0;
+    new ResizeObserver(() => {
+      const width = Math.floor($("graph").clientWidth);
+      if (state.view && width && width !== graphWidth) { graphWidth = width; renderGraph(); }
+      reportSize();
+    }).observe(document.body);
+
+    const silent = window.setTimeout(() => {
+      if (!state.heardFromHost) showBanner("info", "No reply from the host yet. This view needs a host that supports MCP Apps.");
+    }, 3000);
+    let init;
+    try {
+      init = await request("ui/initialize", {
+        protocolVersion: PROTOCOL_VERSION,
+        appInfo: APP_INFO,
+        appCapabilities: { availableDisplayModes: ["inline", "fullscreen"] },
+      });
+    } catch (error) {
+      window.clearTimeout(silent);
+      showBanner("error", `The host refused to initialize the view: ${error.message}`);
+      return;
+    }
+    window.clearTimeout(silent);
+    state.hostCapabilities = (init && init.hostCapabilities) || {};
+    applyHostContext(init && init.hostContext);
+    hideBanner();
+    $("subtitle").textContent = "Waiting for the tool result…";
+    notify("ui/notifications/initialized", {});
+    // A host normally sends the tool input and result next. If it stays silent and can run
+    // server tools, ask for the default view rather than staying empty.
+    window.setTimeout(() => {
+      if (!state.heardFromHost && !state.view && canRecompute()) recompute({});
+    }, 4000);
+  }
+  start();
+})();
+</script>
+</body>
+</html>

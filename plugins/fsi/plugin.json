@@ -1,0 +1,26 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "fsi",
+  "version": "0.1.0",
+  "description": "Financial Services Industry (FSI) agent plugin for Google Cloud: a dedicated SEC Form 10-K & XBRL capital-markets analyst skill with Decimal scenario scaling, multi-hop supply-chain contagion (BigQuery Property Graph), live Google Sheets formula sync, SEP-1865 MCP App view, second-model figure review, and fail-closed sign-off.",
+  "license": "Apache-2.0",
+  "keywords": [
+    "fsi",
+    "finance",
+    "capital-markets",
+    "sec-edgar",
+    "xbrl",
+    "10-k",
+    "bigquery-graph",
+    "google-sheets",
+    "mcp-apps"
+  ],
+  "author": {
+    "name": "Julia Hu"
+  },
+  "large": true,
+  "ownership": {
+    "team": "FDE",
+    "poc": "Julia-Bobo-Hu"
+  }
+}

@@ -1,0 +1,13 @@
+_output/
+_signoff/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+# The spec that the Q-MODE interview writes at a skill's root. The template in assets/ is tracked.
+/skills/*/design-spec.md
+dist/
+.edgar_cache/
+# Screen recordings of the demo are large and are kept out of the repository.
+*.mov
+*.mp4

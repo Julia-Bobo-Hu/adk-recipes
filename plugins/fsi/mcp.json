@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "capital-markets-ripple": {
+      "type": "stdio",
+      "command": "uv",
+      "args": ["run", "--extra", "mcp", "python", "scripts/mcp_server.py"],
+      "cwd": "./skills/capital-markets-analyst"
+    }
+  }
+}

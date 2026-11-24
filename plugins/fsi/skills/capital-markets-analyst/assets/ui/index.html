@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Read the Fine Print — Google Cloud Capital Markets Analyst</title>
+  <meta name="description" content="Auditable Form 10-K Item 7A scenario scaling, BigQuery Property Graph supply-chain contagion, live-formula spreadsheet export, and Q-MODE evaluation workstation." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-brand">
+      <h1>Read the Fine Print · Capital Markets Analyst</h1>
+      <div class="masthead-sub">
+        <span>Skill: <strong class="tabular">fsi-capital-markets-analyst</strong></span>
+        <span>·</span>
+        <span>Vertex AI ADK + BigQuery Property Graph (<span class="tabular">ISO GQL</span>) + <span class="tabular">us-gaap</span> XBRL</span>
+      </div>
+    </div>
+    <div class="masthead-meta">
+      <span id="posture-chip" class="status-chip">Posture: loading</span>
+      <span id="eval-gate-chip" class="status-chip">Eval: loading</span>
+      <span id="packet-hash-chip" class="status-chip">Packet: ------</span>
+      <a id="chat-surfaces-link" class="status-chip" href="chat-surfaces.html" style="text-decoration:none;">MCP App · A2UI preview →</a>
+    </div>
+  </header>
+
+  <div id="data-notice" class="data-notice" role="note" hidden></div>
+
+  <nav class="tab-bar" aria-label="Workstation sections">
+    <button id="tab-btn-portfolio" class="tab-btn active" data-tab="portfolio">1. Portfolio &amp; Scenario Wheel</button>
+    <button id="tab-btn-graph" class="tab-btn" data-tab="graph">2. Supply-Chain Ripple Graph &amp; 10-K Citations</button>
+    <button id="tab-btn-sheet" class="tab-btn" data-tab="sheet">3. Formula Sheet &amp; Filing Watcher</button>
+    <button id="tab-btn-eval" class="tab-btn" data-tab="eval">4. Q-MODE Eval &amp; Sign-Off</button>
+    <button id="tab-btn-gsheet" class="tab-btn" data-tab="gsheet" hidden>5. Live Google Sheet</button>
+  </nav>
+
+  <main class="workspace">
+    <section class="kpi-strip" aria-label="Scenario KPI summary">
+      <div class="kpi-card">
+        <div class="kpi-label">Active Macro Shock</div>
+        <div id="kpi-shock" class="kpi-value">+50 bp / +25%</div>
+        <div id="kpi-odds" class="kpi-foot">Rates +50 bp · Oil +25%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Aggregate Pre-Tax Impact</div>
+        <div id="kpi-pretax" class="kpi-value">-$0.00M</div>
+        <div id="kpi-holdings-count" class="kpi-foot">Sum of the holdings that state a figure</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Aggregate After-Tax</div>
+        <div id="kpi-aftertax" class="kpi-value">-$0.00M</div>
+        <div id="kpi-aftertax-foot" class="kpi-foot">At each issuer's XBRL effective tax rate</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Multi-Hop Supply Links</div>
+        <div id="kpi-edges" class="kpi-value">0 links</div>
+        <div id="kpi-hops" class="kpi-foot">1st → 2nd → 3rd order GQL</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Disclosure Warnings</div>
+        <div id="kpi-warnings" class="kpi-value">0 flags</div>
+        <div class="kpi-foot">Scaled beyond 2x · no convertible figure</div>
+      </div>
+    </section>
+
+    <!-- TAB 1: PORTFOLIO & SCENARIO WHEEL -->
+    <section id="panel-portfolio" class="tab-panel active">
+      <div class="split-grid-tab1">
+        <div class="panel-card">
+          <div class="panel-header">
+            <h2>Book &amp; Macro Shock Dial</h2>
+            <button id="spin-wheel-btn" class="btn btn-primary" type="button">Spin Scenario</button>
+          </div>
+
+          <div class="control-group">
+            <label for="book-select">Coverage Book</label>
+            <select id="book-select"></select>
+          </div>
+
+          <div class="wheel-wrap">
+            <svg id="scenario-wheel-svg" width="250" height="250" viewBox="0 0 250 250" role="img" aria-label="Two-ring macro interest rate and oil shock wheel"></svg>
+            <div class="panel-subtitle" style="margin-top:6px;">Outer ring: interest rates (bp) · Inner ring: oil / fuel (%)</div>
+          </div>
+
+          <div class="control-group">
+            <label for="rate-slider">Interest Rate Parallel Shift: <span id="rate-val-label" class="tabular">+50 bp</span></label>
+            <input id="rate-slider" type="range" min="-200" max="300" step="25" value="50" />
+          </div>
+
+          <div class="control-group">
+            <label for="oil-slider">Crude / Jet Fuel Move: <span id="oil-val-label" class="tabular">+25%</span></label>
+            <input id="oil-slider" type="range" min="-30" max="40" step="5" value="25" />
+          </div>
+
+          <div class="control-group">
+            <label>Scenario Presets (assumptions, no probabilities attached)</label>
+            <div id="scenario-presets" class="scenario-presets"></div>
+          </div>
+        </div>
+
+        <div class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h2>Deterministic Form 10-K <code class="tabular">Item 7A</code> + XBRL Impact Ledger</h2>
+              <div class="panel-subtitle">Computed in Python <code class="tabular">decimal.Decimal</code>. A zero with a basis note means the filing gives no convertible figure. Click an issuer to see its 10-K passages.</div>
+            </div>
+            <a id="download-xlsx-top" class="btn" href="/api/export.xlsx">Export .xlsx Formula Model</a>
+          </div>
+
+          <div class="table-scroll">
+            <table id="holdings-table">
+              <thead>
+                <tr>
+                  <th>Ticker</th>
+                  <th>Issuer</th>
+                  <th>Sector</th>
+                  <th class="num-right">Scaled Rate ($M)</th>
+                  <th class="num-right">Scaled Oil ($M)</th>
+                  <th class="num-right">Total Pre-Tax ($M)</th>
+                  <th class="num-right">After-Tax ($M)</th>
+                  <th class="num-right">Δ EPS ($/sh)</th>
+                  <th class="num-right">% FY EPS</th>
+                  <th>Guardrail</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: SUPPLY-CHAIN RIPPLE GRAPH & 10-K CITATIONS -->
+    <section id="panel-graph" class="tab-panel">
+      <div class="split-grid-tab2">
+        <div class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h2>1st-to-3rd-Order Supply-Chain Contagion Graph</h2>
+              <div class="panel-subtitle">Customer, supplier and aircraft-order links, each quoted from a 10-K. A share is shown only where the filing states one.</div>
+            </div>
+            <button id="toggle-gql-btn" class="btn" type="button">Show BigQuery GQL</button>
+          </div>
+
+          <div class="graph-legend">
+            <span><span class="legend-dot" style="background:#b91c1c;"></span>1st-Order Direct Shock</span>
+            <span><span class="legend-dot" style="background:#b45309;"></span>2nd-Order Customer/Supplier Ripple</span>
+            <span><span class="legend-dot" style="background:#1a56db;"></span>3rd-Order Upstream Contagion</span>
+            <span><span class="legend-dot" style="background:#64748b;"></span>Direct Holding (No Converted Shock)</span>
+          </div>
+
+          <div class="graph-canvas-box">
+            <svg id="contagion-svg" width="760" height="430" viewBox="0 0 760 430" role="img" aria-label="Supply chain contagion network"></svg>
+          </div>
+
+          <div id="gql-drawer" class="code-drawer" style="display:none;"></div>
+        </div>
+
+        <div class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h2 id="inspector-title">Statutory 10-K &amp; XBRL Citation Inspector</h2>
+              <div id="inspector-doc-meta" class="panel-subtitle">Select any node or holding row</div>
+            </div>
+            <span id="inspector-posture-badge" class="badge badge-neutral">posture</span>
+          </div>
+
+          <div id="inspector-body"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: FORMULA SHEET & FILING WATCHER -->
+    <section id="panel-sheet" class="tab-panel">
+      <div class="panel-card" style="margin-bottom:18px;">
+        <div class="panel-header">
+          <div>
+            <h2>Auditable Formula Model (<code class="tabular">Portfolio_Shock_Model</code>)</h2>
+            <div class="panel-subtitle">Blue cells = 10-K/XBRL inputs · Bold cells = live OpenXML Excel formulas referencing <code class="tabular">Scenario_Control!$B$2:$B$3</code>. A blank basis and amount mean the filing gives no annual income sensitivity.</div>
+          </div>
+          <a id="download-xlsx-sheet" class="btn btn-primary" href="/api/export.xlsx">Download 4-Tab .xlsx Workbook</a>
+        </div>
+
+        <div class="formula-bar">
+          <span id="active-cell-ref" class="formula-cell-ref">G5</span>
+          <span class="formula-fx-tag">fx</span>
+          <span id="active-cell-formula">=IF(C5="",0,D5*(Scenario_Control!$B$2/C5))</span>
+        </div>
+
+        <div class="table-scroll">
+          <table id="formula-sheet-table">
+            <thead>
+              <tr>
+                <th>Row</th>
+                <th>Ticker</th>
+                <th class="num-right">C: Rate Basis</th>
+                <th class="num-right">D: Rate ($M)</th>
+                <th class="num-right">E: Oil Basis (%)</th>
+                <th class="num-right">F: Oil ($M)</th>
+                <th class="num-right">G: Scaled Rate [fx]</th>
+                <th class="num-right">H: Scaled Oil [fx]</th>
+                <th class="num-right">I: Total Pre-Tax [fx]</th>
+                <th class="num-right">J: Tax Rate</th>
+                <th class="num-right">K: After-Tax [fx]</th>
+                <th class="num-right">L: Shares (M)</th>
+                <th class="num-right">M: Δ EPS [fx]</th>
+                <th>O: Guardrail [fx]</th>
+                <th>P: Basis Check</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <div class="panel-header">
+          <div>
+            <h2><code class="tabular">the-watcher</code> — Period-over-Period Filing Delta</h2>
+            <div class="panel-subtitle">One change per issuer from its latest 10-K: a quoted passage that states both periods, or long-term debt from XBRL. Rubric scores appear only when the dataset carries them.</div>
+          </div>
+          <span class="badge badge-neutral">Prior period → current period</span>
+        </div>
+
+        <div class="table-scroll">
+          <table id="watcher-table">
+            <thead>
+              <tr>
+                <th>Ticker</th>
+                <th>Metric</th>
+                <th>Prior Period</th>
+                <th>Current Period</th>
+                <th>Change</th>
+                <th>Credit Rubric</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: Q-MODE EVAL & MAKER-CHECKER SIGN-OFF -->
+    <section id="panel-gsheet" class="tab-panel">
+      <div class="panel-card">
+        <div class="panel-header">
+          <div>
+            <h2>Live Google Sheet (<code class="tabular">Portfolio_Shock_Model</code>)</h2>
+            <div id="gsheet-meta" class="panel-subtitle">Looking for a configured Google Sheet.</div>
+          </div>
+          <div class="btn-row">
+            <button id="gsheet-write-btn" class="btn btn-primary" type="button">Write this scenario to the Sheet</button>
+            <button id="gsheet-read-btn" class="btn" type="button">Read the scenario from the Sheet</button>
+            <a id="gsheet-open-link" class="btn" href="#" target="_blank" rel="noopener">Open in a new window</a>
+          </div>
+        </div>
+        <div class="gsheet-reported">
+          <label for="gsheet-tickers">Reported figures of</label>
+          <input id="gsheet-tickers" class="gsheet-tickers" type="text" value="DAL, UAL" spellcheck="false" autocomplete="off" />
+          <button id="gsheet-reported-btn" class="btn" type="button">Write reported figures to the Sheet</button>
+          <span class="panel-subtitle">One to six tickers. Four tabs: Reported_Figures, Metrics, Comparison, Sources.</span>
+        </div>
+        <div id="gsheet-feedback"></div>
+        <iframe id="gsheet-frame" class="gsheet-frame" title="The configured Google Sheet"></iframe>
+        <div class="panel-subtitle gsheet-note">
+          This is the Sheet the chat agent writes to. Its two tabs <code class="tabular">Scenario_Control</code> and
+          <code class="tabular">Portfolio_Shock_Model</code> are rewritten on each write; other tabs are left alone. Change
+          <code class="tabular">Scenario_Control!B2</code> (rate, bp) or <code class="tabular">B3</code> (oil, %) in the Sheet,
+          then read the scenario back: the figures on this page are then computed in Python for those two values.
+          Reported figures go into four more tabs, <code class="tabular">Reported_Figures</code>,
+          <code class="tabular">Metrics</code>, <code class="tabular">Comparison</code> and
+          <code class="tabular">Sources</code>, which are rewritten on each write as well.
+          If the Sheet does not appear above, the browser or the Google account does not allow it inside another page:
+          use Open in a new window.
+        </div>
+      </div>
+    </section>
+
+    <section id="panel-eval" class="tab-panel">
+      <div class="split-grid-tab4">
+        <div class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h2>Q-MODE evaluation scorecard (<code class="tabular">EVAL.yaml</code>)</h2>
+              <div id="eval-run-meta" class="panel-subtitle">No evaluation loaded.</div>
+            </div>
+            <div class="btn-row">
+              <button id="run-eval-offline-btn" class="btn btn-primary" type="button">Run offline replay</button>
+              <button id="run-eval-live-btn" class="btn" type="button">Run live agent eval</button>
+            </div>
+          </div>
+
+          <div id="eval-verdict-banner" class="decision-banner neutral"></div>
+          <div id="eval-error" class="decision-banner refused" hidden></div>
+          <div id="eval-last-live" class="decision-banner neutral" hidden></div>
+
+          <h3 class="section-label">Release gates (edit a threshold, then run again)</h3>
+          <div class="table-scroll">
+            <table id="eval-gates-table">
+              <thead>
+                <tr>
+                  <th>Gate</th>
+                  <th>Measured by</th>
+                  <th class="num-right">Checks passed</th>
+                  <th class="num-right">Measured</th>
+                  <th class="num-right">Threshold (%)</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <h3 class="section-label">Cases (select a row to see its checks)</h3>
+          <div class="table-scroll">
+            <table id="eval-cases-table">
+              <thead>
+                <tr>
+                  <th>Case</th>
+                  <th>Prompt</th>
+                  <th>Deterministic</th>
+                  <th>Trajectory</th>
+                  <th>Response</th>
+                  <th>Rubric</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div id="eval-case-detail" class="case-detail"></div>
+        </div>
+
+        <div class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h2>Maker-checker sign-off (<code class="tabular">record_decision.py</code>)</h2>
+              <div class="panel-subtitle">Two-person review. Refuses unless an evaluation run is attached.</div>
+            </div>
+            <span id="signoff-policy-badge" class="badge badge-neutral">policy</span>
+          </div>
+
+          <div id="signoff-hash-box" class="hash-banner"></div>
+          <div id="signoff-eval-evidence" class="hash-banner"></div>
+
+          <div class="control-group">
+            <label for="maker-email">Preparing analyst (<code class="tabular">maker_email</code>)</label>
+            <input id="maker-email" type="email" value="equity.analyst@institution.example" />
+          </div>
+
+          <div class="control-group">
+            <label for="signer-email">Supervisory principal (<code class="tabular">signer_email</code>, must differ from the maker)</label>
+            <input id="signer-email" type="email" value="research.principal@institution.example" />
+          </div>
+
+          <div class="control-group">
+            <label for="reason-code">Supervisory reason code</label>
+            <select id="reason-code">
+              <option value="MACRO_DESK_RELEASE">MACRO_DESK_RELEASE: scenario packet reviewed</option>
+              <option value="RISK_COMMITTEE_PACKET">RISK_COMMITTEE_PACKET: stress scenario escalation</option>
+              <option value="EARNINGS_SURVEILLANCE">EARNINGS_SURVEILLANCE: filing delta review</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label id="confirm-phrase-label" for="confirm-phrase">Type the confirmation phrase shown above: APPROVE and the six-character packet code</label>
+            <input id="confirm-phrase" type="text" placeholder="APPROVE and the six-character packet code" autocomplete="off" />
+          </div>
+
+          <div class="control-group">
+            <label for="reviewer-notes">Supervisory notes (screened for buy / sell / hold language)</label>
+            <input id="reviewer-notes" type="text" value="Reviewed scaled sensitivities and supply-chain citations." />
+          </div>
+
+          <div class="btn-row">
+            <button id="submit-signoff-btn" class="btn btn-primary" type="button">Record sign-off</button>
+            <button id="test-self-approve-btn" class="btn" type="button">Try self-approval</button>
+          </div>
+
+          <div id="signoff-feedback"></div>
+
+          <h3 class="section-label">Decision ledger and refusal log</h3>
+          <div id="ledger-log-list" class="ledger-log"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

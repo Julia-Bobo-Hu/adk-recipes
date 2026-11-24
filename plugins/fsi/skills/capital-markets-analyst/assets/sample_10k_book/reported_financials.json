@@ -1,0 +1,3857 @@
+{
+ "metadata": {"dataset_id": "reported_financials_edgar_20261120", "as_of_utc": "2026-11-23T05:01:16Z", "source_posture": "authoritative_filing", "data_notice": "Values are XBRL facts from each issuer's Form 10-K filings as returned by the SEC EDGAR company facts API (or, where noted, read from the filing's XBRL instance). The XBRL tag and accession number of every value are in the record. Line-item names are this skill's labels; the tag is the precise definition. Not investment advice.", "description": "20 issuers, up to 4 fiscal years and 21 line items each, built by scripts/reported_financials.py. facts_sha256 is the SHA-256 of a record's fiscal years and values (reported_financials.record_sha256).", "basis": "Annual figures as reported on Form 10-K under US GAAP, read from SEC XBRL company facts. Each value is the one the most recent Form 10-K reports for that fiscal year, so a prior year can differ from what was first reported; restated_from then gives the first-reported value. Amounts are in USD millions unless line_items says otherwise. Growth, margins and free cash flow are computed in Python from these values and rounded half-up to two decimals; one is left out, with the reason under not_computed, when an input is missing or when its inputs come from different filings and one was restated. A line item under not_tagged is one the company does not report under any of the standard tags this skill reads; it is not zero."},
+ "companies": {
+  "DAL": {
+   "ticker": "DAL",
+   "name": "Delta Air Lines, Inc.",
+   "cik": "0000027904",
+   "source": "SEC EDGAR company facts API",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000027904.json",
+   "source_posture": "authoritative_filing",
+   "retrieved_at_utc": "2026-11-20T19:19:52Z",
+   "fiscal_years": [
+    {"fiscal_year": 2025, "period_start": "2025-01-01", "period_end": "2025-12-31", "first_reported_in": "0000027904-26-000013"},
+    {"fiscal_year": 2024, "period_start": "2024-01-01", "period_end": "2024-12-31", "first_reported_in": "0000027904-25-000004"},
+    {"fiscal_year": 2023, "period_start": "2023-01-01", "period_end": "2023-12-31", "first_reported_in": "0000027904-24-000003"},
+    {"fiscal_year": 2022, "period_start": "2022-01-01", "period_end": "2022-12-31", "first_reported_in": "0000027904-23-000003"}
+   ],
+   "filings": {
+    "0000027904-23-000003": {"form": "10-K", "filed": "2023-02-10"},
+    "0000027904-24-000003": {"form": "10-K", "filed": "2024-02-12"},
+    "0000027904-25-000004": {"form": "10-K", "filed": "2025-02-11"},
+    "0000027904-26-000013": {"form": "10-K", "filed": "2026-02-11"}
+   },
+   "items": {
+    "revenue": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "values": {
+      "2025-12-31": {"value": "63364", "accession_number": "0000027904-26-000013"},
+      "2024-12-31": {"value": "61643", "accession_number": "0000027904-26-000013"},
+      "2023-12-31": {"value": "58048", "accession_number": "0000027904-26-000013"},
+      "2022-12-31": {"value": "50582", "accession_number": "0000027904-25-000004"}
+     }
+    },
+    "operating_income": {
+     "tag": "us-gaap:OperatingIncomeLoss",
+     "values": {
+      "2025-12-31": {"value": "5822", "accession_number": "0000027904-26-000013"},
+      "2024-12-31": {"value": "5995", "accession_number": "0000027904-26-000013"},
+      "2023-12-31": {"value": "5521", "accession_number": "0000027904-26-000013"},
+      "2022-12-31": {"value": "3661", "accession_number": "0000027904-25-000004"}
+     }
+    },
+    "pretax_income": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     "values": {
+      "2025-12-31": {"value": "6185", "accession_number": "0000027904-26-000013"},
+      "2024-12-31": {"value": "4658", "accession_number": "0000027904-26-000013"},
+      "2023-12-31": {"value": "5608", "accession_number": "0000027904-26-000013"},
+      "2022-12-31": {"value": "1914", "accession_number": "0000027904-25-000004"}
+     }
+    },
+    "income_tax": {
+     "tag": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": {
+      "2025-12-31": {"value": "1180", "accession_number": "0000027904-26-000013"},
+      "2024-12-31": {"value": "1201", "accession_number": "0000027904-26-000013"},
+      "2023-12-31": {"value": "999", "accession_number": "0000027904-26-000013"},
+      "2022-12-31": {"value": "596", "accession_number": "0000027904-25-000004"}
+     }
+    },
+    "net_income": {
+     "tag": "us-gaap:NetIncomeLoss",
+     "values": {
+      "2025-12-31": {"value": "5005", "accession_number": "0000027904-26-000013"},
+      "2024-12-31": {"value": "3457", "accession_number": "0000027904-26-000013"},
+      "2023-12-31": {"value": "4609", "accession_number": "0000027904-26-000013"},
+      "2022-12-31": {"value": "1318", "accession_number": "0000027904-25-000004"}
+     }
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "values": {
+      "2025-12-31": {"value": "7.66", "accession_number": "0000027904-26-000013"},
+      "2024-12-31": {"value": "5.33", "accession_number": "0000027904-26-000013"},
+      "2023-12-31": {"value": "7.17", "accession_number": "0000027904-26-000013"},
+      "2022-12-31": {"value": "2.06", "accession_number": "0000027904-25-000004"}
+     }
+    },
+    "diluted_shares": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "values": {
+      "2025-12-31": {"value": "654", "accession_number": "0000027904-26-000013"},
+      "2024-12-31": {"value": "648", "accession_number": "0000027904-26-000013"},
+      "2023-12-31": {"value": "643", "accession_number": "0000027904-26-000013"},
+      "2022-12-31": {"value": "641", "accession_number": "0000027904-25-000004"}
+     }
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "values": {
+      "2025-12-31": {"value": "0.191", "accession_number": "0000027904-26-000013"},
+      "2024-12-31": {"value": "0.258", "accession_number": "0000027904-26-000013"},
+      "2023-12-31": {"value": "0.178", "accession_number": "0000027904-26-000013"},
+      "2022-12-31": {"value": "0.312", "accession_number": "0000027904-25-000004"}
+     }
+    },
+    "operating_cash_flow": {
+     "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": {
+      "2025-12-31": {"value": "8342", "accession_number": "0000027904-26-000013"},
+      "2024-12-31": {"value": "8025", "accession_number": "0000027904-26-000013"},
+      "2023-12-31": {"value": "6464", "accession_number": "0000027904-26-000013"},
+      "2022-12-31": {"value": "6363", "accession_number": "0000027904-25-000004"}
+     }
+    },
+    "capital_expenditure": {
+     "tag": "us-gaap:PaymentsToAcquireProductiveAssets",
+     "values": {
+      "2025-12-31": {"value": "4499", "accession_number": "0000027904-26-000013"},
+      "2024-12-31": {"value": "5140", "accession_number": "0000027904-26-000013"},
+      "2023-12-31": {"value": "5323", "accession_number": "0000027904-26-000013"},
+      "2022-12-31": {"value": "6366", "accession_number": "0000027904-25-000004"}
+     }
+    },
+    "dividends_paid": {
+     "tag": "us-gaap:PaymentsOfDividends",
+     "values": {
+      "2025-12-31": {"value": "440", "accession_number": "0000027904-26-000013"},
+      "2024-12-31": {"value": "321", "accession_number": "0000027904-26-000013"},
+      "2023-12-31": {"value": "128", "accession_number": "0000027904-26-000013"},
+      "2022-12-31": {"value": "0", "accession_number": "0000027904-25-000004"}
+     }
+    },
+    "share_repurchases": {
+     "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+     "values": {
+      "2022-12-31": {"value": "0", "accession_number": "0000027904-23-000003"}
+     }
+    },
+    "cash_and_equivalents": {
+     "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+     "values": {
+      "2025-12-31": {"value": "4310", "accession_number": "0000027904-26-000013"},
+      "2024-12-31": {"value": "3069", "accession_number": "0000027904-26-000013"},
+      "2023-12-31": {"value": "2741", "accession_number": "0000027904-26-000013"},
+      "2022-12-31": {"value": "3266", "accession_number": "0000027904-25-000004"}
+     }
+    },
+    "total_assets": {
+     "tag": "us-gaap:Assets",
+     "values": {
+      "2025-12-31": {"value": "81317", "accession_number": "0000027904-26-000013"},
+      "2024-12-31": {"value": "75372", "accession_number": "0000027904-26-000013"},
+      "2023-12-31": {"value": "73644", "accession_number": "0000027904-26-000013"},
+      "2022-12-31": {"value": "72288", "accession_number": "0000027904-25-000004"}
+     }
+    },
+    "stockholders_equity": {
+     "tag": "us-gaap:StockholdersEquity",
+     "values": {
+      "2025-12-31": {"value": "20853", "accession_number": "0000027904-26-000013"},
+      "2024-12-31": {"value": "15293", "accession_number": "0000027904-26-000013"},
+      "2023-12-31": {"value": "11105", "accession_number": "0000027904-26-000013"},
+      "2022-12-31": {"value": "6582", "accession_number": "0000027904-26-000013"}
+     }
+    },
+    "long_term_debt": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "values": {
+      "2025-12-31": {"value": "11936", "accession_number": "0000027904-26-000013"},
+      "2024-12-31": {"value": "13546", "accession_number": "0000027904-26-000013"},
+      "2023-12-31": {"value": "15985", "accession_number": "0000027904-25-000004"},
+      "2022-12-31": {"value": "19326", "accession_number": "0000027904-24-000003"}
+     }
+    }
+   },
+   "facts_sha256": "ee374f8beae0d651870d121a15640b2aa4d3856f13c394ed204579acf358f7c7"
+  },
+  "UAL": {
+   "ticker": "UAL",
+   "name": "United Airlines Holdings, Inc.",
+   "cik": "0000100517",
+   "source": "SEC EDGAR company facts API",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000100517.json",
+   "source_posture": "authoritative_filing",
+   "retrieved_at_utc": "2026-11-20T19:20:01Z",
+   "fiscal_years": [
+    {"fiscal_year": 2025, "period_start": "2025-01-01", "period_end": "2025-12-31", "first_reported_in": "0000100517-26-000023"},
+    {"fiscal_year": 2024, "period_start": "2024-01-01", "period_end": "2024-12-31", "first_reported_in": "0000100517-25-000046"},
+    {"fiscal_year": 2023, "period_start": "2023-01-01", "period_end": "2023-12-31", "first_reported_in": "0000100517-24-000027"},
+    {"fiscal_year": 2022, "period_start": "2022-01-01", "period_end": "2022-12-31", "first_reported_in": "0000100517-23-000048"}
+   ],
+   "filings": {
+    "0000100517-24-000027": {"form": "10-K", "filed": "2024-02-29"},
+    "0000100517-25-000046": {"form": "10-K", "filed": "2025-02-27"},
+    "0000100517-26-000023": {"form": "10-K", "filed": "2026-02-12"}
+   },
+   "items": {
+    "revenue": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "values": {
+      "2025-12-31": {"value": "59070", "accession_number": "0000100517-26-000023"},
+      "2024-12-31": {"value": "57063", "accession_number": "0000100517-26-000023"},
+      "2023-12-31": {"value": "53717", "accession_number": "0000100517-26-000023"},
+      "2022-12-31": {"value": "44955", "accession_number": "0000100517-25-000046"}
+     }
+    },
+    "operating_income": {
+     "tag": "us-gaap:OperatingIncomeLoss",
+     "values": {
+      "2025-12-31": {"value": "4713", "accession_number": "0000100517-26-000023"},
+      "2024-12-31": {"value": "5096", "accession_number": "0000100517-26-000023"},
+      "2023-12-31": {"value": "4211", "accession_number": "0000100517-26-000023"},
+      "2022-12-31": {"value": "2337", "accession_number": "0000100517-25-000046"}
+     }
+    },
+    "interest_expense": {
+     "tag": "us-gaap:InterestExpenseNonoperating",
+     "values": {
+      "2025-12-31": {"value": "1373", "accession_number": "0000100517-26-000023"},
+      "2024-12-31": {"value": "1629", "accession_number": "0000100517-26-000023"},
+      "2023-12-31": {"value": "1956", "accession_number": "0000100517-26-000023"},
+      "2022-12-31": {"value": "1778", "accession_number": "0000100517-25-000046"}
+     }
+    },
+    "pretax_income": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     "values": {
+      "2025-12-31": {"value": "4306", "accession_number": "0000100517-26-000023"},
+      "2024-12-31": {"value": "4168", "accession_number": "0000100517-26-000023"},
+      "2023-12-31": {"value": "3387", "accession_number": "0000100517-26-000023"},
+      "2022-12-31": {"value": "990", "accession_number": "0000100517-25-000046"}
+     }
+    },
+    "income_tax": {
+     "tag": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": {
+      "2025-12-31": {"value": "953", "accession_number": "0000100517-26-000023"},
+      "2024-12-31": {"value": "1019", "accession_number": "0000100517-26-000023"},
+      "2023-12-31": {"value": "769", "accession_number": "0000100517-26-000023"},
+      "2022-12-31": {"value": "253", "accession_number": "0000100517-25-000046"}
+     }
+    },
+    "net_income": {
+     "tag": "us-gaap:NetIncomeLoss",
+     "values": {
+      "2025-12-31": {"value": "3353", "accession_number": "0000100517-26-000023"},
+      "2024-12-31": {"value": "3149", "accession_number": "0000100517-26-000023"},
+      "2023-12-31": {"value": "2618", "accession_number": "0000100517-26-000023"},
+      "2022-12-31": {"value": "737", "accession_number": "0000100517-25-000046"}
+     }
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "values": {
+      "2025-12-31": {"value": "10.20", "accession_number": "0000100517-26-000023"},
+      "2024-12-31": {"value": "9.45", "accession_number": "0000100517-26-000023"},
+      "2023-12-31": {"value": "7.89", "accession_number": "0000100517-26-000023"},
+      "2022-12-31": {"value": "2.23", "accession_number": "0000100517-25-000046"}
+     }
+    },
+    "diluted_shares": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "values": {
+      "2025-12-31": {"value": "328.5", "accession_number": "0000100517-26-000023"},
+      "2024-12-31": {"value": "333.2", "accession_number": "0000100517-26-000023"},
+      "2023-12-31": {"value": "331.9", "accession_number": "0000100517-26-000023"},
+      "2022-12-31": {"value": "330.1", "accession_number": "0000100517-25-000046"}
+     }
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "values": {
+      "2025-12-31": {"value": "0.221", "accession_number": "0000100517-26-000023"},
+      "2024-12-31": {"value": "0.244", "accession_number": "0000100517-26-000023"},
+      "2023-12-31": {"value": "0.227", "accession_number": "0000100517-26-000023"}
+     }
+    },
+    "operating_cash_flow": {
+     "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": {
+      "2025-12-31": {"value": "8431", "accession_number": "0000100517-26-000023"},
+      "2024-12-31": {"value": "9445", "accession_number": "0000100517-26-000023"},
+      "2023-12-31": {"value": "6911", "accession_number": "0000100517-26-000023"},
+      "2022-12-31": {"value": "6066", "accession_number": "0000100517-25-000046"}
+     }
+    },
+    "capital_expenditure": {
+     "tag": "us-gaap:PaymentsToAcquireProductiveAssets",
+     "values": {
+      "2025-12-31": {"value": "5874", "accession_number": "0000100517-26-000023"},
+      "2024-12-31": {"value": "5615", "accession_number": "0000100517-26-000023"},
+      "2023-12-31": {"value": "7171", "accession_number": "0000100517-26-000023"},
+      "2022-12-31": {"value": "4819", "accession_number": "0000100517-25-000046"}
+     }
+    },
+    "share_repurchases": {
+     "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+     "values": {
+      "2025-12-31": {"value": "637", "accession_number": "0000100517-26-000023"},
+      "2024-12-31": {"value": "162", "accession_number": "0000100517-26-000023"},
+      "2023-12-31": {"value": "0", "accession_number": "0000100517-26-000023"},
+      "2022-12-31": {"value": "0", "accession_number": "0000100517-25-000046"}
+     }
+    },
+    "cash_and_equivalents": {
+     "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+     "values": {
+      "2025-12-31": {"value": "5942", "accession_number": "0000100517-26-000023"},
+      "2024-12-31": {"value": "8769", "accession_number": "0000100517-26-000023"},
+      "2023-12-31": {"value": "6058", "accession_number": "0000100517-26-000023"},
+      "2022-12-31": {"value": "7166", "accession_number": "0000100517-25-000046"}
+     }
+    },
+    "total_assets": {
+     "tag": "us-gaap:Assets",
+     "values": {
+      "2025-12-31": {"value": "76448", "accession_number": "0000100517-26-000023"},
+      "2024-12-31": {"value": "74083", "accession_number": "0000100517-26-000023"},
+      "2023-12-31": {"value": "71104", "accession_number": "0000100517-25-000046"},
+      "2022-12-31": {"value": "67358", "accession_number": "0000100517-24-000027"}
+     }
+    },
+    "stockholders_equity": {
+     "tag": "us-gaap:StockholdersEquity",
+     "values": {
+      "2025-12-31": {"value": "15282", "accession_number": "0000100517-26-000023"},
+      "2024-12-31": {"value": "12675", "accession_number": "0000100517-26-000023"},
+      "2023-12-31": {"value": "9324", "accession_number": "0000100517-26-000023"},
+      "2022-12-31": {"value": "6896", "accession_number": "0000100517-26-000023"}
+     }
+    },
+    "long_term_debt": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "values": {
+      "2025-12-31": {"value": "17170", "accession_number": "0000100517-26-000023"},
+      "2024-12-31": {"value": "21680", "accession_number": "0000100517-26-000023"},
+      "2023-12-31": {"value": "25057", "accession_number": "0000100517-25-000046"},
+      "2022-12-31": {"value": "28283", "accession_number": "0000100517-24-000027"}
+     }
+    }
+   },
+   "facts_sha256": "4100f5a19fc2c8d88d3d5e70df36c9dc124c6cba168b4b6447a00d8bb64b68f7"
+  },
+  "BA": {
+   "ticker": "BA",
+   "name": "The Boeing Company",
+   "cik": "0000012927",
+   "source": "SEC EDGAR company facts API",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000012927.json",
+   "source_posture": "authoritative_filing",
+   "retrieved_at_utc": "2026-11-20T19:19:49Z",
+   "fiscal_years": [
+    {"fiscal_year": 2025, "period_start": "2025-01-01", "period_end": "2025-12-31", "first_reported_in": "0001628280-26-004357"},
+    {"fiscal_year": 2024, "period_start": "2024-01-01", "period_end": "2024-12-31", "first_reported_in": "0000012927-25-000015"},
+    {"fiscal_year": 2023, "period_start": "2023-01-01", "period_end": "2023-12-31", "first_reported_in": "0000012927-24-000010"},
+    {"fiscal_year": 2022, "period_start": "2022-01-01", "period_end": "2022-12-31", "first_reported_in": "0000012927-23-000007"}
+   ],
+   "filings": {
+    "0000012927-24-000010": {"form": "10-K", "filed": "2024-01-31"},
+    "0000012927-25-000015": {"form": "10-K", "filed": "2025-02-03"},
+    "0001628280-26-004357": {"form": "10-K", "filed": "2026-01-30"}
+   },
+   "items": {
+    "revenue": {
+     "tag": "us-gaap:Revenues",
+     "values": {
+      "2025-12-31": {"value": "89463", "accession_number": "0001628280-26-004357"},
+      "2024-12-31": {"value": "66517", "accession_number": "0001628280-26-004357"},
+      "2023-12-31": {"value": "77794", "accession_number": "0001628280-26-004357"},
+      "2022-12-31": {"value": "66608", "accession_number": "0000012927-25-000015"}
+     }
+    },
+    "cost_of_revenue": {
+     "tag": "us-gaap:CostOfRevenue",
+     "values": {
+      "2025-12-31": {"value": "85174", "accession_number": "0001628280-26-004357"},
+      "2024-12-31": {"value": "68508", "accession_number": "0001628280-26-004357"},
+      "2023-12-31": {"value": "70070", "accession_number": "0001628280-26-004357"},
+      "2022-12-31": {"value": "63078", "accession_number": "0000012927-25-000015", "restated_from": "63106"}
+     }
+    },
+    "gross_profit": {
+     "tag": "us-gaap:GrossProfit",
+     "values": {
+      "2025-12-31": {"value": "4289", "accession_number": "0001628280-26-004357"},
+      "2024-12-31": {"value": "-1991", "accession_number": "0001628280-26-004357"},
+      "2023-12-31": {"value": "7724", "accession_number": "0001628280-26-004357"},
+      "2022-12-31": {"value": "3530", "accession_number": "0000012927-25-000015", "restated_from": "3502"}
+     }
+    },
+    "research_and_development": {
+     "tag": "us-gaap:ResearchAndDevelopmentExpense",
+     "values": {
+      "2025-12-31": {"value": "3615", "accession_number": "0001628280-26-004357"},
+      "2024-12-31": {"value": "3812", "accession_number": "0001628280-26-004357"},
+      "2023-12-31": {"value": "3377", "accession_number": "0001628280-26-004357"},
+      "2022-12-31": {"value": "2852", "accession_number": "0000012927-25-000015"}
+     }
+    },
+    "operating_income": {
+     "tag": "us-gaap:OperatingIncomeLoss",
+     "values": {
+      "2025-12-31": {"value": "4281", "accession_number": "0001628280-26-004357"},
+      "2024-12-31": {"value": "-10707", "accession_number": "0001628280-26-004357"},
+      "2023-12-31": {"value": "-773", "accession_number": "0001628280-26-004357"},
+      "2022-12-31": {"value": "-3519", "accession_number": "0000012927-25-000015", "restated_from": "-3547"}
+     }
+    },
+    "interest_expense": {
+     "tag": "us-gaap:InterestAndDebtExpense",
+     "values": {
+      "2025-12-31": {"value": "2771", "accession_number": "0001628280-26-004357"},
+      "2024-12-31": {"value": "2725", "accession_number": "0001628280-26-004357"},
+      "2023-12-31": {"value": "2459", "accession_number": "0001628280-26-004357"},
+      "2022-12-31": {"value": "2561", "accession_number": "0000012927-25-000015", "restated_from": "2533"}
+     }
+    },
+    "pretax_income": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     "values": {
+      "2025-12-31": {"value": "2635", "accession_number": "0001628280-26-004357"},
+      "2024-12-31": {"value": "-12210", "accession_number": "0001628280-26-004357"},
+      "2023-12-31": {"value": "-2005", "accession_number": "0001628280-26-004357"},
+      "2022-12-31": {"value": "-5022", "accession_number": "0000012927-25-000015"}
+     }
+    },
+    "income_tax": {
+     "tag": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": {
+      "2025-12-31": {"value": "397", "accession_number": "0001628280-26-004357"},
+      "2024-12-31": {"value": "-381", "accession_number": "0001628280-26-004357"},
+      "2023-12-31": {"value": "237", "accession_number": "0001628280-26-004357"},
+      "2022-12-31": {"value": "31", "accession_number": "0000012927-25-000015"}
+     }
+    },
+    "net_income": {
+     "tag": "us-gaap:NetIncomeLoss",
+     "values": {
+      "2025-12-31": {"value": "2235", "accession_number": "0001628280-26-004357"},
+      "2024-12-31": {"value": "-11817", "accession_number": "0001628280-26-004357"},
+      "2023-12-31": {"value": "-2222", "accession_number": "0001628280-26-004357"},
+      "2022-12-31": {"value": "-4935", "accession_number": "0000012927-25-000015"}
+     }
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "values": {
+      "2025-12-31": {"value": "2.48", "accession_number": "0001628280-26-004357"},
+      "2024-12-31": {"value": "-18.36", "accession_number": "0001628280-26-004357"},
+      "2023-12-31": {"value": "-3.67", "accession_number": "0001628280-26-004357"},
+      "2022-12-31": {"value": "-8.30", "accession_number": "0000012927-25-000015"}
+     }
+    },
+    "diluted_shares": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "values": {
+      "2025-12-31": {"value": "762.3", "accession_number": "0001628280-26-004357"},
+      "2024-12-31": {"value": "646.9", "accession_number": "0001628280-26-004357"},
+      "2023-12-31": {"value": "605.8", "accession_number": "0001628280-26-004357"},
+      "2022-12-31": {"value": "594.9", "accession_number": "0000012927-25-000015"}
+     }
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "values": {
+      "2025-12-31": {"value": "0.151", "accession_number": "0001628280-26-004357"},
+      "2024-12-31": {"value": "0.031", "accession_number": "0001628280-26-004357"},
+      "2023-12-31": {"value": "-0.118", "accession_number": "0001628280-26-004357"},
+      "2022-12-31": {"value": "-0.006", "accession_number": "0000012927-25-000015"}
+     }
+    },
+    "operating_cash_flow": {
+     "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": {
+      "2025-12-31": {"value": "1065", "accession_number": "0001628280-26-004357"},
+      "2024-12-31": {"value": "-12080", "accession_number": "0001628280-26-004357"},
+      "2023-12-31": {"value": "5960", "accession_number": "0001628280-26-004357"},
+      "2022-12-31": {"value": "3512", "accession_number": "0000012927-25-000015"}
+     }
+    },
+    "capital_expenditure": {
+     "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "values": {
+      "2025-12-31": {"value": "2942", "accession_number": "0001628280-26-004357"},
+      "2024-12-31": {"value": "2230", "accession_number": "0001628280-26-004357"},
+      "2023-12-31": {"value": "1527", "accession_number": "0001628280-26-004357"},
+      "2022-12-31": {"value": "1222", "accession_number": "0000012927-25-000015"}
+     }
+    },
+    "dividends_paid": {
+     "tag": "us-gaap:PaymentsOfDividends",
+     "values": {
+      "2025-12-31": {"value": "331", "accession_number": "0001628280-26-004357"}
+     }
+    },
+    "cash_and_equivalents": {
+     "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+     "values": {
+      "2025-12-31": {"value": "10921", "accession_number": "0001628280-26-004357"},
+      "2024-12-31": {"value": "13801", "accession_number": "0001628280-26-004357"},
+      "2023-12-31": {"value": "12691", "accession_number": "0001628280-26-004357"},
+      "2022-12-31": {"value": "14614", "accession_number": "0000012927-25-000015"}
+     }
+    },
+    "total_assets": {
+     "tag": "us-gaap:Assets",
+     "values": {
+      "2025-12-31": {"value": "168235", "accession_number": "0001628280-26-004357"},
+      "2024-12-31": {"value": "156363", "accession_number": "0001628280-26-004357"},
+      "2023-12-31": {"value": "137012", "accession_number": "0000012927-25-000015"},
+      "2022-12-31": {"value": "137100", "accession_number": "0000012927-24-000010"}
+     }
+    },
+    "total_liabilities": {
+     "tag": "us-gaap:Liabilities",
+     "values": {
+      "2025-12-31": {"value": "162778", "accession_number": "0001628280-26-004357"},
+      "2024-12-31": {"value": "160277", "accession_number": "0001628280-26-004357"},
+      "2023-12-31": {"value": "154240", "accession_number": "0000012927-25-000015"},
+      "2022-12-31": {"value": "152948", "accession_number": "0000012927-24-000010"}
+     }
+    },
+    "stockholders_equity": {
+     "tag": "us-gaap:StockholdersEquity",
+     "values": {
+      "2025-12-31": {"value": "5454", "accession_number": "0001628280-26-004357"},
+      "2024-12-31": {"value": "-3908", "accession_number": "0001628280-26-004357"},
+      "2023-12-31": {"value": "-17233", "accession_number": "0000012927-25-000015"},
+      "2022-12-31": {"value": "-15883", "accession_number": "0000012927-24-000010"}
+     }
+    },
+    "long_term_debt": {
+     "tag": "us-gaap:LongTermDebtAndCapitalLeaseObligations",
+     "values": {
+      "2025-12-31": {"value": "45637", "accession_number": "0001628280-26-004357"},
+      "2024-12-31": {"value": "52586", "accession_number": "0001628280-26-004357"},
+      "2023-12-31": {"value": "47103", "accession_number": "0000012927-25-000015"},
+      "2022-12-31": {"value": "51811", "accession_number": "0000012927-24-000010"}
+     }
+    }
+   },
+   "facts_sha256": "3d806b8747da38f6f4397d6ceff8444204b08c42df560ab03e7e5ec17c9914c2"
+  },
+  "GE": {
+   "ticker": "GE",
+   "name": "GE Aerospace",
+   "cik": "0000040545",
+   "source": "SEC EDGAR company facts API",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000040545.json",
+   "source_posture": "authoritative_filing",
+   "retrieved_at_utc": "2026-11-20T19:19:54Z",
+   "fiscal_years": [
+    {"fiscal_year": 2025, "period_start": "2025-01-01", "period_end": "2025-12-31", "first_reported_in": "0000040545-26-000008"},
+    {"fiscal_year": 2024, "period_start": "2024-01-01", "period_end": "2024-12-31", "first_reported_in": "0000040545-25-000015"},
+    {"fiscal_year": 2023, "period_start": "2023-01-01", "period_end": "2023-12-31", "first_reported_in": "0000040545-24-000027"},
+    {"fiscal_year": 2022, "period_start": "2022-01-01", "period_end": "2022-12-31", "first_reported_in": "0000040545-23-000023"}
+   ],
+   "filings": {
+    "0000040545-24-000027": {"form": "10-K", "filed": "2024-02-02"},
+    "0000040545-25-000015": {"form": "10-K", "filed": "2025-02-03"},
+    "0000040545-26-000008": {"form": "10-K", "filed": "2026-01-29"}
+   },
+   "items": {
+    "revenue": {
+     "tag": "us-gaap:Revenues",
+     "values": {
+      "2025-12-31": {"value": "45855", "accession_number": "0000040545-26-000008"},
+      "2024-12-31": {"value": "38702", "accession_number": "0000040545-26-000008"},
+      "2023-12-31": {"value": "35348", "accession_number": "0000040545-26-000008", "restated_from": "67954"},
+      "2022-12-31": {"value": "29139", "accession_number": "0000040545-25-000015", "restated_from": "76555"}
+     }
+    },
+    "research_and_development": {
+     "tag": "us-gaap:ResearchAndDevelopmentExpense",
+     "values": {
+      "2025-12-31": {"value": "1580", "accession_number": "0000040545-26-000008"},
+      "2024-12-31": {"value": "1286", "accession_number": "0000040545-26-000008"},
+      "2023-12-31": {"value": "1011", "accession_number": "0000040545-26-000008", "restated_from": "1907"},
+      "2022-12-31": {"value": "808", "accession_number": "0000040545-25-000015", "restated_from": "2813"}
+     }
+    },
+    "pretax_income": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     "values": {
+      "2025-12-31": {"value": "10000", "accession_number": "0000040545-26-000008"},
+      "2024-12-31": {"value": "7620", "accession_number": "0000040545-26-000008"},
+      "2023-12-31": {"value": "10441", "accession_number": "0000040545-26-000008", "restated_from": "10191"},
+      "2022-12-31": {"value": "1522", "accession_number": "0000040545-25-000015", "restated_from": "1412"}
+     }
+    },
+    "income_tax": {
+     "tag": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": {
+      "2025-12-31": {"value": "1405", "accession_number": "0000040545-26-000008"},
+      "2024-12-31": {"value": "962", "accession_number": "0000040545-26-000008"},
+      "2023-12-31": {"value": "994", "accession_number": "0000040545-26-000008", "restated_from": "1162"},
+      "2022-12-31": {"value": "169", "accession_number": "0000040545-25-000015", "restated_from": "476"}
+     }
+    },
+    "net_income": {
+     "tag": "us-gaap:NetIncomeLoss",
+     "values": {
+      "2025-12-31": {"value": "8704", "accession_number": "0000040545-26-000008"},
+      "2024-12-31": {"value": "6556", "accession_number": "0000040545-26-000008"},
+      "2023-12-31": {"value": "9482", "accession_number": "0000040545-26-000008", "restated_from": "9481"},
+      "2022-12-31": {"value": "336", "accession_number": "0000040545-25-000015", "restated_from": "225"}
+     }
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "values": {
+      "2025-12-31": {"value": "8.14", "accession_number": "0000040545-26-000008"},
+      "2024-12-31": {"value": "5.99", "accession_number": "0000040545-26-000008"},
+      "2023-12-31": {"value": "8.36", "accession_number": "0000040545-26-000008"},
+      "2022-12-31": {"value": "0.05", "accession_number": "0000040545-25-000015", "restated_from": "-0.05"}
+     }
+    },
+    "diluted_shares": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "values": {
+      "2025-12-31": {"value": "1068", "accession_number": "0000040545-26-000008"},
+      "2024-12-31": {"value": "1094", "accession_number": "0000040545-26-000008"},
+      "2023-12-31": {"value": "1099", "accession_number": "0000040545-26-000008"},
+      "2022-12-31": {"value": "1101", "accession_number": "0000040545-25-000015"}
+     }
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "values": {
+      "2025-12-31": {"value": "0.141", "accession_number": "0000040545-26-000008"},
+      "2024-12-31": {"value": "0.126", "accession_number": "0000040545-26-000008"},
+      "2023-12-31": {"value": "0.095", "accession_number": "0000040545-26-000008", "restated_from": "0.114"},
+      "2022-12-31": {"value": "0.111", "accession_number": "0000040545-25-000015", "restated_from": "0.337"}
+     }
+    },
+    "operating_cash_flow": {
+     "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": {
+      "2025-12-31": {"value": "8537", "accession_number": "0000040545-26-000008"},
+      "2024-12-31": {"value": "4710", "accession_number": "0000040545-26-000008"},
+      "2023-12-31": {"value": "5189", "accession_number": "0000040545-26-000008", "restated_from": "5179"},
+      "2022-12-31": {"value": "5917", "accession_number": "0000040545-25-000015", "restated_from": "5916"}
+     }
+    },
+    "capital_expenditure": {
+     "tag": "us-gaap:PaymentsToAcquireProductiveAssets",
+     "values": {
+      "2025-12-31": {"value": "1273", "accession_number": "0000040545-26-000008"},
+      "2024-12-31": {"value": "1032", "accession_number": "0000040545-26-000008"},
+      "2023-12-31": {"value": "862", "accession_number": "0000040545-26-000008", "restated_from": "1595"},
+      "2022-12-31": {"value": "662", "accession_number": "0000040545-25-000015", "restated_from": "1174"}
+     }
+    },
+    "dividends_paid": {
+     "tag": "us-gaap:PaymentsOfOrdinaryDividends",
+     "values": {
+      "2025-12-31": {"value": "1452", "accession_number": "0000040545-26-000008"},
+      "2024-12-31": {"value": "1008", "accession_number": "0000040545-26-000008"},
+      "2023-12-31": {"value": "589", "accession_number": "0000040545-26-000008"},
+      "2022-12-31": {"value": "639", "accession_number": "0000040545-25-000015"}
+     }
+    },
+    "share_repurchases": {
+     "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+     "values": {
+      "2025-12-31": {"value": "7551", "accession_number": "0000040545-26-000008"},
+      "2024-12-31": {"value": "5827", "accession_number": "0000040545-26-000008"},
+      "2023-12-31": {"value": "1233", "accession_number": "0000040545-26-000008"},
+      "2022-12-31": {"value": "1048", "accession_number": "0000040545-25-000015"}
+     }
+    },
+    "cash_and_equivalents": {
+     "tag": "us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+     "values": {
+      "2025-12-31": {"value": "12392", "accession_number": "0000040545-26-000008"},
+      "2024-12-31": {"value": "13619", "accession_number": "0000040545-26-000008"},
+      "2023-12-31": {"value": "15204", "accession_number": "0000040545-25-000015", "restated_from": "16967"},
+      "2022-12-31": {"value": "15810", "accession_number": "0000040545-24-000027", "restated_from": "17262"}
+     }
+    },
+    "total_assets": {
+     "tag": "us-gaap:Assets",
+     "values": {
+      "2025-12-31": {"value": "130169", "accession_number": "0000040545-26-000008"},
+      "2024-12-31": {"value": "123140", "accession_number": "0000040545-26-000008"},
+      "2023-12-31": {"value": "173300", "accession_number": "0000040545-25-000015", "restated_from": "163045"},
+      "2022-12-31": {"value": "188851", "accession_number": "0000040545-24-000027", "restated_from": "187788"}
+     }
+    },
+    "total_liabilities": {
+     "tag": "us-gaap:Liabilities",
+     "values": {
+      "2025-12-31": {"value": "111271", "accession_number": "0000040545-26-000008"},
+      "2024-12-31": {"value": "103576", "accession_number": "0000040545-26-000008"},
+      "2023-12-31": {"value": "144695", "accession_number": "0000040545-25-000015", "restated_from": "134466"},
+      "2022-12-31": {"value": "153938", "accession_number": "0000040545-24-000027", "restated_from": "150206"}
+     }
+    },
+    "stockholders_equity": {
+     "tag": "us-gaap:StockholdersEquity",
+     "values": {
+      "2025-12-31": {"value": "18677", "accession_number": "0000040545-26-000008"},
+      "2024-12-31": {"value": "19342", "accession_number": "0000040545-26-000008"},
+      "2023-12-31": {"value": "27403", "accession_number": "0000040545-25-000015", "restated_from": "27378"},
+      "2022-12-31": {"value": "33696", "accession_number": "0000040545-24-000027", "restated_from": "36366"}
+     }
+    },
+    "long_term_debt": {
+     "tag": "us-gaap:LongTermDebtAndCapitalLeaseObligations",
+     "values": {
+      "2025-12-31": {"value": "18808", "accession_number": "0000040545-26-000008"},
+      "2024-12-31": {"value": "17234", "accession_number": "0000040545-26-000008"},
+      "2023-12-31": {"value": "19417", "accession_number": "0000040545-25-000015", "restated_from": "19711"},
+      "2022-12-31": {"value": "20320", "accession_number": "0000040545-24-000027", "restated_from": "28593"}
+     }
+    }
+   },
+   "facts_sha256": "eb74b40da26db8e795e03bc0687d4ec746ed7a1513b3bc34dba4c3999f3d116c"
+  },
+  "HXL": {
+   "ticker": "HXL",
+   "name": "Hexcel Corporation",
+   "cik": "0000717605",
+   "source": "SEC EDGAR company facts API",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000717605.json",
+   "source_posture": "authoritative_filing",
+   "retrieved_at_utc": "2026-11-20T19:19:55Z",
+   "fiscal_years": [
+    {"fiscal_year": 2025, "period_start": "2025-01-01", "period_end": "2025-12-31", "first_reported_in": "0001193125-26-046377"},
+    {"fiscal_year": 2024, "period_start": "2024-01-01", "period_end": "2024-12-31", "first_reported_in": "0000950170-25-014412"},
+    {"fiscal_year": 2023, "period_start": "2023-01-01", "period_end": "2023-12-31", "first_reported_in": "0000950170-24-012245"},
+    {"fiscal_year": 2022, "period_start": "2022-01-01", "period_end": "2022-12-31", "first_reported_in": "0000950170-23-002099"}
+   ],
+   "filings": {
+    "0000950170-24-012245": {"form": "10-K", "filed": "2024-02-07"},
+    "0000950170-25-014412": {"form": "10-K", "filed": "2025-02-05"},
+    "0001193125-26-046377": {"form": "10-K", "filed": "2026-02-11"}
+   },
+   "items": {
+    "revenue": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "values": {
+      "2025-12-31": {"value": "1893.9", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "1903", "accession_number": "0001193125-26-046377"},
+      "2023-12-31": {"value": "1789", "accession_number": "0001193125-26-046377"},
+      "2022-12-31": {"value": "1577.7", "accession_number": "0000950170-25-014412"}
+     }
+    },
+    "cost_of_revenue": {
+     "tag": "us-gaap:CostOfGoodsAndServicesSold",
+     "values": {
+      "2025-12-31": {"value": "1459.1", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "1433.2", "accession_number": "0001193125-26-046377"},
+      "2023-12-31": {"value": "1355.8", "accession_number": "0001193125-26-046377"},
+      "2022-12-31": {"value": "1220.6", "accession_number": "0000950170-25-014412"}
+     }
+    },
+    "gross_profit": {
+     "tag": "us-gaap:GrossProfit",
+     "values": {
+      "2025-12-31": {"value": "434.8", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "469.8", "accession_number": "0001193125-26-046377"},
+      "2023-12-31": {"value": "433.2", "accession_number": "0001193125-26-046377"},
+      "2022-12-31": {"value": "357.1", "accession_number": "0000950170-25-014412"}
+     }
+    },
+    "research_and_development": {
+     "tag": "us-gaap:ResearchAndDevelopmentExpense",
+     "values": {
+      "2025-12-31": {"value": "56.4", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "57.1", "accession_number": "0001193125-26-046377"},
+      "2023-12-31": {"value": "52.7", "accession_number": "0001193125-26-046377"},
+      "2022-12-31": {"value": "45.8", "accession_number": "0000950170-25-014412"}
+     }
+    },
+    "operating_income": {
+     "tag": "us-gaap:OperatingIncomeLoss",
+     "values": {
+      "2025-12-31": {"value": "171.6", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "186.1", "accession_number": "0001193125-26-046377"},
+      "2023-12-31": {"value": "215.3", "accession_number": "0001193125-26-046377"},
+      "2022-12-31": {"value": "175.2", "accession_number": "0000950170-25-014412"}
+     }
+    },
+    "interest_expense": {
+     "tag": "us-gaap:InterestExpense",
+     "values": {
+      "2025-12-31": {"value": "37.7", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "31.2", "accession_number": "0001193125-26-046377"},
+      "2023-12-31": {"value": "34", "accession_number": "0001193125-26-046377"},
+      "2022-12-31": {"value": "36.2", "accession_number": "0000950170-25-014412"}
+     }
+    },
+    "pretax_income": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+     "values": {
+      "2025-12-31": {"value": "135", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "154.9", "accession_number": "0001193125-26-046377"},
+      "2023-12-31": {"value": "109.7", "accession_number": "0001193125-26-046377"},
+      "2022-12-31": {"value": "149.8", "accession_number": "0000950170-25-014412"}
+     }
+    },
+    "income_tax": {
+     "tag": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": {
+      "2025-12-31": {"value": "25.6", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "22.8", "accession_number": "0001193125-26-046377"},
+      "2023-12-31": {"value": "12.1", "accession_number": "0001193125-26-046377"},
+      "2022-12-31": {"value": "31.6", "accession_number": "0000950170-25-014412"}
+     }
+    },
+    "net_income": {
+     "tag": "us-gaap:NetIncomeLoss",
+     "values": {
+      "2025-12-31": {"value": "109.4", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "132.1", "accession_number": "0001193125-26-046377"},
+      "2023-12-31": {"value": "105.7", "accession_number": "0001193125-26-046377"},
+      "2022-12-31": {"value": "126.3", "accession_number": "0000950170-25-014412", "tag": "us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic"}
+     }
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsPerDilutedShare",
+     "values": {
+      "2025-12-31": {"value": "1.37", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "1.59", "accession_number": "0001193125-26-046377"},
+      "2023-12-31": {"value": "1.24", "accession_number": "0001193125-26-046377"},
+      "2022-12-31": {"value": "1.49", "accession_number": "0000950170-25-014412"}
+     }
+    },
+    "diluted_shares": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "values": {
+      "2025-12-31": {"value": "80", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "83", "accession_number": "0001193125-26-046377"},
+      "2023-12-31": {"value": "85.5", "accession_number": "0001193125-26-046377"},
+      "2022-12-31": {"value": "85", "accession_number": "0000950170-25-014412"}
+     }
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "values": {
+      "2025-12-31": {"value": "0.19", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "0.147", "accession_number": "0001193125-26-046377", "restated_from": "0.15"},
+      "2023-12-31": {"value": "0.11", "accession_number": "0001193125-26-046377", "restated_from": "0.15"}
+     }
+    },
+    "operating_cash_flow": {
+     "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": {
+      "2025-12-31": {"value": "230.5", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "289.9", "accession_number": "0001193125-26-046377"},
+      "2023-12-31": {"value": "257.1", "accession_number": "0001193125-26-046377"},
+      "2022-12-31": {"value": "173.1", "accession_number": "0000950170-25-014412"}
+     }
+    },
+    "capital_expenditure": {
+     "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "values": {
+      "2025-12-31": {"value": "73.3", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "87", "accession_number": "0001193125-26-046377"},
+      "2023-12-31": {"value": "108.2", "accession_number": "0001193125-26-046377"},
+      "2022-12-31": {"value": "76.3", "accession_number": "0000950170-25-014412"}
+     }
+    },
+    "dividends_paid": {
+     "tag": "us-gaap:PaymentsOfDividendsCommonStock",
+     "values": {
+      "2025-12-31": {"value": "53.9", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "49.3", "accession_number": "0001193125-26-046377"},
+      "2023-12-31": {"value": "42.2", "accession_number": "0001193125-26-046377"},
+      "2022-12-31": {"value": "33.7", "accession_number": "0000950170-25-014412"}
+     }
+    },
+    "share_repurchases": {
+     "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+     "values": {
+      "2025-12-31": {"value": "454.3", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "252.2", "accession_number": "0001193125-26-046377"},
+      "2023-12-31": {"value": "30.1", "accession_number": "0001193125-26-046377"},
+      "2022-12-31": {"value": "0", "accession_number": "0000950170-25-014412"}
+     }
+    },
+    "cash_and_equivalents": {
+     "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+     "values": {
+      "2025-12-31": {"value": "71", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "125.4", "accession_number": "0001193125-26-046377"},
+      "2023-12-31": {"value": "227", "accession_number": "0000950170-25-014412"},
+      "2022-12-31": {"value": "112", "accession_number": "0000950170-24-012245"}
+     }
+    },
+    "total_assets": {
+     "tag": "us-gaap:Assets",
+     "values": {
+      "2025-12-31": {"value": "2704", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "2725.6", "accession_number": "0001193125-26-046377"},
+      "2023-12-31": {"value": "2918.5", "accession_number": "0001193125-26-046377"},
+      "2022-12-31": {"value": "2837.3", "accession_number": "0000950170-25-014412"}
+     }
+    },
+    "total_liabilities": {
+     "tag": "us-gaap:Liabilities",
+     "values": {
+      "2025-12-31": {"value": "1453.3", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "1197.7", "accession_number": "0001193125-26-046377"},
+      "2023-12-31": {"value": "1202", "accession_number": "0000950170-25-014412"},
+      "2022-12-31": {"value": "1283.1", "accession_number": "0000950170-24-012245"}
+     }
+    },
+    "stockholders_equity": {
+     "tag": "us-gaap:StockholdersEquity",
+     "values": {
+      "2025-12-31": {"value": "1250.7", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "1527.9", "accession_number": "0001193125-26-046377"},
+      "2023-12-31": {"value": "1716.5", "accession_number": "0001193125-26-046377"},
+      "2022-12-31": {"value": "1554.2", "accession_number": "0001193125-26-046377"}
+     }
+    },
+    "long_term_debt": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "values": {
+      "2025-12-31": {"value": "993", "accession_number": "0001193125-26-046377"},
+      "2024-12-31": {"value": "700.6", "accession_number": "0001193125-26-046377"},
+      "2023-12-31": {"value": "699.4", "accession_number": "0000950170-25-014412"},
+      "2022-12-31": {"value": "723.3", "accession_number": "0000950170-24-012245"}
+     }
+    }
+   },
+   "facts_sha256": "0d7d8c85db72f503594d233f8d06f59e79221699bb0becca74f2d66a309a4083"
+  },
+  "FDX": {
+   "ticker": "FDX",
+   "name": "FedEx Corporation",
+   "cik": "0001048911",
+   "source": "SEC EDGAR company facts API",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001048911.json",
+   "source_posture": "authoritative_filing",
+   "retrieved_at_utc": "2026-11-20T19:19:53Z",
+   "fiscal_years": [
+    {"fiscal_year": 2026, "period_start": "2025-06-01", "period_end": "2026-05-31", "first_reported_in": "0001048911-26-000105"},
+    {"fiscal_year": 2025, "period_start": "2024-06-01", "period_end": "2025-05-31", "first_reported_in": "0001048911-25-000011"},
+    {"fiscal_year": 2024, "period_start": "2023-06-01", "period_end": "2024-05-31", "first_reported_in": "0000950170-24-083577"},
+    {"fiscal_year": 2023, "period_start": "2022-06-01", "period_end": "2023-05-31", "first_reported_in": "0000950170-23-033201"}
+   ],
+   "filings": {
+    "0000950170-24-083577": {"form": "10-K", "filed": "2024-07-15"},
+    "0001048911-25-000011": {"form": "10-K", "filed": "2025-07-21"},
+    "0001048911-26-000105": {"form": "10-K", "filed": "2026-07-20"}
+   },
+   "items": {
+    "revenue": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "values": {
+      "2026-05-31": {"value": "94720", "accession_number": "0001048911-26-000105"},
+      "2025-05-31": {"value": "87926", "accession_number": "0001048911-26-000105"},
+      "2024-05-31": {"value": "87693", "accession_number": "0001048911-26-000105"},
+      "2023-05-31": {"value": "90155", "accession_number": "0001048911-25-000011"}
+     }
+    },
+    "operating_income": {
+     "tag": "us-gaap:OperatingIncomeLoss",
+     "values": {
+      "2026-05-31": {"value": "5463", "accession_number": "0001048911-26-000105"},
+      "2025-05-31": {"value": "5217", "accession_number": "0001048911-26-000105"},
+      "2024-05-31": {"value": "5559", "accession_number": "0001048911-26-000105"},
+      "2023-05-31": {"value": "4912", "accession_number": "0001048911-25-000011"}
+     }
+    },
+    "interest_expense": {
+     "tag": "us-gaap:InterestExpenseNonoperating",
+     "values": {
+      "2026-05-31": {"value": "970", "accession_number": "0001048911-26-000105"},
+      "2025-05-31": {"value": "789", "accession_number": "0001048911-26-000105"},
+      "2024-05-31": {"value": "745", "accession_number": "0001048911-26-000105"},
+      "2023-05-31": {"value": "694", "accession_number": "0001048911-25-000011"}
+     }
+    },
+    "pretax_income": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     "values": {
+      "2026-05-31": {"value": "5793", "accession_number": "0001048911-26-000105"},
+      "2025-05-31": {"value": "5441", "accession_number": "0001048911-26-000105"},
+      "2024-05-31": {"value": "5836", "accession_number": "0001048911-26-000105"},
+      "2023-05-31": {"value": "5363", "accession_number": "0001048911-25-000011"}
+     }
+    },
+    "income_tax": {
+     "tag": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": {
+      "2026-05-31": {"value": "1360", "accession_number": "0001048911-26-000105"},
+      "2025-05-31": {"value": "1349", "accession_number": "0001048911-26-000105"},
+      "2024-05-31": {"value": "1505", "accession_number": "0001048911-26-000105"},
+      "2023-05-31": {"value": "1391", "accession_number": "0001048911-25-000011"}
+     }
+    },
+    "net_income": {
+     "tag": "us-gaap:NetIncomeLoss",
+     "values": {
+      "2026-05-31": {"value": "4433", "accession_number": "0001048911-26-000105"},
+      "2025-05-31": {"value": "4092", "accession_number": "0001048911-26-000105"},
+      "2024-05-31": {"value": "4331", "accession_number": "0001048911-26-000105"},
+      "2023-05-31": {"value": "3972", "accession_number": "0001048911-25-000011"}
+     }
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "values": {
+      "2026-05-31": {"value": "18.55", "accession_number": "0001048911-26-000105"},
+      "2025-05-31": {"value": "16.81", "accession_number": "0001048911-26-000105"},
+      "2024-05-31": {"value": "17.21", "accession_number": "0001048911-26-000105"},
+      "2023-05-31": {"value": "15.48", "accession_number": "0001048911-25-000011"}
+     }
+    },
+    "diluted_shares": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "values": {
+      "2026-05-31": {"value": "239", "accession_number": "0001048911-26-000105"},
+      "2025-05-31": {"value": "243", "accession_number": "0001048911-26-000105"},
+      "2024-05-31": {"value": "251", "accession_number": "0001048911-26-000105"},
+      "2023-05-31": {"value": "256", "accession_number": "0001048911-25-000011"}
+     }
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "values": {
+      "2026-05-31": {"value": "0.235", "accession_number": "0001048911-26-000105"},
+      "2025-05-31": {"value": "0.248", "accession_number": "0001048911-26-000105"},
+      "2024-05-31": {"value": "0.258", "accession_number": "0001048911-26-000105"},
+      "2023-05-31": {"value": "0.259", "accession_number": "0001048911-25-000011"}
+     }
+    },
+    "operating_cash_flow": {
+     "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": {
+      "2026-05-31": {"value": "8925", "accession_number": "0001048911-26-000105"},
+      "2025-05-31": {"value": "7036", "accession_number": "0001048911-26-000105"},
+      "2024-05-31": {"value": "8312", "accession_number": "0001048911-26-000105"},
+      "2023-05-31": {"value": "8848", "accession_number": "0001048911-25-000011"}
+     }
+    },
+    "capital_expenditure": {
+     "tag": "us-gaap:PaymentsToAcquireProductiveAssets",
+     "values": {
+      "2026-05-31": {"value": "3809", "accession_number": "0001048911-26-000105"},
+      "2025-05-31": {"value": "4055", "accession_number": "0001048911-26-000105"},
+      "2024-05-31": {"value": "5176", "accession_number": "0001048911-26-000105"},
+      "2023-05-31": {"value": "6174", "accession_number": "0001048911-25-000011"}
+     }
+    },
+    "dividends_paid": {
+     "tag": "us-gaap:PaymentsOfDividends",
+     "values": {
+      "2026-05-31": {"value": "1374", "accession_number": "0001048911-26-000105"},
+      "2025-05-31": {"value": "1339", "accession_number": "0001048911-26-000105"},
+      "2024-05-31": {"value": "1259", "accession_number": "0001048911-26-000105"},
+      "2023-05-31": {"value": "1177", "accession_number": "0001048911-25-000011"}
+     }
+    },
+    "share_repurchases": {
+     "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+     "values": {
+      "2026-05-31": {"value": "796", "accession_number": "0001048911-26-000105"},
+      "2025-05-31": {"value": "3017", "accession_number": "0001048911-26-000105"},
+      "2024-05-31": {"value": "2500", "accession_number": "0001048911-26-000105"},
+      "2023-05-31": {"value": "1500", "accession_number": "0001048911-25-000011"}
+     }
+    },
+    "cash_and_equivalents": {
+     "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+     "values": {
+      "2026-05-31": {"value": "13311", "accession_number": "0001048911-26-000105"},
+      "2025-05-31": {"value": "5502", "accession_number": "0001048911-26-000105"},
+      "2024-05-31": {"value": "6501", "accession_number": "0001048911-25-000011"},
+      "2023-05-31": {"value": "6856", "accession_number": "0000950170-24-083577"}
+     }
+    },
+    "total_assets": {
+     "tag": "us-gaap:Assets",
+     "values": {
+      "2026-05-31": {"value": "98937", "accession_number": "0001048911-26-000105"},
+      "2025-05-31": {"value": "87627", "accession_number": "0001048911-26-000105"},
+      "2024-05-31": {"value": "87007", "accession_number": "0001048911-26-000105"},
+      "2023-05-31": {"value": "87143", "accession_number": "0001048911-25-000011"}
+     }
+    },
+    "stockholders_equity": {
+     "tag": "us-gaap:StockholdersEquity",
+     "values": {
+      "2026-05-31": {"value": "31647", "accession_number": "0001048911-26-000105"},
+      "2025-05-31": {"value": "28074", "accession_number": "0001048911-26-000105"},
+      "2024-05-31": {"value": "27582", "accession_number": "0001048911-26-000105"},
+      "2023-05-31": {"value": "26088", "accession_number": "0001048911-26-000105"}
+     }
+    },
+    "long_term_debt": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "values": {
+      "2026-05-31": {"value": "23293", "accession_number": "0001048911-26-000105"},
+      "2025-05-31": {"value": "19151", "accession_number": "0001048911-26-000105"},
+      "2024-05-31": {"value": "20135", "accession_number": "0001048911-25-000011", "tag": "us-gaap:LongTermDebtAndCapitalLeaseObligations"},
+      "2023-05-31": {"value": "20453", "accession_number": "0000950170-24-083577", "tag": "us-gaap:LongTermDebtAndCapitalLeaseObligations"}
+     }
+    }
+   },
+   "facts_sha256": "8098950e4df4dc3cada10d2b5fc9b0fd4ac91fbe29cbd236c6c2b0799e361cbf"
+  },
+  "WMT": {
+   "ticker": "WMT",
+   "name": "Walmart Inc.",
+   "cik": "0000104169",
+   "source": "SEC EDGAR company facts API",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000104169.json",
+   "source_posture": "authoritative_filing",
+   "retrieved_at_utc": "2026-11-20T19:20:02Z",
+   "fiscal_years": [
+    {"fiscal_year": 2026, "period_start": "2025-02-01", "period_end": "2026-01-31", "first_reported_in": "0000104169-26-000055"},
+    {"fiscal_year": 2025, "period_start": "2024-02-01", "period_end": "2025-01-31", "first_reported_in": "0000104169-25-000021"},
+    {"fiscal_year": 2024, "period_start": "2023-02-01", "period_end": "2024-01-31", "first_reported_in": "0000104169-24-000056"},
+    {"fiscal_year": 2023, "period_start": "2022-02-01", "period_end": "2023-01-31", "first_reported_in": "0000104169-23-000020"}
+   ],
+   "filings": {
+    "0000104169-24-000056": {"form": "10-K", "filed": "2024-03-15"},
+    "0000104169-25-000021": {"form": "10-K", "filed": "2025-03-14"},
+    "0000104169-26-000055": {"form": "10-K", "filed": "2026-03-13"}
+   },
+   "items": {
+    "revenue": {
+     "tag": "us-gaap:Revenues",
+     "values": {
+      "2026-01-31": {"value": "713163", "accession_number": "0000104169-26-000055"},
+      "2025-01-31": {"value": "680985", "accession_number": "0000104169-26-000055"},
+      "2024-01-31": {"value": "648125", "accession_number": "0000104169-26-000055"},
+      "2023-01-31": {"value": "611289", "accession_number": "0000104169-25-000021"}
+     }
+    },
+    "cost_of_revenue": {
+     "tag": "us-gaap:CostOfRevenue",
+     "values": {
+      "2026-01-31": {"value": "535395", "accession_number": "0000104169-26-000055"},
+      "2025-01-31": {"value": "511753", "accession_number": "0000104169-26-000055"},
+      "2024-01-31": {"value": "490142", "accession_number": "0000104169-26-000055"},
+      "2023-01-31": {"value": "463721", "accession_number": "0000104169-25-000021"}
+     }
+    },
+    "operating_income": {
+     "tag": "us-gaap:OperatingIncomeLoss",
+     "values": {
+      "2026-01-31": {"value": "29825", "accession_number": "0000104169-26-000055"},
+      "2025-01-31": {"value": "29348", "accession_number": "0000104169-26-000055"},
+      "2024-01-31": {"value": "27012", "accession_number": "0000104169-26-000055"},
+      "2023-01-31": {"value": "20428", "accession_number": "0000104169-25-000021"}
+     }
+    },
+    "interest_expense": {
+     "tag": "us-gaap:InterestExpenseDebt",
+     "values": {
+      "2026-01-31": {"value": "2318", "accession_number": "0000104169-26-000055"},
+      "2025-01-31": {"value": "2249", "accession_number": "0000104169-26-000055"},
+      "2024-01-31": {"value": "2259", "accession_number": "0000104169-26-000055"},
+      "2023-01-31": {"value": "1787", "accession_number": "0000104169-25-000021"}
+     }
+    },
+    "pretax_income": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     "values": {
+      "2026-01-31": {"value": "29469", "accession_number": "0000104169-26-000055"},
+      "2025-01-31": {"value": "26309", "accession_number": "0000104169-26-000055"},
+      "2024-01-31": {"value": "21848", "accession_number": "0000104169-26-000055"},
+      "2023-01-31": {"value": "17016", "accession_number": "0000104169-25-000021"}
+     }
+    },
+    "income_tax": {
+     "tag": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": {
+      "2026-01-31": {"value": "7199", "accession_number": "0000104169-26-000055"},
+      "2025-01-31": {"value": "6152", "accession_number": "0000104169-26-000055"},
+      "2024-01-31": {"value": "5578", "accession_number": "0000104169-26-000055"},
+      "2023-01-31": {"value": "5724", "accession_number": "0000104169-25-000021"}
+     }
+    },
+    "net_income": {
+     "tag": "us-gaap:NetIncomeLoss",
+     "values": {
+      "2026-01-31": {"value": "21893", "accession_number": "0000104169-26-000055"},
+      "2025-01-31": {"value": "19436", "accession_number": "0000104169-26-000055"},
+      "2024-01-31": {"value": "15511", "accession_number": "0000104169-26-000055"},
+      "2023-01-31": {"value": "11680", "accession_number": "0000104169-25-000021"}
+     }
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "values": {
+      "2026-01-31": {"value": "2.73", "accession_number": "0000104169-26-000055"},
+      "2025-01-31": {"value": "2.41", "accession_number": "0000104169-26-000055"},
+      "2024-01-31": {"value": "1.91", "accession_number": "0000104169-26-000055"},
+      "2023-01-31": {"value": "1.42", "accession_number": "0000104169-25-000021", "restated_from": "4.27"}
+     }
+    },
+    "diluted_shares": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "values": {
+      "2026-01-31": {"value": "8022", "accession_number": "0000104169-26-000055"},
+      "2025-01-31": {"value": "8081", "accession_number": "0000104169-26-000055"},
+      "2024-01-31": {"value": "8108", "accession_number": "0000104169-26-000055"},
+      "2023-01-31": {"value": "8202", "accession_number": "0000104169-25-000021", "restated_from": "2734"}
+     }
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "values": {
+      "2026-01-31": {"value": "0.244", "accession_number": "0000104169-26-000055"},
+      "2025-01-31": {"value": "0.234", "accession_number": "0000104169-26-000055"},
+      "2024-01-31": {"value": "0.255", "accession_number": "0000104169-26-000055"},
+      "2023-01-31": {"value": "0.336", "accession_number": "0000104169-25-000021"}
+     }
+    },
+    "operating_cash_flow": {
+     "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": {
+      "2026-01-31": {"value": "41565", "accession_number": "0000104169-26-000055"},
+      "2025-01-31": {"value": "36443", "accession_number": "0000104169-26-000055"},
+      "2024-01-31": {"value": "35726", "accession_number": "0000104169-26-000055"},
+      "2023-01-31": {"value": "28841", "accession_number": "0000104169-25-000021"}
+     }
+    },
+    "capital_expenditure": {
+     "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "values": {
+      "2026-01-31": {"value": "26642", "accession_number": "0000104169-26-000055"},
+      "2025-01-31": {"value": "23783", "accession_number": "0000104169-26-000055"},
+      "2024-01-31": {"value": "20606", "accession_number": "0000104169-26-000055"},
+      "2023-01-31": {"value": "16857", "accession_number": "0000104169-25-000021"}
+     }
+    },
+    "dividends_paid": {
+     "tag": "us-gaap:PaymentsOfDividendsCommonStock",
+     "values": {
+      "2026-01-31": {"value": "7507", "accession_number": "0000104169-26-000055"},
+      "2025-01-31": {"value": "6688", "accession_number": "0000104169-26-000055"},
+      "2024-01-31": {"value": "6140", "accession_number": "0000104169-26-000055"},
+      "2023-01-31": {"value": "6114", "accession_number": "0000104169-25-000021"}
+     }
+    },
+    "share_repurchases": {
+     "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+     "values": {
+      "2026-01-31": {"value": "8088", "accession_number": "0000104169-26-000055"},
+      "2025-01-31": {"value": "4494", "accession_number": "0000104169-26-000055"},
+      "2024-01-31": {"value": "2779", "accession_number": "0000104169-26-000055"},
+      "2023-01-31": {"value": "9920", "accession_number": "0000104169-25-000021"}
+     }
+    },
+    "cash_and_equivalents": {
+     "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+     "values": {
+      "2026-01-31": {"value": "10727", "accession_number": "0000104169-26-000055"},
+      "2025-01-31": {"value": "9037", "accession_number": "0000104169-26-000055"},
+      "2024-01-31": {"value": "9867", "accession_number": "0000104169-25-000021"},
+      "2023-01-31": {"value": "8625", "accession_number": "0000104169-24-000056"}
+     }
+    },
+    "total_assets": {
+     "tag": "us-gaap:Assets",
+     "values": {
+      "2026-01-31": {"value": "284668", "accession_number": "0000104169-26-000055"},
+      "2025-01-31": {"value": "260823", "accession_number": "0000104169-26-000055"},
+      "2024-01-31": {"value": "252399", "accession_number": "0000104169-26-000055"},
+      "2023-01-31": {"value": "243197", "accession_number": "0000104169-25-000021"}
+     }
+    },
+    "stockholders_equity": {
+     "tag": "us-gaap:StockholdersEquity",
+     "values": {
+      "2026-01-31": {"value": "99617", "accession_number": "0000104169-26-000055"},
+      "2025-01-31": {"value": "91013", "accession_number": "0000104169-26-000055"},
+      "2024-01-31": {"value": "83861", "accession_number": "0000104169-25-000021"},
+      "2023-01-31": {"value": "76693", "accession_number": "0000104169-24-000056"}
+     }
+    },
+    "long_term_debt": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "values": {
+      "2026-01-31": {"value": "34624", "accession_number": "0000104169-26-000055"},
+      "2025-01-31": {"value": "33401", "accession_number": "0000104169-26-000055"},
+      "2024-01-31": {"value": "36132", "accession_number": "0000104169-25-000021"},
+      "2023-01-31": {"value": "34649", "accession_number": "0000104169-24-000056"}
+     }
+    }
+   },
+   "facts_sha256": "8fb8930d47c5a766ecbcb9e28699e3c8b2e2e185fa509b02052b7cae66435dfc"
+  },
+  "CLX": {
+   "ticker": "CLX",
+   "name": "The Clorox Company",
+   "cik": "0000021076",
+   "source": "SEC EDGAR company facts API; accession 0000021076-26-000034 was not in it yet and is read from the filing's XBRL instance (https://www.sec.gov/Archives/edgar/data/21076/000002107626000034/clx-20260630_htm.xml)",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021076.json",
+   "source_posture": "authoritative_filing",
+   "retrieved_at_utc": "2026-11-20T20:10:29Z",
+   "fiscal_years": [
+    {"fiscal_year": 2026, "period_start": "2025-07-01", "period_end": "2026-06-30", "first_reported_in": "0000021076-26-000034"},
+    {"fiscal_year": 2025, "period_start": "2024-07-01", "period_end": "2025-06-30", "first_reported_in": "0000021076-25-000039"},
+    {"fiscal_year": 2024, "period_start": "2023-07-01", "period_end": "2024-06-30", "first_reported_in": "0000021076-24-000030"},
+    {"fiscal_year": 2023, "period_start": "2022-07-01", "period_end": "2023-06-30", "first_reported_in": "0000021076-23-000037"}
+   ],
+   "filings": {
+    "0000021076-24-000030": {"form": "10-K", "filed": "2024-08-08"},
+    "0000021076-25-000039": {"form": "10-K", "filed": "2025-08-08"},
+    "0000021076-26-000034": {"form": "10-K", "filed": "2026-08-07"}
+   },
+   "items": {
+    "revenue": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "values": {
+      "2026-06-30": {"value": "6720", "accession_number": "0000021076-26-000034"},
+      "2025-06-30": {"value": "7104", "accession_number": "0000021076-26-000034"},
+      "2024-06-30": {"value": "7093", "accession_number": "0000021076-26-000034"},
+      "2023-06-30": {"value": "7389", "accession_number": "0000021076-25-000039"}
+     }
+    },
+    "cost_of_revenue": {
+     "tag": "us-gaap:CostOfGoodsAndServicesSold",
+     "values": {
+      "2026-06-30": {"value": "3876", "accession_number": "0000021076-26-000034"},
+      "2025-06-30": {"value": "3891", "accession_number": "0000021076-26-000034"},
+      "2024-06-30": {"value": "4045", "accession_number": "0000021076-26-000034"},
+      "2023-06-30": {"value": "4481", "accession_number": "0000021076-25-000039"}
+     }
+    },
+    "gross_profit": {
+     "tag": "us-gaap:GrossProfit",
+     "values": {
+      "2026-06-30": {"value": "2844", "accession_number": "0000021076-26-000034"},
+      "2025-06-30": {"value": "3213", "accession_number": "0000021076-26-000034"},
+      "2024-06-30": {"value": "3048", "accession_number": "0000021076-26-000034"},
+      "2023-06-30": {"value": "2908", "accession_number": "0000021076-25-000039"}
+     }
+    },
+    "research_and_development": {
+     "tag": "us-gaap:ResearchAndDevelopmentExpense",
+     "values": {
+      "2026-06-30": {"value": "116", "accession_number": "0000021076-26-000034"},
+      "2025-06-30": {"value": "121", "accession_number": "0000021076-26-000034"},
+      "2024-06-30": {"value": "126", "accession_number": "0000021076-26-000034"},
+      "2023-06-30": {"value": "138", "accession_number": "0000021076-25-000039"}
+     }
+    },
+    "interest_expense": {
+     "tag": "us-gaap:InterestExpense",
+     "values": {
+      "2026-06-30": {"value": "130", "accession_number": "0000021076-26-000034"},
+      "2025-06-30": {"value": "88", "accession_number": "0000021076-26-000034"},
+      "2024-06-30": {"value": "90", "accession_number": "0000021076-26-000034"},
+      "2023-06-30": {"value": "90", "accession_number": "0000021076-25-000039"}
+     }
+    },
+    "pretax_income": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     "values": {
+      "2026-06-30": {"value": "791", "accession_number": "0000021076-26-000034"},
+      "2025-06-30": {"value": "1078", "accession_number": "0000021076-26-000034"},
+      "2024-06-30": {"value": "398", "accession_number": "0000021076-26-000034"},
+      "2023-06-30": {"value": "238", "accession_number": "0000021076-25-000039"}
+     }
+    },
+    "income_tax": {
+     "tag": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": {
+      "2026-06-30": {"value": "190", "accession_number": "0000021076-26-000034"},
+      "2025-06-30": {"value": "254", "accession_number": "0000021076-26-000034"},
+      "2024-06-30": {"value": "106", "accession_number": "0000021076-26-000034"},
+      "2023-06-30": {"value": "77", "accession_number": "0000021076-25-000039"}
+     }
+    },
+    "net_income": {
+     "tag": "us-gaap:NetIncomeLoss",
+     "values": {
+      "2026-06-30": {"value": "587", "accession_number": "0000021076-26-000034"},
+      "2025-06-30": {"value": "810", "accession_number": "0000021076-26-000034"},
+      "2024-06-30": {"value": "280", "accession_number": "0000021076-26-000034"},
+      "2023-06-30": {"value": "149", "accession_number": "0000021076-25-000039"}
+     }
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "values": {
+      "2026-06-30": {"value": "4.81", "accession_number": "0000021076-26-000034"},
+      "2025-06-30": {"value": "6.52", "accession_number": "0000021076-26-000034"},
+      "2024-06-30": {"value": "2.25", "accession_number": "0000021076-26-000034"},
+      "2023-06-30": {"value": "1.20", "accession_number": "0000021076-25-000039"}
+     }
+    },
+    "diluted_shares": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "values": {
+      "2026-06-30": {"value": "122.132", "accession_number": "0000021076-26-000034"},
+      "2025-06-30": {"value": "124.287", "accession_number": "0000021076-26-000034"},
+      "2024-06-30": {"value": "124.804", "accession_number": "0000021076-26-000034"},
+      "2023-06-30": {"value": "124.181", "accession_number": "0000021076-25-000039"}
+     }
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "values": {
+      "2026-06-30": {"value": "0.24", "accession_number": "0000021076-26-000034"},
+      "2025-06-30": {"value": "0.236", "accession_number": "0000021076-26-000034"},
+      "2024-06-30": {"value": "0.265", "accession_number": "0000021076-26-000034"},
+      "2023-06-30": {"value": "0.324", "accession_number": "0000021076-25-000039"}
+     }
+    },
+    "operating_cash_flow": {
+     "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": {
+      "2026-06-30": {"value": "612", "accession_number": "0000021076-26-000034"},
+      "2025-06-30": {"value": "981", "accession_number": "0000021076-26-000034"},
+      "2024-06-30": {"value": "695", "accession_number": "0000021076-26-000034"},
+      "2023-06-30": {"value": "1158", "accession_number": "0000021076-25-000039"}
+     }
+    },
+    "capital_expenditure": {
+     "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "values": {
+      "2026-06-30": {"value": "207", "accession_number": "0000021076-26-000034"},
+      "2025-06-30": {"value": "220", "accession_number": "0000021076-26-000034"},
+      "2024-06-30": {"value": "212", "accession_number": "0000021076-26-000034"},
+      "2023-06-30": {"value": "228", "accession_number": "0000021076-25-000039"}
+     }
+    },
+    "dividends_paid": {
+     "tag": "us-gaap:PaymentsOfDividendsCommonStock",
+     "values": {
+      "2026-06-30": {"value": "602", "accession_number": "0000021076-26-000034"},
+      "2025-06-30": {"value": "602", "accession_number": "0000021076-26-000034"},
+      "2024-06-30": {"value": "595", "accession_number": "0000021076-26-000034"},
+      "2023-06-30": {"value": "583", "accession_number": "0000021076-25-000039"}
+     }
+    },
+    "share_repurchases": {
+     "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+     "values": {
+      "2026-06-30": {"value": "256", "accession_number": "0000021076-26-000034"},
+      "2025-06-30": {"value": "332", "accession_number": "0000021076-26-000034"},
+      "2024-06-30": {"value": "0", "accession_number": "0000021076-26-000034"},
+      "2023-06-30": {"value": "0", "accession_number": "0000021076-25-000039"}
+     }
+    },
+    "cash_and_equivalents": {
+     "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+     "values": {
+      "2026-06-30": {"value": "143", "accession_number": "0000021076-26-000034"},
+      "2025-06-30": {"value": "167", "accession_number": "0000021076-26-000034"},
+      "2024-06-30": {"value": "202", "accession_number": "0000021076-25-000039"},
+      "2023-06-30": {"value": "367", "accession_number": "0000021076-24-000030"}
+     }
+    },
+    "total_assets": {
+     "tag": "us-gaap:Assets",
+     "values": {
+      "2026-06-30": {"value": "7794", "accession_number": "0000021076-26-000034"},
+      "2025-06-30": {"value": "5561", "accession_number": "0000021076-26-000034"},
+      "2024-06-30": {"value": "5751", "accession_number": "0000021076-25-000039"},
+      "2023-06-30": {"value": "5945", "accession_number": "0000021076-24-000030"}
+     }
+    },
+    "total_liabilities": {
+     "tag": "us-gaap:Liabilities",
+     "values": {
+      "2026-06-30": {"value": "7542", "accession_number": "0000021076-26-000034"},
+      "2025-06-30": {"value": "5079", "accession_number": "0000021076-26-000034"},
+      "2024-06-30": {"value": "5259", "accession_number": "0000021076-25-000039"},
+      "2023-06-30": {"value": "5557", "accession_number": "0000021076-24-000030"}
+     }
+    },
+    "stockholders_equity": {
+     "tag": "us-gaap:StockholdersEquity",
+     "values": {
+      "2026-06-30": {"value": "90", "accession_number": "0000021076-26-000034"},
+      "2025-06-30": {"value": "321", "accession_number": "0000021076-26-000034"},
+      "2024-06-30": {"value": "328", "accession_number": "0000021076-25-000039"},
+      "2023-06-30": {"value": "220", "accession_number": "0000021076-24-000030"}
+     }
+    },
+    "long_term_debt": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "values": {
+      "2026-06-30": {"value": "3981", "accession_number": "0000021076-26-000034"},
+      "2025-06-30": {"value": "2484", "accession_number": "0000021076-26-000034"},
+      "2024-06-30": {"value": "2481", "accession_number": "0000021076-25-000039"},
+      "2023-06-30": {"value": "2477", "accession_number": "0000021076-24-000030"}
+     }
+    }
+   },
+   "facts_sha256": "b7310a4d24e7ed6b28e1a6ea5f08b01d8dfee22997fff4ae4dcb01cc872ef8ed"
+  },
+  "PG": {
+   "ticker": "PG",
+   "name": "The Procter & Gamble Company",
+   "cik": "0000080424",
+   "source": "SEC EDGAR company facts API",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000080424.json",
+   "source_posture": "authoritative_filing",
+   "retrieved_at_utc": "2026-11-20T19:19:59Z",
+   "fiscal_years": [
+    {"fiscal_year": 2026, "period_start": "2025-07-01", "period_end": "2026-06-30", "first_reported_in": "0000080424-26-000103"},
+    {"fiscal_year": 2025, "period_start": "2024-07-01", "period_end": "2025-06-30", "first_reported_in": "0000080424-25-000076"},
+    {"fiscal_year": 2024, "period_start": "2023-07-01", "period_end": "2024-06-30", "first_reported_in": "0000080424-24-000083"},
+    {"fiscal_year": 2023, "period_start": "2022-07-01", "period_end": "2023-06-30", "first_reported_in": "0000080424-23-000073"}
+   ],
+   "filings": {
+    "0000080424-24-000083": {"form": "10-K", "filed": "2024-08-05"},
+    "0000080424-25-000076": {"form": "10-K", "filed": "2025-08-04"},
+    "0000080424-26-000103": {"form": "10-K", "filed": "2026-08-04"}
+   },
+   "items": {
+    "revenue": {
+     "tag": "us-gaap:Revenues",
+     "values": {
+      "2026-06-30": {"value": "87032", "accession_number": "0000080424-26-000103"},
+      "2025-06-30": {"value": "84284", "accession_number": "0000080424-26-000103"},
+      "2024-06-30": {"value": "84039", "accession_number": "0000080424-26-000103"},
+      "2023-06-30": {"value": "82006", "accession_number": "0000080424-25-000076"}
+     }
+    },
+    "cost_of_revenue": {
+     "tag": "us-gaap:CostOfGoodsAndServicesSold",
+     "values": {
+      "2026-06-30": {"value": "43362", "accession_number": "0000080424-26-000103"},
+      "2025-06-30": {"value": "41164", "accession_number": "0000080424-26-000103"},
+      "2024-06-30": {"value": "40848", "accession_number": "0000080424-26-000103"},
+      "2023-06-30": {"value": "42760", "accession_number": "0000080424-25-000076"}
+     }
+    },
+    "research_and_development": {
+     "tag": "us-gaap:ResearchAndDevelopmentExpense",
+     "values": {
+      "2026-06-30": {"value": "2100", "accession_number": "0000080424-26-000103"},
+      "2025-06-30": {"value": "2100", "accession_number": "0000080424-26-000103"},
+      "2024-06-30": {"value": "2000", "accession_number": "0000080424-26-000103"},
+      "2023-06-30": {"value": "2000", "accession_number": "0000080424-25-000076"}
+     }
+    },
+    "operating_income": {
+     "tag": "us-gaap:OperatingIncomeLoss",
+     "values": {
+      "2026-06-30": {"value": "19748", "accession_number": "0000080424-26-000103"},
+      "2025-06-30": {"value": "20451", "accession_number": "0000080424-26-000103"},
+      "2024-06-30": {"value": "18545", "accession_number": "0000080424-26-000103"},
+      "2023-06-30": {"value": "18134", "accession_number": "0000080424-25-000076"}
+     }
+    },
+    "interest_expense": {
+     "tag": "us-gaap:InterestExpenseNonoperating",
+     "values": {
+      "2026-06-30": {"value": "877", "accession_number": "0000080424-26-000103"},
+      "2025-06-30": {"value": "907", "accession_number": "0000080424-26-000103"},
+      "2024-06-30": {"value": "925", "accession_number": "0000080424-26-000103"},
+      "2023-06-30": {"value": "756", "accession_number": "0000080424-25-000076"}
+     }
+    },
+    "pretax_income": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     "values": {
+      "2026-06-30": {"value": "20377", "accession_number": "0000080424-26-000103"},
+      "2025-06-30": {"value": "20167", "accession_number": "0000080424-26-000103"},
+      "2024-06-30": {"value": "18761", "accession_number": "0000080424-26-000103"},
+      "2023-06-30": {"value": "18353", "accession_number": "0000080424-25-000076"}
+     }
+    },
+    "income_tax": {
+     "tag": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": {
+      "2026-06-30": {"value": "4233", "accession_number": "0000080424-26-000103"},
+      "2025-06-30": {"value": "4102", "accession_number": "0000080424-26-000103"},
+      "2024-06-30": {"value": "3787", "accession_number": "0000080424-26-000103"},
+      "2023-06-30": {"value": "3615", "accession_number": "0000080424-25-000076"}
+     }
+    },
+    "net_income": {
+     "tag": "us-gaap:NetIncomeLoss",
+     "values": {
+      "2026-06-30": {"value": "16046", "accession_number": "0000080424-26-000103"},
+      "2025-06-30": {"value": "15974", "accession_number": "0000080424-26-000103"},
+      "2024-06-30": {"value": "14879", "accession_number": "0000080424-26-000103"},
+      "2023-06-30": {"value": "14653", "accession_number": "0000080424-25-000076"}
+     }
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "values": {
+      "2026-06-30": {"value": "6.62", "accession_number": "0000080424-26-000103"},
+      "2025-06-30": {"value": "6.51", "accession_number": "0000080424-26-000103"},
+      "2024-06-30": {"value": "6.02", "accession_number": "0000080424-26-000103"},
+      "2023-06-30": {"value": "5.90", "accession_number": "0000080424-25-000076"}
+     }
+    },
+    "diluted_shares": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "values": {
+      "2026-06-30": {"value": "2422.5", "accession_number": "0000080424-26-000103"},
+      "2025-06-30": {"value": "2454.4", "accession_number": "0000080424-26-000103"},
+      "2024-06-30": {"value": "2471.9", "accession_number": "0000080424-26-000103"},
+      "2023-06-30": {"value": "2483.9", "accession_number": "0000080424-25-000076"}
+     }
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "values": {
+      "2026-06-30": {"value": "0.208", "accession_number": "0000080424-26-000103"},
+      "2025-06-30": {"value": "0.203", "accession_number": "0000080424-26-000103"},
+      "2024-06-30": {"value": "0.202", "accession_number": "0000080424-26-000103"},
+      "2023-06-30": {"value": "0.197", "accession_number": "0000080424-25-000076"}
+     }
+    },
+    "operating_cash_flow": {
+     "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": {
+      "2026-06-30": {"value": "19556", "accession_number": "0000080424-26-000103"},
+      "2025-06-30": {"value": "17817", "accession_number": "0000080424-26-000103"},
+      "2024-06-30": {"value": "19846", "accession_number": "0000080424-26-000103"},
+      "2023-06-30": {"value": "16848", "accession_number": "0000080424-25-000076"}
+     }
+    },
+    "capital_expenditure": {
+     "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "values": {
+      "2026-06-30": {"value": "4409", "accession_number": "0000080424-26-000103"},
+      "2025-06-30": {"value": "3773", "accession_number": "0000080424-26-000103"},
+      "2024-06-30": {"value": "3322", "accession_number": "0000080424-26-000103"},
+      "2023-06-30": {"value": "3062", "accession_number": "0000080424-25-000076"}
+     }
+    },
+    "dividends_paid": {
+     "tag": "us-gaap:PaymentsOfDividends",
+     "values": {
+      "2026-06-30": {"value": "10232", "accession_number": "0000080424-26-000103"},
+      "2025-06-30": {"value": "9872", "accession_number": "0000080424-26-000103"},
+      "2024-06-30": {"value": "9312", "accession_number": "0000080424-26-000103"},
+      "2023-06-30": {"value": "8999", "accession_number": "0000080424-25-000076"}
+     }
+    },
+    "share_repurchases": {
+     "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+     "values": {
+      "2026-06-30": {"value": "5028", "accession_number": "0000080424-26-000103"},
+      "2025-06-30": {"value": "6500", "accession_number": "0000080424-26-000103"},
+      "2024-06-30": {"value": "5006", "accession_number": "0000080424-26-000103"},
+      "2023-06-30": {"value": "7353", "accession_number": "0000080424-25-000076"}
+     }
+    },
+    "cash_and_equivalents": {
+     "tag": "us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+     "values": {
+      "2026-06-30": {"value": "9942", "accession_number": "0000080424-26-000103"},
+      "2025-06-30": {"value": "9556", "accession_number": "0000080424-26-000103"},
+      "2024-06-30": {"value": "9482", "accession_number": "0000080424-26-000103"},
+      "2023-06-30": {"value": "8246", "accession_number": "0000080424-26-000103"}
+     }
+    },
+    "total_assets": {
+     "tag": "us-gaap:Assets",
+     "values": {
+      "2026-06-30": {"value": "126521", "accession_number": "0000080424-26-000103"},
+      "2025-06-30": {"value": "125231", "accession_number": "0000080424-26-000103"},
+      "2024-06-30": {"value": "122370", "accession_number": "0000080424-25-000076"},
+      "2023-06-30": {"value": "120829", "accession_number": "0000080424-24-000083"}
+     }
+    },
+    "total_liabilities": {
+     "tag": "us-gaap:Liabilities",
+     "values": {
+      "2026-06-30": {"value": "72210", "accession_number": "0000080424-26-000103"},
+      "2025-06-30": {"value": "72946", "accession_number": "0000080424-26-000103"},
+      "2024-06-30": {"value": "71811", "accession_number": "0000080424-25-000076"},
+      "2023-06-30": {"value": "73764", "accession_number": "0000080424-24-000083"}
+     }
+    },
+    "stockholders_equity": {
+     "tag": "us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+     "values": {
+      "2026-06-30": {"value": "54311", "accession_number": "0000080424-26-000103"},
+      "2025-06-30": {"value": "52284", "accession_number": "0000080424-26-000103"},
+      "2024-06-30": {"value": "50559", "accession_number": "0000080424-26-000103"},
+      "2023-06-30": {"value": "47065", "accession_number": "0000080424-26-000103"}
+     }
+    },
+    "long_term_debt": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "values": {
+      "2026-06-30": {"value": "22842", "accession_number": "0000080424-26-000103"},
+      "2025-06-30": {"value": "24995", "accession_number": "0000080424-26-000103"},
+      "2024-06-30": {"value": "25269", "accession_number": "0000080424-25-000076"},
+      "2023-06-30": {"value": "24378", "accession_number": "0000080424-24-000083"}
+     }
+    }
+   },
+   "facts_sha256": "e39e38cf9e5834723295f8921aaf5a2773a544b699e21507c5cbe5ef6d1b5e90"
+  },
+  "AAPL": {
+   "ticker": "AAPL",
+   "name": "Apple Inc.",
+   "cik": "0000320193",
+   "source": "SEC EDGAR company facts API",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json",
+   "source_posture": "authoritative_filing",
+   "retrieved_at_utc": "2026-11-20T19:19:48Z",
+   "fiscal_years": [
+    {"fiscal_year": 2026, "period_start": "2025-09-28", "period_end": "2026-09-26", "first_reported_in": "0000320193-26-000026"},
+    {"fiscal_year": 2025, "period_start": "2024-09-29", "period_end": "2025-09-27", "first_reported_in": "0000320193-25-000079"},
+    {"fiscal_year": 2024, "period_start": "2023-10-01", "period_end": "2024-09-28", "first_reported_in": "0000320193-24-000123"},
+    {"fiscal_year": 2023, "period_start": "2022-09-25", "period_end": "2023-09-30", "first_reported_in": "0000320193-23-000106"}
+   ],
+   "filings": {
+    "0000320193-23-000106": {"form": "10-K", "filed": "2023-11-03"},
+    "0000320193-24-000123": {"form": "10-K", "filed": "2024-11-01"},
+    "0000320193-25-000079": {"form": "10-K", "filed": "2025-10-31"},
+    "0000320193-26-000026": {"form": "10-K", "filed": "2026-11-03"}
+   },
+   "items": {
+    "revenue": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "values": {
+      "2026-09-26": {"value": "478834", "accession_number": "0000320193-26-000026"},
+      "2025-09-27": {"value": "416161", "accession_number": "0000320193-26-000026"},
+      "2024-09-28": {"value": "391035", "accession_number": "0000320193-26-000026"},
+      "2023-09-30": {"value": "383285", "accession_number": "0000320193-25-000079"}
+     }
+    },
+    "cost_of_revenue": {
+     "tag": "us-gaap:CostOfGoodsAndServicesSold",
+     "values": {
+      "2026-09-26": {"value": "245232", "accession_number": "0000320193-26-000026"},
+      "2025-09-27": {"value": "220960", "accession_number": "0000320193-26-000026"},
+      "2024-09-28": {"value": "210352", "accession_number": "0000320193-26-000026"},
+      "2023-09-30": {"value": "214137", "accession_number": "0000320193-25-000079"}
+     }
+    },
+    "gross_profit": {
+     "tag": "us-gaap:GrossProfit",
+     "values": {
+      "2026-09-26": {"value": "233602", "accession_number": "0000320193-26-000026"},
+      "2025-09-27": {"value": "195201", "accession_number": "0000320193-26-000026"},
+      "2024-09-28": {"value": "180683", "accession_number": "0000320193-26-000026"},
+      "2023-09-30": {"value": "169148", "accession_number": "0000320193-25-000079"}
+     }
+    },
+    "research_and_development": {
+     "tag": "us-gaap:ResearchAndDevelopmentExpense",
+     "values": {
+      "2026-09-26": {"value": "45765", "accession_number": "0000320193-26-000026"},
+      "2025-09-27": {"value": "34550", "accession_number": "0000320193-26-000026"},
+      "2024-09-28": {"value": "31370", "accession_number": "0000320193-26-000026"},
+      "2023-09-30": {"value": "29915", "accession_number": "0000320193-25-000079"}
+     }
+    },
+    "operating_income": {
+     "tag": "us-gaap:OperatingIncomeLoss",
+     "values": {
+      "2026-09-26": {"value": "158063", "accession_number": "0000320193-26-000026"},
+      "2025-09-27": {"value": "133050", "accession_number": "0000320193-26-000026"},
+      "2024-09-28": {"value": "123216", "accession_number": "0000320193-26-000026"},
+      "2023-09-30": {"value": "114301", "accession_number": "0000320193-25-000079"}
+     }
+    },
+    "interest_expense": {
+     "tag": "us-gaap:InterestExpense",
+     "values": {
+      "2023-09-30": {"value": "3933", "accession_number": "0000320193-23-000106"}
+     }
+    },
+    "pretax_income": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     "values": {
+      "2026-09-26": {"value": "159237", "accession_number": "0000320193-26-000026"},
+      "2025-09-27": {"value": "132729", "accession_number": "0000320193-26-000026"},
+      "2024-09-28": {"value": "123485", "accession_number": "0000320193-26-000026"},
+      "2023-09-30": {"value": "113736", "accession_number": "0000320193-25-000079"}
+     }
+    },
+    "income_tax": {
+     "tag": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": {
+      "2026-09-26": {"value": "27062", "accession_number": "0000320193-26-000026"},
+      "2025-09-27": {"value": "20719", "accession_number": "0000320193-26-000026"},
+      "2024-09-28": {"value": "29749", "accession_number": "0000320193-26-000026"},
+      "2023-09-30": {"value": "16741", "accession_number": "0000320193-25-000079"}
+     }
+    },
+    "net_income": {
+     "tag": "us-gaap:NetIncomeLoss",
+     "values": {
+      "2026-09-26": {"value": "132175", "accession_number": "0000320193-26-000026"},
+      "2025-09-27": {"value": "112010", "accession_number": "0000320193-26-000026"},
+      "2024-09-28": {"value": "93736", "accession_number": "0000320193-26-000026"},
+      "2023-09-30": {"value": "96995", "accession_number": "0000320193-25-000079"}
+     }
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "values": {
+      "2026-09-26": {"value": "8.98", "accession_number": "0000320193-26-000026"},
+      "2025-09-27": {"value": "7.46", "accession_number": "0000320193-26-000026"},
+      "2024-09-28": {"value": "6.08", "accession_number": "0000320193-26-000026"},
+      "2023-09-30": {"value": "6.13", "accession_number": "0000320193-25-000079"}
+     }
+    },
+    "diluted_shares": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "values": {
+      "2026-09-26": {"value": "14720.306", "accession_number": "0000320193-26-000026"},
+      "2025-09-27": {"value": "15004.697", "accession_number": "0000320193-26-000026"},
+      "2024-09-28": {"value": "15408.095", "accession_number": "0000320193-26-000026"},
+      "2023-09-30": {"value": "15812.547", "accession_number": "0000320193-25-000079"}
+     }
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "values": {
+      "2026-09-26": {"value": "0.17", "accession_number": "0000320193-26-000026"},
+      "2025-09-27": {"value": "0.156", "accession_number": "0000320193-26-000026"},
+      "2024-09-28": {"value": "0.241", "accession_number": "0000320193-26-000026"},
+      "2023-09-30": {"value": "0.147", "accession_number": "0000320193-25-000079"}
+     }
+    },
+    "operating_cash_flow": {
+     "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": {
+      "2026-09-26": {"value": "145097", "accession_number": "0000320193-26-000026"},
+      "2025-09-27": {"value": "111482", "accession_number": "0000320193-26-000026"},
+      "2024-09-28": {"value": "118254", "accession_number": "0000320193-26-000026"},
+      "2023-09-30": {"value": "110543", "accession_number": "0000320193-25-000079"}
+     }
+    },
+    "capital_expenditure": {
+     "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "values": {
+      "2026-09-26": {"value": "9041", "accession_number": "0000320193-26-000026"},
+      "2025-09-27": {"value": "12715", "accession_number": "0000320193-26-000026"},
+      "2024-09-28": {"value": "9447", "accession_number": "0000320193-26-000026"},
+      "2023-09-30": {"value": "10959", "accession_number": "0000320193-25-000079"}
+     }
+    },
+    "dividends_paid": {
+     "tag": "us-gaap:PaymentsOfDividends",
+     "values": {
+      "2026-09-26": {"value": "15721", "accession_number": "0000320193-26-000026"},
+      "2025-09-27": {"value": "15421", "accession_number": "0000320193-26-000026"},
+      "2024-09-28": {"value": "15234", "accession_number": "0000320193-26-000026"},
+      "2023-09-30": {"value": "15025", "accession_number": "0000320193-25-000079"}
+     }
+    },
+    "share_repurchases": {
+     "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+     "values": {
+      "2026-09-26": {"value": "86390", "accession_number": "0000320193-26-000026"},
+      "2025-09-27": {"value": "90711", "accession_number": "0000320193-26-000026"},
+      "2024-09-28": {"value": "94949", "accession_number": "0000320193-26-000026"},
+      "2023-09-30": {"value": "77550", "accession_number": "0000320193-25-000079"}
+     }
+    },
+    "cash_and_equivalents": {
+     "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+     "values": {
+      "2026-09-26": {"value": "36305", "accession_number": "0000320193-26-000026"},
+      "2025-09-27": {"value": "35934", "accession_number": "0000320193-26-000026"},
+      "2024-09-28": {"value": "29943", "accession_number": "0000320193-25-000079"},
+      "2023-09-30": {"value": "29965", "accession_number": "0000320193-24-000123"}
+     }
+    },
+    "total_assets": {
+     "tag": "us-gaap:Assets",
+     "values": {
+      "2026-09-26": {"value": "404548", "accession_number": "0000320193-26-000026"},
+      "2025-09-27": {"value": "359241", "accession_number": "0000320193-26-000026"},
+      "2024-09-28": {"value": "364980", "accession_number": "0000320193-25-000079"},
+      "2023-09-30": {"value": "352583", "accession_number": "0000320193-24-000123"}
+     }
+    },
+    "total_liabilities": {
+     "tag": "us-gaap:Liabilities",
+     "values": {
+      "2026-09-26": {"value": "292455", "accession_number": "0000320193-26-000026"},
+      "2025-09-27": {"value": "285508", "accession_number": "0000320193-26-000026"},
+      "2024-09-28": {"value": "308030", "accession_number": "0000320193-25-000079"},
+      "2023-09-30": {"value": "290437", "accession_number": "0000320193-24-000123"}
+     }
+    },
+    "stockholders_equity": {
+     "tag": "us-gaap:StockholdersEquity",
+     "values": {
+      "2026-09-26": {"value": "112093", "accession_number": "0000320193-26-000026"},
+      "2025-09-27": {"value": "73733", "accession_number": "0000320193-26-000026"},
+      "2024-09-28": {"value": "56950", "accession_number": "0000320193-26-000026"},
+      "2023-09-30": {"value": "62146", "accession_number": "0000320193-26-000026"}
+     }
+    },
+    "long_term_debt": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "values": {
+      "2026-09-26": {"value": "68208", "accession_number": "0000320193-26-000026"},
+      "2025-09-27": {"value": "78328", "accession_number": "0000320193-26-000026"},
+      "2024-09-28": {"value": "85750", "accession_number": "0000320193-25-000079"},
+      "2023-09-30": {"value": "95281", "accession_number": "0000320193-24-000123"}
+     }
+    }
+   },
+   "facts_sha256": "cbb4c5265b02ff2f8f8b5fb7b5669b7929bd6e98929b2bdbc8bd1083b808707f"
+  },
+  "MSFT": {
+   "ticker": "MSFT",
+   "name": "Microsoft Corporation",
+   "cik": "0000789019",
+   "source": "SEC EDGAR company facts API",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json",
+   "source_posture": "authoritative_filing",
+   "retrieved_at_utc": "2026-11-20T19:19:57Z",
+   "fiscal_years": [
+    {"fiscal_year": 2026, "period_start": "2025-07-01", "period_end": "2026-06-30", "first_reported_in": "0001193125-26-323660"},
+    {"fiscal_year": 2025, "period_start": "2024-07-01", "period_end": "2025-06-30", "first_reported_in": "0000950170-25-100235"},
+    {"fiscal_year": 2024, "period_start": "2023-07-01", "period_end": "2024-06-30", "first_reported_in": "0000950170-24-087843"},
+    {"fiscal_year": 2023, "period_start": "2022-07-01", "period_end": "2023-06-30", "first_reported_in": "0000950170-23-035122"}
+   ],
+   "filings": {
+    "0000950170-24-087843": {"form": "10-K", "filed": "2024-07-30"},
+    "0000950170-25-100235": {"form": "10-K", "filed": "2025-07-30"},
+    "0001193125-26-323660": {"form": "10-K", "filed": "2026-07-29"}
+   },
+   "items": {
+    "revenue": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "values": {
+      "2026-06-30": {"value": "331839", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "281724", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "245122", "accession_number": "0001193125-26-323660"},
+      "2023-06-30": {"value": "211915", "accession_number": "0000950170-25-100235"}
+     }
+    },
+    "cost_of_revenue": {
+     "tag": "us-gaap:CostOfGoodsAndServicesSold",
+     "values": {
+      "2026-06-30": {"value": "106374", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "87831", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "74114", "accession_number": "0001193125-26-323660"},
+      "2023-06-30": {"value": "65863", "accession_number": "0000950170-25-100235"}
+     }
+    },
+    "gross_profit": {
+     "tag": "us-gaap:GrossProfit",
+     "values": {
+      "2026-06-30": {"value": "225465", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "193893", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "171008", "accession_number": "0001193125-26-323660"},
+      "2023-06-30": {"value": "146052", "accession_number": "0000950170-25-100235"}
+     }
+    },
+    "research_and_development": {
+     "tag": "us-gaap:ResearchAndDevelopmentExpense",
+     "values": {
+      "2026-06-30": {"value": "35562", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "32488", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "29510", "accession_number": "0001193125-26-323660"},
+      "2023-06-30": {"value": "27195", "accession_number": "0000950170-25-100235"}
+     }
+    },
+    "operating_income": {
+     "tag": "us-gaap:OperatingIncomeLoss",
+     "values": {
+      "2026-06-30": {"value": "155237", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "128528", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "109433", "accession_number": "0001193125-26-323660"},
+      "2023-06-30": {"value": "88523", "accession_number": "0000950170-25-100235"}
+     }
+    },
+    "interest_expense": {
+     "tag": "us-gaap:InterestExpenseNonoperating",
+     "values": {
+      "2026-06-30": {"value": "3051", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "2385", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "2935", "accession_number": "0001193125-26-323660"},
+      "2023-06-30": {"value": "1968", "accession_number": "0000950170-25-100235"}
+     }
+    },
+    "pretax_income": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     "values": {
+      "2026-06-30": {"value": "165934", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "123627", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "107787", "accession_number": "0001193125-26-323660"},
+      "2023-06-30": {"value": "89311", "accession_number": "0000950170-25-100235"}
+     }
+    },
+    "income_tax": {
+     "tag": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": {
+      "2026-06-30": {"value": "32185", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "21795", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "19651", "accession_number": "0001193125-26-323660"},
+      "2023-06-30": {"value": "16950", "accession_number": "0000950170-25-100235"}
+     }
+    },
+    "net_income": {
+     "tag": "us-gaap:NetIncomeLoss",
+     "values": {
+      "2026-06-30": {"value": "133749", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "101832", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "88136", "accession_number": "0001193125-26-323660"},
+      "2023-06-30": {"value": "72361", "accession_number": "0000950170-25-100235"}
+     }
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "values": {
+      "2026-06-30": {"value": "17.95", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "13.64", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "11.80", "accession_number": "0001193125-26-323660"},
+      "2023-06-30": {"value": "9.68", "accession_number": "0000950170-25-100235"}
+     }
+    },
+    "diluted_shares": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "values": {
+      "2026-06-30": {"value": "7453", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "7465", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "7469", "accession_number": "0001193125-26-323660"},
+      "2023-06-30": {"value": "7472", "accession_number": "0000950170-25-100235"}
+     }
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "values": {
+      "2026-06-30": {"value": "0.194", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "0.176", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "0.182", "accession_number": "0001193125-26-323660"},
+      "2023-06-30": {"value": "0.19", "accession_number": "0000950170-25-100235"}
+     }
+    },
+    "operating_cash_flow": {
+     "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": {
+      "2026-06-30": {"value": "182935", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "136162", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "118548", "accession_number": "0001193125-26-323660"},
+      "2023-06-30": {"value": "87582", "accession_number": "0000950170-25-100235"}
+     }
+    },
+    "capital_expenditure": {
+     "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "values": {
+      "2026-06-30": {"value": "115948", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "64551", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "44477", "accession_number": "0001193125-26-323660"},
+      "2023-06-30": {"value": "28107", "accession_number": "0000950170-25-100235"}
+     }
+    },
+    "dividends_paid": {
+     "tag": "us-gaap:PaymentsOfDividendsCommonStock",
+     "values": {
+      "2026-06-30": {"value": "26445", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "24082", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "21771", "accession_number": "0001193125-26-323660"},
+      "2023-06-30": {"value": "19800", "accession_number": "0000950170-25-100235"}
+     }
+    },
+    "share_repurchases": {
+     "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+     "values": {
+      "2026-06-30": {"value": "22271", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "18420", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "17254", "accession_number": "0001193125-26-323660"},
+      "2023-06-30": {"value": "22245", "accession_number": "0000950170-25-100235"}
+     }
+    },
+    "cash_and_equivalents": {
+     "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+     "values": {
+      "2026-06-30": {"value": "20935", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "30242", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "18315", "accession_number": "0000950170-25-100235"},
+      "2023-06-30": {"value": "34704", "accession_number": "0000950170-24-087843"}
+     }
+    },
+    "total_assets": {
+     "tag": "us-gaap:Assets",
+     "values": {
+      "2026-06-30": {"value": "758376", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "619003", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "512163", "accession_number": "0000950170-25-100235"},
+      "2023-06-30": {"value": "411976", "accession_number": "0000950170-24-087843"}
+     }
+    },
+    "total_liabilities": {
+     "tag": "us-gaap:Liabilities",
+     "values": {
+      "2026-06-30": {"value": "315989", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "275524", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "243686", "accession_number": "0000950170-25-100235"},
+      "2023-06-30": {"value": "205753", "accession_number": "0000950170-24-087843"}
+     }
+    },
+    "stockholders_equity": {
+     "tag": "us-gaap:StockholdersEquity",
+     "values": {
+      "2026-06-30": {"value": "442387", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "343479", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "268477", "accession_number": "0001193125-26-323660"},
+      "2023-06-30": {"value": "206223", "accession_number": "0000950170-25-100235"}
+     }
+    },
+    "long_term_debt": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "values": {
+      "2026-06-30": {"value": "31067", "accession_number": "0001193125-26-323660"},
+      "2025-06-30": {"value": "40152", "accession_number": "0001193125-26-323660"},
+      "2024-06-30": {"value": "42688", "accession_number": "0000950170-25-100235"},
+      "2023-06-30": {"value": "41990", "accession_number": "0000950170-24-087843"}
+     }
+    }
+   },
+   "facts_sha256": "d58a48ea68560c612561833792d36e6d8738b0a10106aaa221c38daf1195e4d7"
+  },
+  "JPM": {
+   "ticker": "JPM",
+   "name": "JPMorgan Chase & Co.",
+   "cik": "0000019617",
+   "source": "SEC EDGAR company facts API",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000019617.json",
+   "source_posture": "authoritative_filing",
+   "retrieved_at_utc": "2026-11-20T19:19:56Z",
+   "fiscal_years": [
+    {"fiscal_year": 2025, "period_start": "2025-01-01", "period_end": "2025-12-31", "first_reported_in": "0001628280-26-008131"},
+    {"fiscal_year": 2024, "period_start": "2024-01-01", "period_end": "2024-12-31", "first_reported_in": "0000019617-25-000270"},
+    {"fiscal_year": 2023, "period_start": "2023-01-01", "period_end": "2023-12-31", "first_reported_in": "0000019617-24-000225"},
+    {"fiscal_year": 2022, "period_start": "2022-01-01", "period_end": "2022-12-31", "first_reported_in": "0000019617-23-000231"}
+   ],
+   "filings": {
+    "0000019617-24-000225": {"form": "10-K", "filed": "2024-02-16"},
+    "0000019617-25-000270": {"form": "10-K", "filed": "2025-02-14"},
+    "0001628280-26-008131": {"form": "10-K", "filed": "2026-02-13"}
+   },
+   "items": {
+    "revenue": {
+     "tag": "us-gaap:Revenues",
+     "values": {
+      "2025-12-31": {"value": "182447", "accession_number": "0001628280-26-008131"},
+      "2024-12-31": {"value": "177556", "accession_number": "0001628280-26-008131"},
+      "2023-12-31": {"value": "158104", "accession_number": "0001628280-26-008131"},
+      "2022-12-31": {"value": "128695", "accession_number": "0000019617-25-000270"}
+     }
+    },
+    "interest_expense": {
+     "tag": "us-gaap:InterestExpense",
+     "values": {
+      "2023-12-31": {"value": "81321", "accession_number": "0000019617-24-000225"},
+      "2022-12-31": {"value": "26097", "accession_number": "0000019617-24-000225"}
+     }
+    },
+    "pretax_income": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     "values": {
+      "2025-12-31": {"value": "72595", "accession_number": "0001628280-26-008131"},
+      "2024-12-31": {"value": "75081", "accession_number": "0001628280-26-008131"},
+      "2023-12-31": {"value": "61612", "accession_number": "0001628280-26-008131"},
+      "2022-12-31": {"value": "46166", "accession_number": "0000019617-25-000270"}
+     }
+    },
+    "income_tax": {
+     "tag": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": {
+      "2025-12-31": {"value": "15547", "accession_number": "0001628280-26-008131"},
+      "2024-12-31": {"value": "16610", "accession_number": "0001628280-26-008131"},
+      "2023-12-31": {"value": "12060", "accession_number": "0001628280-26-008131"},
+      "2022-12-31": {"value": "8490", "accession_number": "0000019617-25-000270"}
+     }
+    },
+    "net_income": {
+     "tag": "us-gaap:NetIncomeLoss",
+     "values": {
+      "2025-12-31": {"value": "57048", "accession_number": "0001628280-26-008131"},
+      "2024-12-31": {"value": "58471", "accession_number": "0001628280-26-008131"},
+      "2023-12-31": {"value": "49552", "accession_number": "0001628280-26-008131"},
+      "2022-12-31": {"value": "37676", "accession_number": "0000019617-25-000270"}
+     }
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "values": {
+      "2025-12-31": {"value": "20.02", "accession_number": "0001628280-26-008131"},
+      "2024-12-31": {"value": "19.75", "accession_number": "0001628280-26-008131"},
+      "2023-12-31": {"value": "16.23", "accession_number": "0001628280-26-008131"},
+      "2022-12-31": {"value": "12.09", "accession_number": "0000019617-25-000270"}
+     }
+    },
+    "diluted_shares": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "values": {
+      "2025-12-31": {"value": "2781.5", "accession_number": "0001628280-26-008131"},
+      "2024-12-31": {"value": "2879", "accession_number": "0001628280-26-008131"},
+      "2023-12-31": {"value": "2943.1", "accession_number": "0001628280-26-008131"},
+      "2022-12-31": {"value": "2970", "accession_number": "0000019617-25-000270"}
+     }
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "values": {
+      "2025-12-31": {"value": "0.214", "accession_number": "0001628280-26-008131"},
+      "2024-12-31": {"value": "0.221", "accession_number": "0001628280-26-008131"},
+      "2023-12-31": {"value": "0.196", "accession_number": "0001628280-26-008131"},
+      "2022-12-31": {"value": "0.184", "accession_number": "0000019617-25-000270"}
+     }
+    },
+    "operating_cash_flow": {
+     "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": {
+      "2025-12-31": {"value": "-147782", "accession_number": "0001628280-26-008131"},
+      "2024-12-31": {"value": "-42012", "accession_number": "0001628280-26-008131"},
+      "2023-12-31": {"value": "12974", "accession_number": "0001628280-26-008131"},
+      "2022-12-31": {"value": "107119", "accession_number": "0000019617-25-000270"}
+     }
+    },
+    "dividends_paid": {
+     "tag": "us-gaap:PaymentsOfDividends",
+     "values": {
+      "2025-12-31": {"value": "16625", "accession_number": "0001628280-26-008131"},
+      "2024-12-31": {"value": "14783", "accession_number": "0001628280-26-008131"},
+      "2023-12-31": {"value": "13463", "accession_number": "0001628280-26-008131"},
+      "2022-12-31": {"value": "13562", "accession_number": "0000019617-25-000270"}
+     }
+    },
+    "share_repurchases": {
+     "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+     "values": {
+      "2025-12-31": {"value": "31591", "accession_number": "0001628280-26-008131"},
+      "2024-12-31": {"value": "18830", "accession_number": "0001628280-26-008131"},
+      "2023-12-31": {"value": "9824", "accession_number": "0001628280-26-008131"},
+      "2022-12-31": {"value": "3162", "accession_number": "0000019617-25-000270"}
+     }
+    },
+    "cash_and_equivalents": {
+     "tag": "us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+     "values": {
+      "2025-12-31": {"value": "343338", "accession_number": "0001628280-26-008131"},
+      "2024-12-31": {"value": "469317", "accession_number": "0001628280-26-008131"},
+      "2023-12-31": {"value": "624151", "accession_number": "0001628280-26-008131"},
+      "2022-12-31": {"value": "567234", "accession_number": "0001628280-26-008131"}
+     }
+    },
+    "total_assets": {
+     "tag": "us-gaap:Assets",
+     "values": {
+      "2025-12-31": {"value": "4424900", "accession_number": "0001628280-26-008131"},
+      "2024-12-31": {"value": "4002814", "accession_number": "0001628280-26-008131"},
+      "2023-12-31": {"value": "3875393", "accession_number": "0001628280-26-008131"},
+      "2022-12-31": {"value": "3665743", "accession_number": "0000019617-25-000270"}
+     }
+    },
+    "total_liabilities": {
+     "tag": "us-gaap:Liabilities",
+     "values": {
+      "2025-12-31": {"value": "4062462", "accession_number": "0001628280-26-008131"},
+      "2024-12-31": {"value": "3658056", "accession_number": "0001628280-26-008131"},
+      "2023-12-31": {"value": "3547515", "accession_number": "0000019617-25-000270"},
+      "2022-12-31": {"value": "3373411", "accession_number": "0000019617-24-000225"}
+     }
+    },
+    "stockholders_equity": {
+     "tag": "us-gaap:StockholdersEquity",
+     "values": {
+      "2025-12-31": {"value": "362438", "accession_number": "0001628280-26-008131"},
+      "2024-12-31": {"value": "344758", "accession_number": "0001628280-26-008131"},
+      "2023-12-31": {"value": "327878", "accession_number": "0001628280-26-008131"},
+      "2022-12-31": {"value": "292332", "accession_number": "0000019617-25-000270"}
+     }
+    },
+    "long_term_debt": {
+     "tag": "us-gaap:LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities",
+     "values": {
+      "2025-12-31": {"value": "435206", "accession_number": "0001628280-26-008131"},
+      "2024-12-31": {"value": "401418", "accession_number": "0001628280-26-008131"},
+      "2023-12-31": {"value": "391825", "accession_number": "0000019617-25-000270"},
+      "2022-12-31": {"value": "295865", "accession_number": "0000019617-24-000225"}
+     }
+    }
+   },
+   "facts_sha256": "af305ac3b82eb357bc7e7681587a75ec27771b7eb24cf71435014e8816e89f8f"
+  },
+  "NVDA": {
+   "ticker": "NVDA",
+   "name": "NVIDIA Corporation",
+   "cik": "0001045810",
+   "source": "SEC EDGAR company facts API",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json",
+   "source_posture": "authoritative_filing",
+   "retrieved_at_utc": "2026-11-20T19:19:58Z",
+   "fiscal_years": [
+    {"fiscal_year": 2026, "period_start": "2025-01-27", "period_end": "2026-01-25", "first_reported_in": "0001045810-26-000021"},
+    {"fiscal_year": 2025, "period_start": "2024-01-29", "period_end": "2025-01-26", "first_reported_in": "0001045810-25-000023"},
+    {"fiscal_year": 2024, "period_start": "2023-01-30", "period_end": "2024-01-28", "first_reported_in": "0001045810-24-000029"},
+    {"fiscal_year": 2023, "period_start": "2022-01-31", "period_end": "2023-01-29", "first_reported_in": "0001045810-23-000017"}
+   ],
+   "filings": {
+    "0001045810-24-000029": {"form": "10-K", "filed": "2024-02-21"},
+    "0001045810-25-000023": {"form": "10-K", "filed": "2025-02-26"},
+    "0001045810-26-000021": {"form": "10-K", "filed": "2026-02-25"}
+   },
+   "items": {
+    "revenue": {
+     "tag": "us-gaap:Revenues",
+     "values": {
+      "2026-01-25": {"value": "215938", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "130497", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "60922", "accession_number": "0001045810-26-000021"},
+      "2023-01-29": {"value": "26974", "accession_number": "0001045810-25-000023"}
+     }
+    },
+    "cost_of_revenue": {
+     "tag": "us-gaap:CostOfRevenue",
+     "values": {
+      "2026-01-25": {"value": "62475", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "32639", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "16621", "accession_number": "0001045810-26-000021"},
+      "2023-01-29": {"value": "11618", "accession_number": "0001045810-25-000023"}
+     }
+    },
+    "gross_profit": {
+     "tag": "us-gaap:GrossProfit",
+     "values": {
+      "2026-01-25": {"value": "153463", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "97858", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "44301", "accession_number": "0001045810-26-000021"},
+      "2023-01-29": {"value": "15356", "accession_number": "0001045810-25-000023"}
+     }
+    },
+    "research_and_development": {
+     "tag": "us-gaap:ResearchAndDevelopmentExpense",
+     "values": {
+      "2026-01-25": {"value": "18497", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "12914", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "8675", "accession_number": "0001045810-26-000021"},
+      "2023-01-29": {"value": "7339", "accession_number": "0001045810-25-000023"}
+     }
+    },
+    "operating_income": {
+     "tag": "us-gaap:OperatingIncomeLoss",
+     "values": {
+      "2026-01-25": {"value": "130387", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "81453", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "32972", "accession_number": "0001045810-26-000021"},
+      "2023-01-29": {"value": "4224", "accession_number": "0001045810-25-000023"}
+     }
+    },
+    "interest_expense": {
+     "tag": "us-gaap:InterestExpenseNonoperating",
+     "values": {
+      "2026-01-25": {"value": "259", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "247", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "257", "accession_number": "0001045810-26-000021"},
+      "2023-01-29": {"value": "262", "accession_number": "0001045810-25-000023"}
+     }
+    },
+    "pretax_income": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     "values": {
+      "2026-01-25": {"value": "141450", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "84026", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "33818", "accession_number": "0001045810-26-000021"},
+      "2023-01-29": {"value": "4181", "accession_number": "0001045810-25-000023"}
+     }
+    },
+    "income_tax": {
+     "tag": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": {
+      "2026-01-25": {"value": "21383", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "11146", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "4058", "accession_number": "0001045810-26-000021"},
+      "2023-01-29": {"value": "-187", "accession_number": "0001045810-25-000023"}
+     }
+    },
+    "net_income": {
+     "tag": "us-gaap:NetIncomeLoss",
+     "values": {
+      "2026-01-25": {"value": "120067", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "72880", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "29760", "accession_number": "0001045810-26-000021"},
+      "2023-01-29": {"value": "4368", "accession_number": "0001045810-25-000023"}
+     }
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "values": {
+      "2026-01-25": {"value": "4.90", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "2.94", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "1.19", "accession_number": "0001045810-26-000021", "restated_from": "11.93"},
+      "2023-01-29": {"value": "0.17", "accession_number": "0001045810-25-000023", "restated_from": "1.74"}
+     }
+    },
+    "diluted_shares": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "values": {
+      "2026-01-25": {"value": "24514", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "24804", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "24940", "accession_number": "0001045810-26-000021", "restated_from": "2494"},
+      "2023-01-29": {"value": "25070", "accession_number": "0001045810-25-000023", "restated_from": "2507"}
+     }
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "values": {
+      "2026-01-25": {"value": "0.151", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "0.133", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "0.12", "accession_number": "0001045810-26-000021"},
+      "2023-01-29": {"value": "-0.045", "accession_number": "0001045810-25-000023"}
+     }
+    },
+    "operating_cash_flow": {
+     "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": {
+      "2026-01-25": {"value": "102718", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "64089", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "28090", "accession_number": "0001045810-26-000021"},
+      "2023-01-29": {"value": "5641", "accession_number": "0001045810-25-000023"}
+     }
+    },
+    "capital_expenditure": {
+     "tag": "us-gaap:PaymentsToAcquireProductiveAssets",
+     "values": {
+      "2026-01-25": {"value": "6042", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "3236", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "1069", "accession_number": "0001045810-26-000021"},
+      "2023-01-29": {"value": "1833", "accession_number": "0001045810-25-000023"}
+     }
+    },
+    "dividends_paid": {
+     "tag": "us-gaap:PaymentsOfDividends",
+     "values": {
+      "2026-01-25": {"value": "974", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "834", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "395", "accession_number": "0001045810-26-000021"},
+      "2023-01-29": {"value": "398", "accession_number": "0001045810-25-000023"}
+     }
+    },
+    "share_repurchases": {
+     "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+     "values": {
+      "2026-01-25": {"value": "40086", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "33706", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "9533", "accession_number": "0001045810-26-000021"},
+      "2023-01-29": {"value": "10039", "accession_number": "0001045810-25-000023"}
+     }
+    },
+    "cash_and_equivalents": {
+     "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+     "values": {
+      "2026-01-25": {"value": "10605", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "8589", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "7280", "accession_number": "0001045810-25-000023"},
+      "2023-01-29": {"value": "3389", "accession_number": "0001045810-24-000029"}
+     }
+    },
+    "total_assets": {
+     "tag": "us-gaap:Assets",
+     "values": {
+      "2026-01-25": {"value": "206803", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "111601", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "65728", "accession_number": "0001045810-25-000023"},
+      "2023-01-29": {"value": "41182", "accession_number": "0001045810-24-000029"}
+     }
+    },
+    "total_liabilities": {
+     "tag": "us-gaap:Liabilities",
+     "values": {
+      "2026-01-25": {"value": "49510", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "32274", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "22750", "accession_number": "0001045810-25-000023"},
+      "2023-01-29": {"value": "19081", "accession_number": "0001045810-24-000029"}
+     }
+    },
+    "stockholders_equity": {
+     "tag": "us-gaap:StockholdersEquity",
+     "values": {
+      "2026-01-25": {"value": "157293", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "79327", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "42978", "accession_number": "0001045810-26-000021"},
+      "2023-01-29": {"value": "22101", "accession_number": "0001045810-26-000021"}
+     }
+    },
+    "long_term_debt": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "values": {
+      "2026-01-25": {"value": "7469", "accession_number": "0001045810-26-000021"},
+      "2025-01-26": {"value": "8463", "accession_number": "0001045810-26-000021"},
+      "2024-01-28": {"value": "8459", "accession_number": "0001045810-25-000023"},
+      "2023-01-29": {"value": "9703", "accession_number": "0001045810-24-000029"}
+     }
+    }
+   },
+   "facts_sha256": "37e0f84258dd96ecd1331affddeabc37f26236f773563d26fbef65a9dabfa450"
+  },
+  "AMZN": {
+   "ticker": "AMZN",
+   "name": "Amazon.com, Inc.",
+   "cik": "0001018724",
+   "source": "SEC EDGAR company facts API",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json",
+   "source_posture": "authoritative_filing",
+   "retrieved_at_utc": "2026-11-20T19:19:48Z",
+   "fiscal_years": [
+    {"fiscal_year": 2025, "period_start": "2025-01-01", "period_end": "2025-12-31", "first_reported_in": "0001018724-26-000004"},
+    {"fiscal_year": 2024, "period_start": "2024-01-01", "period_end": "2024-12-31", "first_reported_in": "0001018724-25-000004"},
+    {"fiscal_year": 2023, "period_start": "2023-01-01", "period_end": "2023-12-31", "first_reported_in": "0001018724-24-000008"},
+    {"fiscal_year": 2022, "period_start": "2022-01-01", "period_end": "2022-12-31", "first_reported_in": "0001018724-23-000004"}
+   ],
+   "filings": {
+    "0001018724-24-000008": {"form": "10-K", "filed": "2024-02-02"},
+    "0001018724-25-000004": {"form": "10-K", "filed": "2025-02-07"},
+    "0001018724-26-000004": {"form": "10-K", "filed": "2026-02-06"}
+   },
+   "items": {
+    "revenue": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "values": {
+      "2025-12-31": {"value": "716924", "accession_number": "0001018724-26-000004"},
+      "2024-12-31": {"value": "637959", "accession_number": "0001018724-26-000004"},
+      "2023-12-31": {"value": "574785", "accession_number": "0001018724-26-000004"},
+      "2022-12-31": {"value": "513983", "accession_number": "0001018724-25-000004"}
+     }
+    },
+    "cost_of_revenue": {
+     "tag": "us-gaap:CostOfGoodsAndServicesSold",
+     "values": {
+      "2025-12-31": {"value": "356414", "accession_number": "0001018724-26-000004"},
+      "2024-12-31": {"value": "326288", "accession_number": "0001018724-26-000004"},
+      "2023-12-31": {"value": "304739", "accession_number": "0001018724-26-000004"},
+      "2022-12-31": {"value": "288831", "accession_number": "0001018724-25-000004"}
+     }
+    },
+    "operating_income": {
+     "tag": "us-gaap:OperatingIncomeLoss",
+     "values": {
+      "2025-12-31": {"value": "79975", "accession_number": "0001018724-26-000004"},
+      "2024-12-31": {"value": "68593", "accession_number": "0001018724-26-000004"},
+      "2023-12-31": {"value": "36852", "accession_number": "0001018724-26-000004"},
+      "2022-12-31": {"value": "12248", "accession_number": "0001018724-25-000004"}
+     }
+    },
+    "interest_expense": {
+     "tag": "us-gaap:InterestExpenseNonoperating",
+     "values": {
+      "2025-12-31": {"value": "2274", "accession_number": "0001018724-26-000004"},
+      "2024-12-31": {"value": "2406", "accession_number": "0001018724-26-000004"},
+      "2023-12-31": {"value": "3182", "accession_number": "0001018724-26-000004"},
+      "2022-12-31": {"value": "2367", "accession_number": "0001018724-25-000004"}
+     }
+    },
+    "pretax_income": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+     "values": {
+      "2025-12-31": {"value": "97311", "accession_number": "0001018724-26-000004"},
+      "2024-12-31": {"value": "68614", "accession_number": "0001018724-26-000004"},
+      "2023-12-31": {"value": "37557", "accession_number": "0001018724-26-000004"},
+      "2022-12-31": {"value": "-5936", "accession_number": "0001018724-25-000004"}
+     }
+    },
+    "income_tax": {
+     "tag": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": {
+      "2025-12-31": {"value": "19087", "accession_number": "0001018724-26-000004"},
+      "2024-12-31": {"value": "9265", "accession_number": "0001018724-26-000004"},
+      "2023-12-31": {"value": "7120", "accession_number": "0001018724-26-000004"},
+      "2022-12-31": {"value": "-3217", "accession_number": "0001018724-25-000004"}
+     }
+    },
+    "net_income": {
+     "tag": "us-gaap:NetIncomeLoss",
+     "values": {
+      "2025-12-31": {"value": "77670", "accession_number": "0001018724-26-000004"},
+      "2024-12-31": {"value": "59248", "accession_number": "0001018724-26-000004"},
+      "2023-12-31": {"value": "30425", "accession_number": "0001018724-26-000004"},
+      "2022-12-31": {"value": "-2722", "accession_number": "0001018724-25-000004"}
+     }
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "values": {
+      "2025-12-31": {"value": "7.17", "accession_number": "0001018724-26-000004"},
+      "2024-12-31": {"value": "5.53", "accession_number": "0001018724-26-000004"},
+      "2023-12-31": {"value": "2.90", "accession_number": "0001018724-26-000004"},
+      "2022-12-31": {"value": "-0.27", "accession_number": "0001018724-25-000004"}
+     }
+    },
+    "diluted_shares": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "values": {
+      "2025-12-31": {"value": "10827", "accession_number": "0001018724-26-000004"},
+      "2024-12-31": {"value": "10721", "accession_number": "0001018724-26-000004"},
+      "2023-12-31": {"value": "10492", "accession_number": "0001018724-26-000004"},
+      "2022-12-31": {"value": "10189", "accession_number": "0001018724-25-000004"}
+     }
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "values": {
+      "2025-12-31": {"value": "0.196", "accession_number": "0001018724-26-000004"},
+      "2024-12-31": {"value": "0.135", "accession_number": "0001018724-26-000004"},
+      "2023-12-31": {"value": "0.19", "accession_number": "0001018724-26-000004"}
+     }
+    },
+    "operating_cash_flow": {
+     "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": {
+      "2025-12-31": {"value": "139514", "accession_number": "0001018724-26-000004"},
+      "2024-12-31": {"value": "115877", "accession_number": "0001018724-26-000004"},
+      "2023-12-31": {"value": "84946", "accession_number": "0001018724-26-000004"},
+      "2022-12-31": {"value": "46752", "accession_number": "0001018724-25-000004"}
+     }
+    },
+    "capital_expenditure": {
+     "tag": "us-gaap:PaymentsToAcquireProductiveAssets",
+     "values": {
+      "2025-12-31": {"value": "131819", "accession_number": "0001018724-26-000004"},
+      "2024-12-31": {"value": "82999", "accession_number": "0001018724-26-000004"},
+      "2023-12-31": {"value": "52729", "accession_number": "0001018724-26-000004"},
+      "2022-12-31": {"value": "63645", "accession_number": "0001018724-25-000004"}
+     }
+    },
+    "share_repurchases": {
+     "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+     "values": {
+      "2024-12-31": {"value": "0", "accession_number": "0001018724-25-000004"},
+      "2023-12-31": {"value": "0", "accession_number": "0001018724-25-000004"},
+      "2022-12-31": {"value": "6000", "accession_number": "0001018724-25-000004"}
+     }
+    },
+    "cash_and_equivalents": {
+     "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+     "values": {
+      "2025-12-31": {"value": "86810", "accession_number": "0001018724-26-000004"},
+      "2024-12-31": {"value": "78779", "accession_number": "0001018724-26-000004"},
+      "2023-12-31": {"value": "73387", "accession_number": "0001018724-25-000004"},
+      "2022-12-31": {"value": "53888", "accession_number": "0001018724-24-000008"}
+     }
+    },
+    "total_assets": {
+     "tag": "us-gaap:Assets",
+     "values": {
+      "2025-12-31": {"value": "818042", "accession_number": "0001018724-26-000004"},
+      "2024-12-31": {"value": "624894", "accession_number": "0001018724-26-000004"},
+      "2023-12-31": {"value": "527854", "accession_number": "0001018724-26-000004"},
+      "2022-12-31": {"value": "462675", "accession_number": "0001018724-25-000004"}
+     }
+    },
+    "stockholders_equity": {
+     "tag": "us-gaap:StockholdersEquity",
+     "values": {
+      "2025-12-31": {"value": "411065", "accession_number": "0001018724-26-000004"},
+      "2024-12-31": {"value": "285970", "accession_number": "0001018724-26-000004"},
+      "2023-12-31": {"value": "201875", "accession_number": "0001018724-26-000004"},
+      "2022-12-31": {"value": "146043", "accession_number": "0001018724-26-000004"}
+     }
+    },
+    "long_term_debt": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "values": {
+      "2025-12-31": {"value": "65648", "accession_number": "0001018724-26-000004"},
+      "2024-12-31": {"value": "52623", "accession_number": "0001018724-26-000004"},
+      "2023-12-31": {"value": "58314", "accession_number": "0001018724-25-000004"},
+      "2022-12-31": {"value": "67150", "accession_number": "0001018724-24-000008"}
+     }
+    }
+   },
+   "facts_sha256": "5132ae807dd5018ac434b7771b2886591a66d306d01736ab426fc23c4da07a52"
+  },
+  "RTX": {
+   "ticker": "RTX",
+   "name": "RTX Corporation",
+   "cik": "0000101829",
+   "source": "SEC EDGAR company facts API",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000101829.json",
+   "source_posture": "authoritative_filing",
+   "retrieved_at_utc": "2026-11-20T19:20:00Z",
+   "fiscal_years": [
+    {"fiscal_year": 2025, "period_start": "2025-01-01", "period_end": "2025-12-31", "first_reported_in": "0000101829-26-000006"},
+    {"fiscal_year": 2024, "period_start": "2024-01-01", "period_end": "2024-12-31", "first_reported_in": "0000101829-25-000005"},
+    {"fiscal_year": 2023, "period_start": "2023-01-01", "period_end": "2023-12-31", "first_reported_in": "0000101829-24-000008"},
+    {"fiscal_year": 2022, "period_start": "2022-01-01", "period_end": "2022-12-31", "first_reported_in": "0000101829-23-000009"}
+   ],
+   "filings": {
+    "0000101829-24-000008": {"form": "10-K", "filed": "2024-02-05"},
+    "0000101829-25-000005": {"form": "10-K", "filed": "2025-02-03"},
+    "0000101829-26-000006": {"form": "10-K", "filed": "2026-02-06"}
+   },
+   "items": {
+    "revenue": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "values": {
+      "2025-12-31": {"value": "88603", "accession_number": "0000101829-26-000006"},
+      "2024-12-31": {"value": "80738", "accession_number": "0000101829-26-000006"},
+      "2023-12-31": {"value": "68920", "accession_number": "0000101829-26-000006"},
+      "2022-12-31": {"value": "67074", "accession_number": "0000101829-25-000005"}
+     }
+    },
+    "research_and_development": {
+     "tag": "us-gaap:ResearchAndDevelopmentExpense",
+     "values": {
+      "2025-12-31": {"value": "2807", "accession_number": "0000101829-26-000006"},
+      "2024-12-31": {"value": "2934", "accession_number": "0000101829-26-000006"},
+      "2023-12-31": {"value": "2805", "accession_number": "0000101829-26-000006"},
+      "2022-12-31": {"value": "2711", "accession_number": "0000101829-25-000005"}
+     }
+    },
+    "operating_income": {
+     "tag": "us-gaap:OperatingIncomeLoss",
+     "values": {
+      "2025-12-31": {"value": "9300", "accession_number": "0000101829-26-000006"},
+      "2024-12-31": {"value": "6538", "accession_number": "0000101829-26-000006"},
+      "2023-12-31": {"value": "3561", "accession_number": "0000101829-26-000006"},
+      "2022-12-31": {"value": "5504", "accession_number": "0000101829-25-000005", "restated_from": "5414"}
+     }
+    },
+    "interest_expense": {
+     "tag": "us-gaap:InterestExpense",
+     "values": {
+      "2024-12-31": {"value": "1862", "accession_number": "0000101829-25-000005"},
+      "2023-12-31": {"value": "1505", "accession_number": "0000101829-25-000005"},
+      "2022-12-31": {"value": "1276", "accession_number": "0000101829-25-000005"}
+     }
+    },
+    "pretax_income": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     "values": {
+      "2025-12-31": {"value": "8733", "accession_number": "0000101829-26-000006"},
+      "2024-12-31": {"value": "6194", "accession_number": "0000101829-26-000006"},
+      "2023-12-31": {"value": "3836", "accession_number": "0000101829-26-000006"},
+      "2022-12-31": {"value": "6117", "accession_number": "0000101829-25-000005", "restated_from": "6027"}
+     }
+    },
+    "income_tax": {
+     "tag": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": {
+      "2025-12-31": {"value": "1664", "accession_number": "0000101829-26-000006"},
+      "2024-12-31": {"value": "1181", "accession_number": "0000101829-26-000006"},
+      "2023-12-31": {"value": "456", "accession_number": "0000101829-26-000006"},
+      "2022-12-31": {"value": "790", "accession_number": "0000101829-25-000005", "restated_from": "700"}
+     }
+    },
+    "net_income": {
+     "tag": "us-gaap:NetIncomeLoss",
+     "values": {
+      "2025-12-31": {"value": "6732", "accession_number": "0000101829-26-000006"},
+      "2024-12-31": {"value": "4774", "accession_number": "0000101829-26-000006"},
+      "2023-12-31": {"value": "3195", "accession_number": "0000101829-26-000006"},
+      "2022-12-31": {"value": "5197", "accession_number": "0000101829-25-000005"}
+     }
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "values": {
+      "2025-12-31": {"value": "4.96", "accession_number": "0000101829-26-000006"},
+      "2024-12-31": {"value": "3.55", "accession_number": "0000101829-26-000006"},
+      "2023-12-31": {"value": "2.23", "accession_number": "0000101829-26-000006"},
+      "2022-12-31": {"value": "3.50", "accession_number": "0000101829-25-000005"}
+     }
+    },
+    "diluted_shares": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "values": {
+      "2025-12-31": {"value": "1356.4", "accession_number": "0000101829-26-000006"},
+      "2024-12-31": {"value": "1343.6", "accession_number": "0000101829-26-000006"},
+      "2023-12-31": {"value": "1435.4", "accession_number": "0000101829-26-000006"},
+      "2022-12-31": {"value": "1485.9", "accession_number": "0000101829-25-000005"}
+     }
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "values": {
+      "2025-12-31": {"value": "0.191", "accession_number": "0000101829-26-000006"},
+      "2024-12-31": {"value": "0.191", "accession_number": "0000101829-26-000006"},
+      "2023-12-31": {"value": "0.119", "accession_number": "0000101829-26-000006"},
+      "2022-12-31": {"value": "0.129", "accession_number": "0000101829-25-000005", "restated_from": "0.116"}
+     }
+    },
+    "operating_cash_flow": {
+     "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": {
+      "2025-12-31": {"value": "10567", "accession_number": "0000101829-26-000006"},
+      "2024-12-31": {"value": "7159", "accession_number": "0000101829-26-000006"},
+      "2023-12-31": {"value": "7883", "accession_number": "0000101829-26-000006"},
+      "2022-12-31": {"value": "7168", "accession_number": "0000101829-25-000005"}
+     }
+    },
+    "capital_expenditure": {
+     "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "values": {
+      "2025-12-31": {"value": "2627", "accession_number": "0000101829-26-000006"},
+      "2024-12-31": {"value": "2625", "accession_number": "0000101829-26-000006"},
+      "2023-12-31": {"value": "2415", "accession_number": "0000101829-26-000006"},
+      "2022-12-31": {"value": "2288", "accession_number": "0000101829-25-000005"}
+     }
+    },
+    "dividends_paid": {
+     "tag": "us-gaap:PaymentsOfDividendsCommonStock",
+     "values": {
+      "2025-12-31": {"value": "3574", "accession_number": "0000101829-26-000006"},
+      "2024-12-31": {"value": "3217", "accession_number": "0000101829-26-000006"},
+      "2023-12-31": {"value": "3239", "accession_number": "0000101829-26-000006"},
+      "2022-12-31": {"value": "3128", "accession_number": "0000101829-25-000005"}
+     }
+    },
+    "share_repurchases": {
+     "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+     "values": {
+      "2025-12-31": {"value": "50", "accession_number": "0000101829-26-000006"},
+      "2024-12-31": {"value": "444", "accession_number": "0000101829-26-000006"},
+      "2023-12-31": {"value": "12870", "accession_number": "0000101829-26-000006"},
+      "2022-12-31": {"value": "2803", "accession_number": "0000101829-25-000005"}
+     }
+    },
+    "cash_and_equivalents": {
+     "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+     "values": {
+      "2025-12-31": {"value": "7435", "accession_number": "0000101829-26-000006"},
+      "2024-12-31": {"value": "5578", "accession_number": "0000101829-26-000006"},
+      "2023-12-31": {"value": "6587", "accession_number": "0000101829-26-000006"},
+      "2022-12-31": {"value": "6220", "accession_number": "0000101829-25-000005"}
+     }
+    },
+    "total_assets": {
+     "tag": "us-gaap:Assets",
+     "values": {
+      "2025-12-31": {"value": "171079", "accession_number": "0000101829-26-000006"},
+      "2024-12-31": {"value": "162861", "accession_number": "0000101829-26-000006"},
+      "2023-12-31": {"value": "161869", "accession_number": "0000101829-25-000005"},
+      "2022-12-31": {"value": "158864", "accession_number": "0000101829-24-000008"}
+     }
+    },
+    "total_liabilities": {
+     "tag": "us-gaap:Liabilities",
+     "values": {
+      "2025-12-31": {"value": "103941", "accession_number": "0000101829-26-000006"},
+      "2024-12-31": {"value": "100903", "accession_number": "0000101829-26-000006"},
+      "2023-12-31": {"value": "100424", "accession_number": "0000101829-25-000005"},
+      "2022-12-31": {"value": "84650", "accession_number": "0000101829-24-000008"}
+     }
+    },
+    "stockholders_equity": {
+     "tag": "us-gaap:StockholdersEquity",
+     "values": {
+      "2025-12-31": {"value": "65245", "accession_number": "0000101829-26-000006"},
+      "2024-12-31": {"value": "60156", "accession_number": "0000101829-26-000006"},
+      "2023-12-31": {"value": "59798", "accession_number": "0000101829-25-000005"},
+      "2022-12-31": {"value": "72632", "accession_number": "0000101829-24-000008"}
+     }
+    },
+    "long_term_debt": {
+     "tag": "us-gaap:LongTermDebtAndCapitalLeaseObligations",
+     "values": {
+      "2025-12-31": {"value": "34288", "accession_number": "0000101829-26-000006"},
+      "2024-12-31": {"value": "38726", "accession_number": "0000101829-26-000006"},
+      "2023-12-31": {"value": "42355", "accession_number": "0000101829-25-000005"},
+      "2022-12-31": {"value": "30694", "accession_number": "0000101829-24-000008"}
+     }
+    }
+   },
+   "facts_sha256": "203d657490a0de0c5edc0a90a3feaa53d37c45c156081bd5ac00c0b47c6d1380"
+  },
+  "CAT": {
+   "ticker": "CAT",
+   "name": "Caterpillar Inc.",
+   "cik": "0000018230",
+   "source": "SEC EDGAR company facts API",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000018230.json",
+   "source_posture": "authoritative_filing",
+   "retrieved_at_utc": "2026-11-20T19:19:50Z",
+   "fiscal_years": [
+    {"fiscal_year": 2025, "period_start": "2025-01-01", "period_end": "2025-12-31", "first_reported_in": "0000018230-26-000008"},
+    {"fiscal_year": 2024, "period_start": "2024-01-01", "period_end": "2024-12-31", "first_reported_in": "0000018230-25-000008"},
+    {"fiscal_year": 2023, "period_start": "2023-01-01", "period_end": "2023-12-31", "first_reported_in": "0000018230-24-000009"},
+    {"fiscal_year": 2022, "period_start": "2022-01-01", "period_end": "2022-12-31", "first_reported_in": "0000018230-23-000011"}
+   ],
+   "filings": {
+    "0000018230-24-000009": {"form": "10-K", "filed": "2024-02-16"},
+    "0000018230-25-000008": {"form": "10-K", "filed": "2025-02-14"},
+    "0000018230-26-000008": {"form": "10-K", "filed": "2026-02-13"}
+   },
+   "items": {
+    "revenue": {
+     "tag": "us-gaap:Revenues",
+     "values": {
+      "2025-12-31": {"value": "67589", "accession_number": "0000018230-26-000008"},
+      "2024-12-31": {"value": "64809", "accession_number": "0000018230-26-000008"},
+      "2023-12-31": {"value": "67060", "accession_number": "0000018230-26-000008"},
+      "2022-12-31": {"value": "59427", "accession_number": "0000018230-25-000008"}
+     }
+    },
+    "cost_of_revenue": {
+     "tag": "us-gaap:CostOfRevenue",
+     "values": {
+      "2025-12-31": {"value": "44752", "accession_number": "0000018230-26-000008"},
+      "2024-12-31": {"value": "40199", "accession_number": "0000018230-26-000008"},
+      "2023-12-31": {"value": "42767", "accession_number": "0000018230-26-000008"},
+      "2022-12-31": {"value": "41350", "accession_number": "0000018230-25-000008"}
+     }
+    },
+    "research_and_development": {
+     "tag": "us-gaap:ResearchAndDevelopmentExpense",
+     "values": {
+      "2025-12-31": {"value": "2148", "accession_number": "0000018230-26-000008"},
+      "2024-12-31": {"value": "2107", "accession_number": "0000018230-26-000008"},
+      "2023-12-31": {"value": "2108", "accession_number": "0000018230-26-000008"},
+      "2022-12-31": {"value": "1814", "accession_number": "0000018230-25-000008"}
+     }
+    },
+    "operating_income": {
+     "tag": "us-gaap:OperatingIncomeLoss",
+     "values": {
+      "2025-12-31": {"value": "11151", "accession_number": "0000018230-26-000008"},
+      "2024-12-31": {"value": "13072", "accession_number": "0000018230-26-000008"},
+      "2023-12-31": {"value": "12966", "accession_number": "0000018230-26-000008"},
+      "2022-12-31": {"value": "7904", "accession_number": "0000018230-25-000008"}
+     }
+    },
+    "pretax_income": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+     "values": {
+      "2025-12-31": {"value": "11541", "accession_number": "0000018230-26-000008"},
+      "2024-12-31": {"value": "13373", "accession_number": "0000018230-26-000008"},
+      "2023-12-31": {"value": "13050", "accession_number": "0000018230-26-000008"},
+      "2022-12-31": {"value": "8752", "accession_number": "0000018230-25-000008"}
+     }
+    },
+    "income_tax": {
+     "tag": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": {
+      "2025-12-31": {"value": "2768", "accession_number": "0000018230-26-000008"},
+      "2024-12-31": {"value": "2629", "accession_number": "0000018230-26-000008"},
+      "2023-12-31": {"value": "2781", "accession_number": "0000018230-26-000008"},
+      "2022-12-31": {"value": "2067", "accession_number": "0000018230-25-000008"}
+     }
+    },
+    "net_income": {
+     "tag": "us-gaap:NetIncomeLossAvailableToCommonStockholdersBasic",
+     "values": {
+      "2025-12-31": {"value": "8884", "accession_number": "0000018230-26-000008"},
+      "2024-12-31": {"value": "10792", "accession_number": "0000018230-26-000008"},
+      "2023-12-31": {"value": "10335", "accession_number": "0000018230-26-000008"},
+      "2022-12-31": {"value": "6705", "accession_number": "0000018230-25-000008"}
+     }
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "values": {
+      "2025-12-31": {"value": "18.81", "accession_number": "0000018230-26-000008"},
+      "2024-12-31": {"value": "22.05", "accession_number": "0000018230-26-000008"},
+      "2023-12-31": {"value": "20.12", "accession_number": "0000018230-26-000008"},
+      "2022-12-31": {"value": "12.64", "accession_number": "0000018230-25-000008"}
+     }
+    },
+    "diluted_shares": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "values": {
+      "2025-12-31": {"value": "472.3", "accession_number": "0000018230-26-000008"},
+      "2024-12-31": {"value": "489.4", "accession_number": "0000018230-26-000008"},
+      "2023-12-31": {"value": "513.6", "accession_number": "0000018230-26-000008"},
+      "2022-12-31": {"value": "530.4", "accession_number": "0000018230-25-000008"}
+     }
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "values": {
+      "2025-12-31": {"value": "0.24", "accession_number": "0000018230-26-000008"},
+      "2024-12-31": {"value": "0.197", "accession_number": "0000018230-26-000008"},
+      "2023-12-31": {"value": "0.213", "accession_number": "0000018230-26-000008"},
+      "2022-12-31": {"value": "0.236", "accession_number": "0000018230-25-000008"}
+     }
+    },
+    "operating_cash_flow": {
+     "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": {
+      "2025-12-31": {"value": "11739", "accession_number": "0000018230-26-000008"},
+      "2024-12-31": {"value": "12035", "accession_number": "0000018230-26-000008"},
+      "2023-12-31": {"value": "12885", "accession_number": "0000018230-26-000008"},
+      "2022-12-31": {"value": "7766", "accession_number": "0000018230-25-000008"}
+     }
+    },
+    "capital_expenditure": {
+     "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "values": {
+      "2025-12-31": {"value": "2821", "accession_number": "0000018230-26-000008"},
+      "2024-12-31": {"value": "1988", "accession_number": "0000018230-26-000008"},
+      "2023-12-31": {"value": "1597", "accession_number": "0000018230-26-000008"},
+      "2022-12-31": {"value": "1296", "accession_number": "0000018230-25-000008"}
+     }
+    },
+    "dividends_paid": {
+     "tag": "us-gaap:PaymentsOfDividendsCommonStock",
+     "values": {
+      "2025-12-31": {"value": "2749", "accession_number": "0000018230-26-000008"},
+      "2024-12-31": {"value": "2646", "accession_number": "0000018230-26-000008"},
+      "2023-12-31": {"value": "2563", "accession_number": "0000018230-26-000008"},
+      "2022-12-31": {"value": "2440", "accession_number": "0000018230-25-000008"}
+     }
+    },
+    "share_repurchases": {
+     "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+     "values": {
+      "2025-12-31": {"value": "5190", "accession_number": "0000018230-26-000008"},
+      "2024-12-31": {"value": "7697", "accession_number": "0000018230-26-000008"},
+      "2023-12-31": {"value": "4975", "accession_number": "0000018230-26-000008"},
+      "2022-12-31": {"value": "4230", "accession_number": "0000018230-25-000008"}
+     }
+    },
+    "cash_and_equivalents": {
+     "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+     "values": {
+      "2025-12-31": {"value": "9980", "accession_number": "0000018230-26-000008"},
+      "2024-12-31": {"value": "6889", "accession_number": "0000018230-26-000008"},
+      "2023-12-31": {"value": "6978", "accession_number": "0000018230-25-000008"},
+      "2022-12-31": {"value": "7004", "accession_number": "0000018230-24-000009"}
+     }
+    },
+    "total_assets": {
+     "tag": "us-gaap:Assets",
+     "values": {
+      "2025-12-31": {"value": "98585", "accession_number": "0000018230-26-000008"},
+      "2024-12-31": {"value": "87764", "accession_number": "0000018230-26-000008"},
+      "2023-12-31": {"value": "87476", "accession_number": "0000018230-25-000008"},
+      "2022-12-31": {"value": "81943", "accession_number": "0000018230-24-000009"}
+     }
+    },
+    "total_liabilities": {
+     "tag": "us-gaap:Liabilities",
+     "values": {
+      "2025-12-31": {"value": "77267", "accession_number": "0000018230-26-000008"},
+      "2024-12-31": {"value": "68270", "accession_number": "0000018230-26-000008"},
+      "2023-12-31": {"value": "67973", "accession_number": "0000018230-25-000008"},
+      "2022-12-31": {"value": "66052", "accession_number": "0000018230-24-000009"}
+     }
+    },
+    "stockholders_equity": {
+     "tag": "us-gaap:StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
+     "values": {
+      "2025-12-31": {"value": "21318", "accession_number": "0000018230-26-000008"},
+      "2024-12-31": {"value": "19494", "accession_number": "0000018230-26-000008"},
+      "2023-12-31": {"value": "19503", "accession_number": "0000018230-26-000008"},
+      "2022-12-31": {"value": "15891", "accession_number": "0000018230-26-000008"}
+     }
+    },
+    "long_term_debt": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "values": {
+      "2025-12-31": {"value": "30696", "accession_number": "0000018230-26-000008"},
+      "2024-12-31": {"value": "27351", "accession_number": "0000018230-26-000008"},
+      "2023-12-31": {"value": "24472", "accession_number": "0000018230-25-000008"},
+      "2022-12-31": {"value": "25714", "accession_number": "0000018230-24-000009"}
+     }
+    }
+   },
+   "facts_sha256": "cb903877ae3e5dd384f924fd206d16d842f1e70e87a1432750e13ced756f3f64"
+  },
+  "QRVO": {
+   "ticker": "QRVO",
+   "name": "Qorvo, Inc.",
+   "cik": "0001604778",
+   "source": "SEC EDGAR company facts API",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001604778.json",
+   "source_posture": "authoritative_filing",
+   "retrieved_at_utc": "2026-11-23T05:01:16Z",
+   "fiscal_years": [
+    {"fiscal_year": 2026, "period_start": "2025-03-30", "period_end": "2026-03-28", "first_reported_in": "0001628280-26-032873"},
+    {"fiscal_year": 2025, "period_start": "2024-03-31", "period_end": "2025-03-29", "first_reported_in": "0001604778-25-000041"},
+    {"fiscal_year": 2024, "period_start": "2023-04-02", "period_end": "2024-03-30", "first_reported_in": "0001604778-24-000036"},
+    {"fiscal_year": 2023, "period_start": "2022-04-03", "period_end": "2023-04-01", "first_reported_in": "0001604778-23-000055"}
+   ],
+   "filings": {
+    "0001604778-24-000036": {"form": "10-K", "filed": "2024-05-20"},
+    "0001604778-25-000041": {"form": "10-K", "filed": "2025-05-19"},
+    "0001628280-26-032873": {"form": "10-K", "filed": "2026-05-08"}
+   },
+   "items": {
+    "revenue": {
+     "tag": "us-gaap:Revenues",
+     "values": {
+      "2026-03-28": {"value": "3678.517", "accession_number": "0001628280-26-032873"},
+      "2025-03-29": {"value": "3718.971", "accession_number": "0001628280-26-032873"},
+      "2024-03-30": {"value": "3769.506", "accession_number": "0001628280-26-032873"},
+      "2023-04-01": {"value": "3569.399", "accession_number": "0001604778-25-000041"}
+     }
+    },
+    "cost_of_revenue": {
+     "tag": "us-gaap:CostOfGoodsAndServicesSold",
+     "values": {
+      "2026-03-28": {"value": "1990.415", "accession_number": "0001628280-26-032873"},
+      "2025-03-29": {"value": "2183.382", "accession_number": "0001628280-26-032873"},
+      "2024-03-30": {"value": "2281.011", "accession_number": "0001628280-26-032873"},
+      "2023-04-01": {"value": "2272.457", "accession_number": "0001604778-25-000041"}
+     }
+    },
+    "gross_profit": {
+     "tag": "us-gaap:GrossProfit",
+     "values": {
+      "2026-03-28": {"value": "1688.102", "accession_number": "0001628280-26-032873"},
+      "2025-03-29": {"value": "1535.589", "accession_number": "0001628280-26-032873"},
+      "2024-03-30": {"value": "1488.495", "accession_number": "0001628280-26-032873"},
+      "2023-04-01": {"value": "1296.942", "accession_number": "0001604778-25-000041"}
+     }
+    },
+    "research_and_development": {
+     "tag": "us-gaap:ResearchAndDevelopmentExpense",
+     "values": {
+      "2026-03-28": {"value": "726.122", "accession_number": "0001628280-26-032873"},
+      "2025-03-29": {"value": "747.709", "accession_number": "0001628280-26-032873"},
+      "2024-03-30": {"value": "682.249", "accession_number": "0001628280-26-032873"},
+      "2023-04-01": {"value": "649.841", "accession_number": "0001604778-25-000041"}
+     }
+    },
+    "operating_income": {
+     "tag": "us-gaap:OperatingIncomeLoss",
+     "values": {
+      "2026-03-28": {"value": "411.424", "accession_number": "0001628280-26-032873"},
+      "2025-03-29": {"value": "95.527", "accession_number": "0001628280-26-032873"},
+      "2024-03-30": {"value": "91.701", "accession_number": "0001628280-26-032873"},
+      "2023-04-01": {"value": "183.168", "accession_number": "0001604778-25-000041"}
+     }
+    },
+    "interest_expense": {
+     "tag": "us-gaap:InterestExpense",
+     "values": {
+      "2026-03-28": {"value": "73.134", "accession_number": "0001628280-26-032873"},
+      "2025-03-29": {"value": "78.328", "accession_number": "0001628280-26-032873"},
+      "2024-03-30": {"value": "69.245", "accession_number": "0001628280-26-032873"},
+      "2023-04-01": {"value": "68.463", "accession_number": "0001604778-25-000041"}
+     }
+    },
+    "pretax_income": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     "values": {
+      "2026-03-28": {"value": "398.273", "accession_number": "0001628280-26-032873"},
+      "2025-03-29": {"value": "65.899", "accession_number": "0001628280-26-032873"},
+      "2024-03-30": {"value": "73.56", "accession_number": "0001628280-26-032873"},
+      "2023-04-01": {"value": "124.629", "accession_number": "0001604778-25-000041"}
+     }
+    },
+    "income_tax": {
+     "tag": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": {
+      "2026-03-28": {"value": "59.284", "accession_number": "0001628280-26-032873"},
+      "2025-03-29": {"value": "10.284", "accession_number": "0001628280-26-032873"},
+      "2024-03-30": {"value": "143.882", "accession_number": "0001628280-26-032873"},
+      "2023-04-01": {"value": "21.477", "accession_number": "0001604778-25-000041"}
+     }
+    },
+    "net_income": {
+     "tag": "us-gaap:NetIncomeLoss",
+     "values": {
+      "2026-03-28": {"value": "338.989", "accession_number": "0001628280-26-032873"},
+      "2025-03-29": {"value": "55.615", "accession_number": "0001628280-26-032873"},
+      "2024-03-30": {"value": "-70.322", "accession_number": "0001628280-26-032873"},
+      "2023-04-01": {"value": "103.152", "accession_number": "0001604778-25-000041"}
+     }
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "values": {
+      "2026-03-28": {"value": "3.62", "accession_number": "0001628280-26-032873"},
+      "2025-03-29": {"value": "0.58", "accession_number": "0001628280-26-032873"},
+      "2024-03-30": {"value": "-0.72", "accession_number": "0001628280-26-032873"},
+      "2023-04-01": {"value": "1.00", "accession_number": "0001604778-25-000041"}
+     }
+    },
+    "diluted_shares": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "values": {
+      "2026-03-28": {"value": "93.547", "accession_number": "0001628280-26-032873"},
+      "2025-03-29": {"value": "95.45", "accession_number": "0001628280-26-032873"},
+      "2024-03-30": {"value": "97.557", "accession_number": "0001628280-26-032873"},
+      "2023-04-01": {"value": "103.019", "accession_number": "0001604778-25-000041"}
+     }
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "values": {
+      "2026-03-28": {"value": "0.149", "accession_number": "0001628280-26-032873"},
+      "2025-03-29": {"value": "0.156", "accession_number": "0001628280-26-032873"},
+      "2024-03-30": {"value": "1.956", "accession_number": "0001628280-26-032873"},
+      "2023-04-01": {"value": "0.172", "accession_number": "0001604778-25-000041"}
+     }
+    },
+    "operating_cash_flow": {
+     "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": {
+      "2026-03-28": {"value": "808.631", "accession_number": "0001628280-26-032873"},
+      "2025-03-29": {"value": "622.202", "accession_number": "0001628280-26-032873"},
+      "2024-03-30": {"value": "833.189", "accession_number": "0001628280-26-032873"},
+      "2023-04-01": {"value": "843.231", "accession_number": "0001604778-25-000041"}
+     }
+    },
+    "capital_expenditure": {
+     "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "values": {
+      "2026-03-28": {"value": "129.07", "accession_number": "0001628280-26-032873"},
+      "2025-03-29": {"value": "137.6", "accession_number": "0001628280-26-032873"},
+      "2024-03-30": {"value": "127.23", "accession_number": "0001628280-26-032873"},
+      "2023-04-01": {"value": "158.953", "accession_number": "0001604778-25-000041"}
+     }
+    },
+    "share_repurchases": {
+     "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+     "values": {
+      "2026-03-28": {"value": "532.552", "accession_number": "0001628280-26-032873"},
+      "2025-03-29": {"value": "356.336", "accession_number": "0001628280-26-032873"},
+      "2024-03-30": {"value": "400.054", "accession_number": "0001628280-26-032873"},
+      "2023-04-01": {"value": "861.751", "accession_number": "0001604778-25-000041"}
+     }
+    },
+    "cash_and_equivalents": {
+     "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+     "values": {
+      "2026-03-28": {"value": "1219.015", "accession_number": "0001628280-26-032873"},
+      "2025-03-29": {"value": "1021.176", "accession_number": "0001628280-26-032873"},
+      "2024-03-30": {"value": "1029.258", "accession_number": "0001628280-26-032873"},
+      "2023-04-01": {"value": "808.757", "accession_number": "0001604778-25-000041"}
+     }
+    },
+    "total_assets": {
+     "tag": "us-gaap:Assets",
+     "values": {
+      "2026-03-28": {"value": "5825.59", "accession_number": "0001628280-26-032873"},
+      "2025-03-29": {"value": "5933.131", "accession_number": "0001628280-26-032873"},
+      "2024-03-30": {"value": "6554.635", "accession_number": "0001604778-25-000041"},
+      "2023-04-01": {"value": "6691.903", "accession_number": "0001604778-24-000036"}
+     }
+    },
+    "total_liabilities": {
+     "tag": "us-gaap:Liabilities",
+     "values": {
+      "2026-03-28": {"value": "2481.291", "accession_number": "0001628280-26-032873"},
+      "2025-03-29": {"value": "2540.819", "accession_number": "0001628280-26-032873"},
+      "2024-03-30": {"value": "2998.263", "accession_number": "0001604778-25-000041"},
+      "2023-04-01": {"value": "2789.109", "accession_number": "0001604778-24-000036"}
+     }
+    },
+    "stockholders_equity": {
+     "tag": "us-gaap:StockholdersEquity",
+     "values": {
+      "2026-03-28": {"value": "3344.299", "accession_number": "0001628280-26-032873"},
+      "2025-03-29": {"value": "3392.312", "accession_number": "0001628280-26-032873"},
+      "2024-03-30": {"value": "3556.372", "accession_number": "0001628280-26-032873"},
+      "2023-04-01": {"value": "3902.794", "accession_number": "0001628280-26-032873"}
+     }
+    },
+    "long_term_debt": {
+     "tag": "us-gaap:LongTermDebt",
+     "values": {
+      "2026-03-28": {"value": "1549.154", "accession_number": "0001628280-26-032873"},
+      "2025-03-29": {"value": "1549.215", "accession_number": "0001628280-26-032873"},
+      "2024-03-30": {"value": "1549.272", "accession_number": "0001604778-25-000041"},
+      "2023-04-01": {"value": "2048.073", "accession_number": "0001604778-24-000036"}
+     }
+    }
+   },
+   "facts_sha256": "9517cab0c75a934a73f56a6614463910fb35b9423da49e7fe03727966931bf0e"
+  },
+  "SWKS": {
+   "ticker": "SWKS",
+   "name": "Skyworks Solutions, Inc.",
+   "cik": "0000004127",
+   "source": "SEC EDGAR company facts API",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000004127.json",
+   "source_posture": "authoritative_filing",
+   "retrieved_at_utc": "2026-11-23T04:47:03Z",
+   "fiscal_years": [
+    {"fiscal_year": 2026, "period_start": "2025-10-04", "period_end": "2026-10-02", "first_reported_in": "0000004127-26-000055"},
+    {"fiscal_year": 2025, "period_start": "2024-09-28", "period_end": "2025-10-03", "first_reported_in": "0000004127-25-000085"},
+    {"fiscal_year": 2024, "period_start": "2023-09-30", "period_end": "2024-09-27", "first_reported_in": "0000004127-24-000131"},
+    {"fiscal_year": 2023, "period_start": "2022-10-01", "period_end": "2023-09-29", "first_reported_in": "0000004127-23-000030"}
+   ],
+   "filings": {
+    "0000004127-24-000131": {"form": "10-K", "filed": "2024-11-15"},
+    "0000004127-25-000085": {"form": "10-K", "filed": "2025-11-07"},
+    "0000004127-26-000055": {"form": "10-K", "filed": "2026-11-10"}
+   },
+   "items": {
+    "revenue": {
+     "tag": "us-gaap:Revenues",
+     "values": {
+      "2026-10-02": {"value": "3959.6", "accession_number": "0000004127-26-000055"},
+      "2025-10-03": {"value": "4086.9", "accession_number": "0000004127-26-000055"},
+      "2024-09-27": {"value": "4178", "accession_number": "0000004127-26-000055"},
+      "2023-09-29": {"value": "4772.4", "accession_number": "0000004127-25-000085"}
+     }
+    },
+    "cost_of_revenue": {
+     "tag": "us-gaap:CostOfGoodsAndServicesSold",
+     "values": {
+      "2026-10-02": {"value": "2344.7", "accession_number": "0000004127-26-000055"},
+      "2025-10-03": {"value": "2404.8", "accession_number": "0000004127-26-000055"},
+      "2024-09-27": {"value": "2457.2", "accession_number": "0000004127-26-000055"},
+      "2023-09-29": {"value": "2665.1", "accession_number": "0000004127-25-000085"}
+     }
+    },
+    "gross_profit": {
+     "tag": "us-gaap:GrossProfit",
+     "values": {
+      "2026-10-02": {"value": "1614.9", "accession_number": "0000004127-26-000055"},
+      "2025-10-03": {"value": "1682.1", "accession_number": "0000004127-26-000055"},
+      "2024-09-27": {"value": "1720.8", "accession_number": "0000004127-26-000055"},
+      "2023-09-29": {"value": "2107.3", "accession_number": "0000004127-25-000085"}
+     }
+    },
+    "research_and_development": {
+     "tag": "us-gaap:ResearchAndDevelopmentExpense",
+     "values": {
+      "2026-10-02": {"value": "837", "accession_number": "0000004127-26-000055"},
+      "2025-10-03": {"value": "785.5", "accession_number": "0000004127-26-000055"},
+      "2024-09-27": {"value": "631.7", "accession_number": "0000004127-26-000055"},
+      "2023-09-29": {"value": "606.8", "accession_number": "0000004127-25-000085"}
+     }
+    },
+    "operating_income": {
+     "tag": "us-gaap:OperatingIncomeLoss",
+     "values": {
+      "2026-10-02": {"value": "216.7", "accession_number": "0000004127-26-000055"},
+      "2025-10-03": {"value": "500", "accession_number": "0000004127-26-000055"},
+      "2024-09-27": {"value": "637.4", "accession_number": "0000004127-26-000055"},
+      "2023-09-29": {"value": "1125", "accession_number": "0000004127-25-000085"}
+     }
+    },
+    "interest_expense": {
+     "tag": "us-gaap:InterestExpense",
+     "values": {
+      "2026-10-02": {"value": "41.3", "accession_number": "0000004127-26-000055"},
+      "2025-10-03": {"value": "27.1", "accession_number": "0000004127-26-000055"},
+      "2024-09-27": {"value": "30.7", "accession_number": "0000004127-26-000055"},
+      "2023-09-29": {"value": "64.4", "accession_number": "0000004127-25-000085"}
+     }
+    },
+    "pretax_income": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     "values": {
+      "2026-10-02": {"value": "213.7", "accession_number": "0000004127-26-000055"},
+      "2025-10-03": {"value": "526.7", "accession_number": "0000004127-26-000055"},
+      "2024-09-27": {"value": "636.4", "accession_number": "0000004127-26-000055"},
+      "2023-09-29": {"value": "1078.8", "accession_number": "0000004127-25-000085"}
+     }
+    },
+    "income_tax": {
+     "tag": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": {
+      "2026-10-02": {"value": "41.6", "accession_number": "0000004127-26-000055"},
+      "2025-10-03": {"value": "49.6", "accession_number": "0000004127-26-000055"},
+      "2024-09-27": {"value": "40.4", "accession_number": "0000004127-26-000055"},
+      "2023-09-29": {"value": "96", "accession_number": "0000004127-25-000085"}
+     }
+    },
+    "net_income": {
+     "tag": "us-gaap:NetIncomeLoss",
+     "values": {
+      "2026-10-02": {"value": "172.1", "accession_number": "0000004127-26-000055"},
+      "2025-10-03": {"value": "477.1", "accession_number": "0000004127-26-000055"},
+      "2024-09-27": {"value": "596", "accession_number": "0000004127-26-000055"},
+      "2023-09-29": {"value": "982.8", "accession_number": "0000004127-25-000085"}
+     }
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "values": {
+      "2026-10-02": {"value": "1.14", "accession_number": "0000004127-26-000055"},
+      "2025-10-03": {"value": "3.08", "accession_number": "0000004127-26-000055"},
+      "2024-09-27": {"value": "3.69", "accession_number": "0000004127-26-000055"},
+      "2023-09-29": {"value": "6.13", "accession_number": "0000004127-25-000085"}
+     }
+    },
+    "diluted_shares": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "values": {
+      "2026-10-02": {"value": "151", "accession_number": "0000004127-26-000055"},
+      "2025-10-03": {"value": "155.1", "accession_number": "0000004127-26-000055"},
+      "2024-09-27": {"value": "161.5", "accession_number": "0000004127-26-000055"},
+      "2023-09-29": {"value": "160.3", "accession_number": "0000004127-25-000085"}
+     }
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "values": {
+      "2026-10-02": {"value": "0.195", "accession_number": "0000004127-26-000055"}
+     }
+    },
+    "operating_cash_flow": {
+     "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": {
+      "2026-10-02": {"value": "549.9", "accession_number": "0000004127-26-000055"},
+      "2025-10-03": {"value": "1300.8", "accession_number": "0000004127-26-000055"},
+      "2024-09-27": {"value": "1824.7", "accession_number": "0000004127-26-000055"},
+      "2023-09-29": {"value": "1856.4", "accession_number": "0000004127-25-000085"}
+     }
+    },
+    "capital_expenditure": {
+     "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "values": {
+      "2026-10-02": {"value": "320.6", "accession_number": "0000004127-26-000055"},
+      "2025-10-03": {"value": "195", "accession_number": "0000004127-26-000055"},
+      "2024-09-27": {"value": "157", "accession_number": "0000004127-26-000055"},
+      "2023-09-29": {"value": "210.3", "accession_number": "0000004127-25-000085"}
+     }
+    },
+    "dividends_paid": {
+     "tag": "us-gaap:PaymentsOfDividendsCommonStock",
+     "values": {
+      "2026-10-02": {"value": "320.1", "accession_number": "0000004127-26-000055"},
+      "2025-10-03": {"value": "432.6", "accession_number": "0000004127-26-000055"},
+      "2024-09-27": {"value": "439.1", "accession_number": "0000004127-25-000085"},
+      "2023-09-29": {"value": "405.2", "accession_number": "0000004127-24-000131"}
+     }
+    },
+    "share_repurchases": {
+     "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+     "values": {
+      "2026-10-02": {"value": "114.5", "accession_number": "0000004127-26-000055"},
+      "2025-10-03": {"value": "830.2", "accession_number": "0000004127-26-000055"},
+      "2024-09-27": {"value": "77.3", "accession_number": "0000004127-26-000055"},
+      "2023-09-29": {"value": "175.3", "accession_number": "0000004127-25-000085"}
+     }
+    },
+    "cash_and_equivalents": {
+     "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+     "values": {
+      "2026-10-02": {"value": "2606.1", "accession_number": "0000004127-26-000055"},
+      "2025-10-03": {"value": "1161.3", "accession_number": "0000004127-26-000055"},
+      "2024-09-27": {"value": "1368.6", "accession_number": "0000004127-25-000085"},
+      "2023-09-29": {"value": "718.8", "accession_number": "0000004127-24-000131"}
+     }
+    },
+    "total_assets": {
+     "tag": "us-gaap:Assets",
+     "values": {
+      "2026-10-02": {"value": "9436.8", "accession_number": "0000004127-26-000055"},
+      "2025-10-03": {"value": "7917", "accession_number": "0000004127-26-000055"},
+      "2024-09-27": {"value": "8283.3", "accession_number": "0000004127-25-000085"},
+      "2023-09-29": {"value": "8426.7", "accession_number": "0000004127-24-000131"}
+     }
+    },
+    "total_liabilities": {
+     "tag": "us-gaap:Liabilities",
+     "values": {
+      "2026-10-02": {"value": "3721.1", "accession_number": "0000004127-26-000055"},
+      "2025-10-03": {"value": "2159.9", "accession_number": "0000004127-26-000055"},
+      "2024-09-27": {"value": "1946.6", "accession_number": "0000004127-25-000085"},
+      "2023-09-29": {"value": "2344", "accession_number": "0000004127-24-000131"}
+     }
+    },
+    "stockholders_equity": {
+     "tag": "us-gaap:StockholdersEquity",
+     "values": {
+      "2026-10-02": {"value": "5715.7", "accession_number": "0000004127-26-000055"},
+      "2025-10-03": {"value": "5757.1", "accession_number": "0000004127-26-000055"},
+      "2024-09-27": {"value": "6336.7", "accession_number": "0000004127-26-000055"},
+      "2023-09-29": {"value": "6082.7", "accession_number": "0000004127-26-000055"}
+     }
+    },
+    "long_term_debt": {
+     "tag": "us-gaap:LongTermDebt",
+     "values": {
+      "2026-10-02": {"value": "2472.8", "accession_number": "0000004127-26-000055"},
+      "2025-10-03": {"value": "496.4", "accession_number": "0000004127-26-000055"},
+      "2024-09-27": {"value": "994.3", "accession_number": "0000004127-25-000085"},
+      "2023-09-29": {"value": "992.9", "accession_number": "0000004127-24-000131"}
+     }
+    }
+   },
+   "facts_sha256": "058c15067908f0b187037185605d4694f6b7ad7de22d50d011350c8a7791d63c"
+  },
+  "INTC": {
+   "ticker": "INTC",
+   "name": "Intel Corporation",
+   "cik": "0000050863",
+   "source": "SEC EDGAR company facts API",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000050863.json",
+   "source_posture": "authoritative_filing",
+   "retrieved_at_utc": "2026-11-23T04:51:01Z",
+   "fiscal_years": [
+    {"fiscal_year": 2025, "period_start": "2024-12-29", "period_end": "2025-12-27", "first_reported_in": "0000050863-26-000011"},
+    {"fiscal_year": 2024, "period_start": "2023-12-31", "period_end": "2024-12-28", "first_reported_in": "0000050863-25-000009"},
+    {"fiscal_year": 2023, "period_start": "2023-01-01", "period_end": "2023-12-30", "first_reported_in": "0000050863-24-000010"},
+    {"fiscal_year": 2022, "period_start": "2021-12-26", "period_end": "2022-12-31", "first_reported_in": "0000050863-23-000006"}
+   ],
+   "filings": {
+    "0000050863-24-000010": {"form": "10-K", "filed": "2024-01-26"},
+    "0000050863-25-000009": {"form": "10-K", "filed": "2025-01-31"},
+    "0000050863-26-000011": {"form": "10-K", "filed": "2026-01-23"}
+   },
+   "items": {
+    "revenue": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "values": {
+      "2025-12-27": {"value": "52853", "accession_number": "0000050863-26-000011"},
+      "2024-12-28": {"value": "53101", "accession_number": "0000050863-26-000011"},
+      "2023-12-30": {"value": "54228", "accession_number": "0000050863-26-000011"},
+      "2022-12-31": {"value": "63054", "accession_number": "0000050863-25-000009"}
+     }
+    },
+    "cost_of_revenue": {
+     "tag": "us-gaap:CostOfGoodsAndServicesSold",
+     "values": {
+      "2025-12-27": {"value": "34478", "accession_number": "0000050863-26-000011"},
+      "2024-12-28": {"value": "35756", "accession_number": "0000050863-26-000011"},
+      "2023-12-30": {"value": "32517", "accession_number": "0000050863-26-000011"},
+      "2022-12-31": {"value": "36188", "accession_number": "0000050863-25-000009"}
+     }
+    },
+    "gross_profit": {
+     "tag": "us-gaap:GrossProfit",
+     "values": {
+      "2025-12-27": {"value": "18375", "accession_number": "0000050863-26-000011"},
+      "2024-12-28": {"value": "17345", "accession_number": "0000050863-26-000011"},
+      "2023-12-30": {"value": "21711", "accession_number": "0000050863-26-000011"},
+      "2022-12-31": {"value": "26866", "accession_number": "0000050863-25-000009"}
+     }
+    },
+    "research_and_development": {
+     "tag": "us-gaap:ResearchAndDevelopmentExpense",
+     "values": {
+      "2025-12-27": {"value": "13774", "accession_number": "0000050863-26-000011"},
+      "2024-12-28": {"value": "16546", "accession_number": "0000050863-26-000011"},
+      "2023-12-30": {"value": "16046", "accession_number": "0000050863-26-000011"},
+      "2022-12-31": {"value": "17528", "accession_number": "0000050863-25-000009"}
+     }
+    },
+    "operating_income": {
+     "tag": "us-gaap:OperatingIncomeLoss",
+     "values": {
+      "2025-12-27": {"value": "-2214", "accession_number": "0000050863-26-000011"},
+      "2024-12-28": {"value": "-11678", "accession_number": "0000050863-26-000011"},
+      "2023-12-30": {"value": "93", "accession_number": "0000050863-26-000011"},
+      "2022-12-31": {"value": "2334", "accession_number": "0000050863-25-000009"}
+     }
+    },
+    "interest_expense": {
+     "tag": "us-gaap:InterestExpenseNonoperating",
+     "values": {
+      "2025-12-27": {"value": "1091", "accession_number": "0000050863-26-000011"},
+      "2024-12-28": {"value": "1034", "accession_number": "0000050863-26-000011"},
+      "2023-12-30": {"value": "878", "accession_number": "0000050863-26-000011"},
+      "2022-12-31": {"value": "496", "accession_number": "0000050863-25-000009"}
+     }
+    },
+    "pretax_income": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+     "values": {
+      "2025-12-27": {"value": "1557", "accession_number": "0000050863-26-000011"},
+      "2024-12-28": {"value": "-11210", "accession_number": "0000050863-26-000011"},
+      "2023-12-30": {"value": "762", "accession_number": "0000050863-26-000011"},
+      "2022-12-31": {"value": "7768", "accession_number": "0000050863-25-000009"}
+     }
+    },
+    "income_tax": {
+     "tag": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": {
+      "2025-12-27": {"value": "1531", "accession_number": "0000050863-26-000011"},
+      "2024-12-28": {"value": "8023", "accession_number": "0000050863-26-000011"},
+      "2023-12-30": {"value": "-913", "accession_number": "0000050863-26-000011"},
+      "2022-12-31": {"value": "-249", "accession_number": "0000050863-25-000009"}
+     }
+    },
+    "net_income": {
+     "tag": "us-gaap:NetIncomeLoss",
+     "values": {
+      "2025-12-27": {"value": "-267", "accession_number": "0000050863-26-000011"},
+      "2024-12-28": {"value": "-18756", "accession_number": "0000050863-26-000011"},
+      "2023-12-30": {"value": "1689", "accession_number": "0000050863-26-000011"},
+      "2022-12-31": {"value": "8014", "accession_number": "0000050863-25-000009"}
+     }
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "values": {
+      "2025-12-27": {"value": "-0.06", "accession_number": "0000050863-26-000011"},
+      "2024-12-28": {"value": "-4.38", "accession_number": "0000050863-26-000011"},
+      "2023-12-30": {"value": "0.40", "accession_number": "0000050863-26-000011"},
+      "2022-12-31": {"value": "1.94", "accession_number": "0000050863-25-000009"}
+     }
+    },
+    "diluted_shares": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "values": {
+      "2025-12-27": {"value": "4530", "accession_number": "0000050863-26-000011"},
+      "2024-12-28": {"value": "4280", "accession_number": "0000050863-26-000011"},
+      "2023-12-30": {"value": "4212", "accession_number": "0000050863-26-000011"},
+      "2022-12-31": {"value": "4123", "accession_number": "0000050863-25-000009"}
+     }
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "values": {
+      "2025-12-27": {"value": "0.983", "accession_number": "0000050863-26-000011"},
+      "2024-12-28": {"value": "-0.716", "accession_number": "0000050863-26-000011"},
+      "2023-12-30": {"value": "-1.198", "accession_number": "0000050863-26-000011"},
+      "2022-12-31": {"value": "-0.032", "accession_number": "0000050863-25-000009"}
+     }
+    },
+    "operating_cash_flow": {
+     "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": {
+      "2025-12-27": {"value": "9697", "accession_number": "0000050863-26-000011"},
+      "2024-12-28": {"value": "8288", "accession_number": "0000050863-26-000011"},
+      "2023-12-30": {"value": "11471", "accession_number": "0000050863-26-000011"},
+      "2022-12-31": {"value": "15433", "accession_number": "0000050863-25-000009"}
+     }
+    },
+    "capital_expenditure": {
+     "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "values": {
+      "2025-12-27": {"value": "14646", "accession_number": "0000050863-26-000011"},
+      "2024-12-28": {"value": "23944", "accession_number": "0000050863-26-000011"},
+      "2023-12-30": {"value": "25750", "accession_number": "0000050863-26-000011"},
+      "2022-12-31": {"value": "24844", "accession_number": "0000050863-25-000009"}
+     }
+    },
+    "dividends_paid": {
+     "tag": "us-gaap:PaymentsOfDividendsCommonStock",
+     "values": {
+      "2025-12-27": {"value": "0", "accession_number": "0000050863-26-000011"},
+      "2024-12-28": {"value": "1599", "accession_number": "0000050863-26-000011"},
+      "2023-12-30": {"value": "3088", "accession_number": "0000050863-26-000011"},
+      "2022-12-31": {"value": "5997", "accession_number": "0000050863-25-000009"}
+     }
+    },
+    "share_repurchases": {
+     "tag": "us-gaap:PaymentsForRepurchaseOfCommonStock",
+     "values": {
+      "2023-12-30": {"value": "0", "accession_number": "0000050863-24-000010"},
+      "2022-12-31": {"value": "0", "accession_number": "0000050863-24-000010"}
+     }
+    },
+    "cash_and_equivalents": {
+     "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+     "values": {
+      "2025-12-27": {"value": "14265", "accession_number": "0000050863-26-000011"},
+      "2024-12-28": {"value": "8249", "accession_number": "0000050863-26-000011"},
+      "2023-12-30": {"value": "7079", "accession_number": "0000050863-26-000011", "tag": "us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"},
+      "2022-12-31": {"value": "11144", "accession_number": "0000050863-26-000011", "tag": "us-gaap:CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"}
+     }
+    },
+    "total_assets": {
+     "tag": "us-gaap:Assets",
+     "values": {
+      "2025-12-27": {"value": "211429", "accession_number": "0000050863-26-000011"},
+      "2024-12-28": {"value": "196485", "accession_number": "0000050863-26-000011"},
+      "2023-12-30": {"value": "191572", "accession_number": "0000050863-25-000009"},
+      "2022-12-31": {"value": "182103", "accession_number": "0000050863-24-000010"}
+     }
+    },
+    "stockholders_equity": {
+     "tag": "us-gaap:StockholdersEquity",
+     "values": {
+      "2025-12-27": {"value": "114281", "accession_number": "0000050863-26-000011"},
+      "2024-12-28": {"value": "99270", "accession_number": "0000050863-26-000011"},
+      "2023-12-30": {"value": "105590", "accession_number": "0000050863-25-000009"},
+      "2022-12-31": {"value": "101423", "accession_number": "0000050863-24-000010"}
+     }
+    },
+    "long_term_debt": {
+     "tag": "us-gaap:LongTermDebtNoncurrent",
+     "values": {
+      "2025-12-27": {"value": "44086", "accession_number": "0000050863-26-000011"},
+      "2024-12-28": {"value": "46282", "accession_number": "0000050863-26-000011"},
+      "2023-12-30": {"value": "46978", "accession_number": "0000050863-25-000009"},
+      "2022-12-31": {"value": "37684", "accession_number": "0000050863-24-000010"}
+     }
+    }
+   },
+   "facts_sha256": "34474f8003ce696dffedf44f2ff7a9b5615d9455b5be343ee2025d0ac815a2a3"
+  },
+  "SMCI": {
+   "ticker": "SMCI",
+   "name": "Super Micro Computer, Inc.",
+   "cik": "0001375365",
+   "source": "SEC EDGAR company facts API",
+   "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001375365.json",
+   "source_posture": "authoritative_filing",
+   "retrieved_at_utc": "2026-11-23T04:47:05Z",
+   "fiscal_years": [
+    {"fiscal_year": 2026, "period_start": "2025-07-01", "period_end": "2026-06-30", "first_reported_in": "0001375365-26-000022"},
+    {"fiscal_year": 2025, "period_start": "2024-07-01", "period_end": "2025-06-30", "first_reported_in": "0001375365-25-000027"},
+    {"fiscal_year": 2024, "period_start": "2023-07-01", "period_end": "2024-06-30", "first_reported_in": "0001375365-25-000004"},
+    {"fiscal_year": 2023, "period_start": "2022-07-01", "period_end": "2023-06-30", "first_reported_in": "0001375365-23-000036"}
+   ],
+   "filings": {
+    "0001375365-25-000004": {"form": "10-K", "filed": "2025-02-25"},
+    "0001375365-25-000027": {"form": "10-K", "filed": "2025-08-28"},
+    "0001375365-26-000022": {"form": "10-K", "filed": "2026-08-31"}
+   },
+   "items": {
+    "revenue": {
+     "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+     "values": {
+      "2026-06-30": {"value": "39063.072", "accession_number": "0001375365-26-000022"},
+      "2025-06-30": {"value": "21972.042", "accession_number": "0001375365-26-000022"},
+      "2024-06-30": {"value": "14989.251", "accession_number": "0001375365-26-000022"},
+      "2023-06-30": {"value": "7123.482", "accession_number": "0001375365-25-000027"}
+     }
+    },
+    "cost_of_revenue": {
+     "tag": "us-gaap:CostOfRevenue",
+     "values": {
+      "2026-06-30": {"value": "34835.821", "accession_number": "0001375365-26-000022"},
+      "2025-06-30": {"value": "19542.12", "accession_number": "0001375365-26-000022"},
+      "2024-06-30": {"value": "12927.841", "accession_number": "0001375365-26-000022"},
+      "2023-06-30": {"value": "5840.47", "accession_number": "0001375365-25-000027"}
+     }
+    },
+    "gross_profit": {
+     "tag": "us-gaap:GrossProfit",
+     "values": {
+      "2026-06-30": {"value": "4227.251", "accession_number": "0001375365-26-000022"},
+      "2025-06-30": {"value": "2429.922", "accession_number": "0001375365-26-000022"},
+      "2024-06-30": {"value": "2061.41", "accession_number": "0001375365-26-000022"},
+      "2023-06-30": {"value": "1283.012", "accession_number": "0001375365-25-000027"}
+     }
+    },
+    "research_and_development": {
+     "tag": "us-gaap:ResearchAndDevelopmentExpense",
+     "values": {
+      "2026-06-30": {"value": "771.232", "accession_number": "0001375365-26-000022"},
+      "2025-06-30": {"value": "636.55", "accession_number": "0001375365-26-000022"},
+      "2024-06-30": {"value": "463.548", "accession_number": "0001375365-26-000022"},
+      "2023-06-30": {"value": "307.26", "accession_number": "0001375365-25-000027"}
+     }
+    },
+    "operating_income": {
+     "tag": "us-gaap:OperatingIncomeLoss",
+     "values": {
+      "2026-06-30": {"value": "2770.486", "accession_number": "0001375365-26-000022"},
+      "2025-06-30": {"value": "1252.994", "accession_number": "0001375365-26-000022"},
+      "2024-06-30": {"value": "1210.774", "accession_number": "0001375365-26-000022"},
+      "2023-06-30": {"value": "761.142", "accession_number": "0001375365-25-000027"}
+     }
+    },
+    "interest_expense": {
+     "tag": "us-gaap:InterestExpenseNonoperating",
+     "values": {
+      "2026-06-30": {"value": "194.574", "accession_number": "0001375365-26-000022"},
+      "2025-06-30": {"value": "59.573", "accession_number": "0001375365-26-000022"},
+      "2024-06-30": {"value": "19.352", "accession_number": "0001375365-26-000022"},
+      "2023-06-30": {"value": "10.491", "accession_number": "0001375365-25-000027"}
+     }
+    },
+    "pretax_income": {
+     "tag": "us-gaap:IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+     "values": {
+      "2026-06-30": {"value": "2789.264", "accession_number": "0001375365-26-000022"},
+      "2025-06-30": {"value": "1211.916", "accession_number": "0001375365-26-000022"},
+      "2024-06-30": {"value": "1214.139", "accession_number": "0001375365-26-000022"},
+      "2023-06-30": {"value": "754.297", "accession_number": "0001375365-25-000027"}
+     }
+    },
+    "income_tax": {
+     "tag": "us-gaap:IncomeTaxExpenseBenefit",
+     "values": {
+      "2026-06-30": {"value": "556.329", "accession_number": "0001375365-26-000022"},
+      "2025-06-30": {"value": "156.851", "accession_number": "0001375365-26-000022"},
+      "2024-06-30": {"value": "63.294", "accession_number": "0001375365-26-000022"},
+      "2023-06-30": {"value": "110.666", "accession_number": "0001375365-25-000027"}
+     }
+    },
+    "net_income": {
+     "tag": "us-gaap:NetIncomeLoss",
+     "values": {
+      "2026-06-30": {"value": "2230.453", "accession_number": "0001375365-26-000022"},
+      "2025-06-30": {"value": "1048.854", "accession_number": "0001375365-26-000022"},
+      "2024-06-30": {"value": "1152.666", "accession_number": "0001375365-26-000022"},
+      "2023-06-30": {"value": "639.998", "accession_number": "0001375365-25-000027"}
+     }
+    },
+    "diluted_eps": {
+     "tag": "us-gaap:EarningsPerShareDiluted",
+     "values": {
+      "2026-06-30": {"value": "3.26", "accession_number": "0001375365-26-000022"},
+      "2025-06-30": {"value": "1.68", "accession_number": "0001375365-26-000022"},
+      "2024-06-30": {"value": "1.92", "accession_number": "0001375365-26-000022"},
+      "2023-06-30": {"value": "1.14", "accession_number": "0001375365-25-000027", "restated_from": "11.43"}
+     }
+    },
+    "diluted_shares": {
+     "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+     "values": {
+      "2026-06-30": {"value": "697.348", "accession_number": "0001375365-26-000022"},
+      "2025-06-30": {"value": "628.402", "accession_number": "0001375365-26-000022"},
+      "2024-06-30": {"value": "602.146", "accession_number": "0001375365-26-000022"},
+      "2023-06-30": {"value": "559.704", "accession_number": "0001375365-25-000027", "restated_from": "55.97"}
+     }
+    },
+    "effective_tax_rate": {
+     "tag": "us-gaap:EffectiveIncomeTaxRateContinuingOperations",
+     "values": {
+      "2026-06-30": {"value": "0.199", "accession_number": "0001375365-26-000022"},
+      "2025-06-30": {"value": "0.129", "accession_number": "0001375365-26-000022"},
+      "2024-06-30": {"value": "0.052", "accession_number": "0001375365-26-000022"},
+      "2023-06-30": {"value": "0.147", "accession_number": "0001375365-25-000027"}
+     }
+    },
+    "operating_cash_flow": {
+     "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+     "values": {
+      "2026-06-30": {"value": "-6809.886", "accession_number": "0001375365-26-000022"},
+      "2025-06-30": {"value": "1659.524", "accession_number": "0001375365-26-000022"},
+      "2024-06-30": {"value": "-2485.972", "accession_number": "0001375365-26-000022"},
+      "2023-06-30": {"value": "663.58", "accession_number": "0001375365-25-000027"}
+     }
+    },
+    "capital_expenditure": {
+     "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+     "values": {
+      "2026-06-30": {"value": "161.999", "accession_number": "0001375365-26-000022"},
+      "2025-06-30": {"value": "127.214", "accession_number": "0001375365-26-000022"},
+      "2024-06-30": {"value": "124.279", "accession_number": "0001375365-26-000022"},
+      "2023-06-30": {"value": "36.793", "accession_number": "0001375365-25-000027"}
+     }
+    },
+    "cash_and_equivalents": {
+     "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+     "values": {
+      "2026-06-30": {"value": "7521.474", "accession_number": "0001375365-26-000022"},
+      "2025-06-30": {"value": "5169.911", "accession_number": "0001375365-26-000022"},
+      "2024-06-30": {"value": "1669.766", "accession_number": "0001375365-25-000027"},
+      "2023-06-30": {"value": "440.459", "accession_number": "0001375365-25-000004"}
+     }
+    },
+    "total_assets": {
+     "tag": "us-gaap:Assets",
+     "values": {
+      "2026-06-30": {"value": "29945.467", "accession_number": "0001375365-26-000022"},
+      "2025-06-30": {"value": "14018.429", "accession_number": "0001375365-26-000022"},
+      "2024-06-30": {"value": "9826.092", "accession_number": "0001375365-25-000027"},
+      "2023-06-30": {"value": "3674.729", "accession_number": "0001375365-25-000004"}
+     }
+    },
+    "total_liabilities": {
+     "tag": "us-gaap:Liabilities",
+     "values": {
+      "2026-06-30": {"value": "15465.851", "accession_number": "0001375365-26-000022"},
+      "2025-06-30": {"value": "7716.558", "accession_number": "0001375365-26-000022"},
+      "2024-06-30": {"value": "4408.722", "accession_number": "0001375365-25-000027"},
+      "2023-06-30": {"value": "1702.559", "accession_number": "0001375365-25-000004"}
+     }
+    },
+    "stockholders_equity": {
+     "tag": "us-gaap:StockholdersEquity",
+     "values": {
+      "2026-06-30": {"value": "14479.452", "accession_number": "0001375365-26-000022"},
+      "2025-06-30": {"value": "6301.693", "accession_number": "0001375365-26-000022"},
+      "2024-06-30": {"value": "5417.206", "accession_number": "0001375365-25-000027"},
+      "2023-06-30": {"value": "1972.005", "accession_number": "0001375365-25-000004"}
+     }
+    },
+    "long_term_debt": {
+     "tag": "us-gaap:ConvertibleLongTermNotesPayable",
+     "values": {
+      "2026-06-30": {"value": "4664.139", "accession_number": "0001375365-26-000022"},
+      "2025-06-30": {"value": "4645.178", "accession_number": "0001375365-26-000022"},
+      "2024-06-30": {"value": "1697.716", "accession_number": "0001375365-25-000027"},
+      "2023-06-30": {"value": "0", "accession_number": "0001375365-25-000004"}
+     }
+    }
+   },
+   "facts_sha256": "fffee1ba42e2ffb2b2562f2cc10fbeaf53661faaa11132d37d15a33dc1e02926"
+  }
+ }
+}
